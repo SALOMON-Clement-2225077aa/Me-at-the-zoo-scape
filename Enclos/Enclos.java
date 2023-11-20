@@ -13,7 +13,7 @@ public class Enclos {
     double area;
     int maxCapacity;
     int currentCapacity;
-    ArrayList<Creatures> creatures;
+    ArrayList<Creature> creatures;
     boolean isDirty;
 
 
@@ -23,11 +23,11 @@ public class Enclos {
         // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
     }
 
-    void addCreature(Creatures creature) {
+    void addCreature(Creature creature) {
         // Ajouter une créature à l'enclos
     }
 
-    void removeCreature(Creatures creature) {
+    void removeCreature(Creature creature) {
         // Enlever une créature de l'enclos
     }
 
