@@ -41,7 +41,13 @@ public abstract class Creature {
     }
 
     void sleep() {
-
+        if(isSleeping = true){
+            System.out.println("the creature is already asleep");
+        }
+        else {
+            isSleeping = true;
+            System.out.println("the creature is now asleep");
+        }
     }
 
     void age() {
