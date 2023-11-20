@@ -13,8 +13,19 @@ public abstract class Creature {
     boolean isSleeping;
 
     // Méthodes
-    void eat() {
-
+    public void eat(){
+        if(isSleeping = false){
+            if(hungerLevel >= 95){
+                System.out.println("the creature isn't hungry");
+            }
+            else{
+                hungerLevel += 5;
+                System.out.println("you feed the creature");
+            }
+        }
+        else{
+            System.out.println("you can't feed a creature while it's asleep");
+        }
     }
 
     void makeSound() {
