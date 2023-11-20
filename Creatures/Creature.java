@@ -28,12 +28,16 @@ public abstract class Creature {
         }
     }
 
-    void makeSound() {
+    public abstract void makeSound();
 
-    }
-
-    void heal() {
-
+    public void heal() {
+        if(health == 100){
+            System.out.println("the creature is already full health");
+        }
+        else{
+            health = 100;
+            System.out.println("you heal the creature");
+        }
     }
 
     void sleep() {
