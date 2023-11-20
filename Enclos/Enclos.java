@@ -1,6 +1,9 @@
 package Enclos;
 
-class Enclos {
+import Creatures.*;
+import java.util.ArrayList;
+
+public class Enclos {
     // Pas besoin d'abstract ça sera l'enclos de base
     // On fera des extends de celui là pour les 2 autres
 
@@ -10,7 +13,7 @@ class Enclos {
     double area;
     int maxCapacity;
     int currentCapacity;
-    ArrayList<Creature> creatures;
+    ArrayList<Creatures> creatures;
     boolean isDirty;
 
 
@@ -20,11 +23,11 @@ class Enclos {
         // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
     }
 
-    void addCreature(Creature creature) {
+    void addCreature(Creatures creature) {
         // Ajouter une créature à l'enclos
     }
 
-    void removeCreature(Creature creature) {
+    void removeCreature(Creatures creature) {
         // Enlever une créature de l'enclos
     }
 

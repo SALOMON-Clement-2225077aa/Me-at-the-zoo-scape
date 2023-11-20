@@ -1,6 +1,6 @@
 package Creatures;
 
-abstract class Creatures {
+public abstract class Creatures {
 
     // Variables
     String species;
