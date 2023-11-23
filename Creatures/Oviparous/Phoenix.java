@@ -1,7 +1,7 @@
 package Creatures.Oviparous;
 
-import Creatures.type.Flyer;
-import Creatures.type.Renascent;
+import Creatures.Type.Flyer;
+import Creatures.Type.Renascent;
 
 public class Phoenix extends Oviparous implements Flyer, Renascent {
 

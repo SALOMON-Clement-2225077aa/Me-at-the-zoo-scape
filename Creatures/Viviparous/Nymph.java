@@ -1,6 +1,6 @@
 package Creatures.Viviparous;
 
-import Creatures.type.Renascent;
+import Creatures.Type.Renascent;
 
 public class Nymph extends Viviparous implements Renascent {
 

@@ -1,4 +1,4 @@
-package Enclos;
+package Enclosure;
 
 import Creatures.*;
 import java.util.ArrayList;

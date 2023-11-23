@@ -1,6 +1,6 @@
 package Creatures.Viviparous;
 
-import Creatures.type.Runner;
+import Creatures.Type.Runner;
 
 public class Lycanthrope extends Viviparous implements Runner {
 

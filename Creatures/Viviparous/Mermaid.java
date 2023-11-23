@@ -1,6 +1,6 @@
 package Creatures.Viviparous;
 
-import Creatures.type.Swimmer;
+import Creatures.Type.Swimmer;
 
 public class Mermaid extends Viviparous implements Swimmer {
 

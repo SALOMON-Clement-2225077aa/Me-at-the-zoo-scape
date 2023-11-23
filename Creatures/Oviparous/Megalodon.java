@@ -1,6 +1,6 @@
 package Creatures.Oviparous;
 
-import Creatures.type.Swimmer;
+import Creatures.Type.Swimmer;
 
 public class Megalodon extends Oviparous implements Swimmer {
 
