@@ -41,14 +41,17 @@ public class Main {
 
         ArrayList<Enclosure> ListEnclosure = new ArrayList<Enclosure>(Arrays.asList(e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14));
 
-
         // Création du Zoo fantastique
         FantasticZoo zoo = new FantasticZoo("First Zoo",zooMaster,15,ListEnclosure);
-
 
         // Affiche le Zoo :
         UI ui = new UI();
         ui.display(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+
+        // Déplacement test
+        ui.move('Z');
+        ui.move('Z');
+        ui.move('Q');
     }
 }
 
