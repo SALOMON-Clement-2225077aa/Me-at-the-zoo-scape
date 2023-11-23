@@ -1,8 +1,10 @@
-package Creatures.Oviparous;
+package Creatures.Ovipares;
 
-public class Megalodon extends Oviparous {
+import Creatures.type.nageant;
 
-    public Megalodon(String species, String gender, double weight, double size, int age) {
+public class megalodon extends Ovipare implements nageant {
+
+    public megalodon(String species, String gender, double weight, double size, int age) {
         super(species, gender, weight, size, age);
     }
 

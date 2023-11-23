@@ -2,6 +2,8 @@ package Creatures.type;
 
 public interface renaissant {
 
-    void renaitre();
+    default void rebirth() {
+        System.out.println("The creature rebirht !");
+    }
 
 }
