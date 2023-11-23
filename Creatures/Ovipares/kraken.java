@@ -6,4 +6,10 @@ public class kraken extends Ovipare{
         super(species, gender, weight, size, age);
     }
 
+    @Override
+    public void makeSound() {
+
+    }
+
+
 }
