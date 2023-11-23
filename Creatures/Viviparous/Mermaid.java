@@ -1,11 +1,11 @@
 package Creatures.Viviparous;
 
-import Creatures.type.Swimmer;
+import Creatures.Type.Swimmer;
 
 public class Mermaid extends Viviparous implements Swimmer {
 
     public Mermaid(String species, String gender, double weight, double size, int age) {
-        super(species, gender, weight, size, age);
+        super(species, gender, weight, size, age, 20);
     }
 
     @Override

@@ -4,12 +4,15 @@ import Creatures.Creature;
 
 public abstract class Oviparous extends Creature {
 
-    public Oviparous(String species, String gender, double weight, double size, int age) {
+    private int incubationDuration;
+
+    public Oviparous(String species, String gender, double weight, double size, int age, int incubationDuration) {
         super(species, gender, weight, size, age);
+        this.incubationDuration = incubationDuration;
     }
 
     // Méthode supplémentaire
-    void Lay() { // (pondre un oeuf)
+    void lay() { // (pondre un oeuf)
 
     }
 }

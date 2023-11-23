@@ -1,4 +1,4 @@
-package Creatures.type;
+package Creatures.Type;
 
 public interface Runner {
 

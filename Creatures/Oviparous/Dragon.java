@@ -1,14 +1,14 @@
 package Creatures.Oviparous;
 
-import Creatures.type.Runner;
-import Creatures.type.Swimmer;
-import Creatures.type.Flyer;
-import Creatures.type.Renascent;
+import Creatures.Type.Runner;
+import Creatures.Type.Swimmer;
+import Creatures.Type.Flyer;
+import Creatures.Type.Renascent;
 
 public class Dragon extends Oviparous implements Runner, Swimmer, Flyer, Renascent {
 
     public Dragon(String species, String gender, double weight, double size, int age) {
-        super(species, gender, weight, size, age);
+        super(species, gender, weight, size, age, 20);
     }
 
     @Override
