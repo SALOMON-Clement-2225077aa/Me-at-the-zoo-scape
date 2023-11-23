@@ -4,7 +4,7 @@ import Creatures.Creature;
 
 import java.util.ArrayList;
 
-public class Aquarium extends Enclos {
+public class Aquarium extends Enclosure {
 
     private int depth;
     private int salinity;

@@ -4,7 +4,7 @@ import Creatures.Creature;
 
 import java.util.ArrayList;
 
-public class Aviary extends Enclos{
+public class Aviary extends Enclosure {
     int height;
 
     public Aviary(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, boolean isDirty, int height) {

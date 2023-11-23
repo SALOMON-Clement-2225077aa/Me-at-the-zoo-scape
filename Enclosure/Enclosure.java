@@ -3,7 +3,7 @@ package Enclosure;
 import Creatures.*;
 import java.util.ArrayList;
 
-public class Enclos {
+public class Enclosure {
     // Pas besoin d'abstract ça sera l'enclos de base
     // On fera des extends de celui là pour les 2 autres
 
@@ -15,7 +15,7 @@ public class Enclos {
     ArrayList<Creature> creatures;
     boolean isDirty;
 
-    public Enclos(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, boolean isDirty) {
+    public Enclosure(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, boolean isDirty) {
         this.name = name;
         this.area = area;
         this.maxCapacity = maxCapacity;

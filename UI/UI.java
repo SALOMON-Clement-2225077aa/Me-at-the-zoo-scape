@@ -3,8 +3,17 @@ package UI;
 public class UI {
 
     int position;
+
     public UI() {
         position = 7;
+    }
+
+    // Get and Set position
+    public int getPosition() {
+        return position;
+    }
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     public void display(char e0, char e1, char e2, char e3, char e4, char e5, char e6, char e7, char e8, char e9, char e10, char e11, char e12, char e13, char e14){
@@ -37,7 +46,7 @@ public class UI {
                 "- enclosure dirtiness\n" +
                 "\n" +
                 "o Actions :\n" +
-                "- Move (U,D,L,R)\n" +
+                "- Move (Z,Q,S,D)\n" +
                 "- Clean (or C)\n" +
                 "- Feed (or F)\n" +
                 "\n" +
