@@ -23,10 +23,13 @@ public class Main {
 //        // Create gui and start gui
 //        MultiWindowTextGUI gui = new MultiWindowTextGUI(screen, new DefaultWindowManager(), new EmptySpace(TextColor.ANSI.BLACK));
 //        gui.addWindowAndWait(window);
+    public static void main(String[] args) {
+        System.out.println("--- Welcome to Me at The zoo-scape ! ---");
+
+
 
         UI ui = new UI();
         ui.display('0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0');
 
     }
-
 }
