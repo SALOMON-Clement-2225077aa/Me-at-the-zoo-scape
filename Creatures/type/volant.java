@@ -2,6 +2,8 @@ package Creatures.type;
 
 public interface volant {
 
-    void voler();
+    default void fly() {
+        System.out.println("The creature is flying");
+    }
 
 }

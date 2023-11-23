@@ -1,6 +1,8 @@
 package Creatures.Vivipares;
 
-public class licorne extends Vivipare{
+import Creatures.type.coureur;
+
+public class licorne extends Vivipare implements coureur {
 
     public licorne(String species, String gender, double weight, double size, int age) {
         super(species, gender, weight, size, age);

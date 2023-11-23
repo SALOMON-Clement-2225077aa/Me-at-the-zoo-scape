@@ -1,6 +1,8 @@
 package Creatures.Vivipares;
 
-public class sirene extends Vivipare{
+import Creatures.type.nageant;
+
+public class sirene extends Vivipare implements nageant {
 
     public sirene(String species, String gender, double weight, double size, int age) {
         super(species, gender, weight, size, age);

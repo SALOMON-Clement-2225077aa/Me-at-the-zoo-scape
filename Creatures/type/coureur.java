@@ -2,6 +2,8 @@ package Creatures.type;
 
 public interface coureur {
 
-    void courir();
+    default void run() {
+        System.out.println("The creature is running");
+    }
 
 }
