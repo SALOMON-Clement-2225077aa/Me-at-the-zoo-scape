@@ -4,8 +4,8 @@ import Creatures.Creature;
 
 public abstract class Ovipare extends Creature {
 
-    public Ovipare(String species, String gender, double weight, double size, int age, int hungerLevel, int health, boolean isSleeping) {
-        super(species, gender, weight, size, age, hungerLevel, health, isSleeping);
+    public Ovipare(String species, String gender, double weight, double size, int age) {
+        super(species, gender, weight, size, age);
     }
 
     // Méthode supplémentaire
