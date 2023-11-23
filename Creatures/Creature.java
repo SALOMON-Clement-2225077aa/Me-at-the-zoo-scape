@@ -13,20 +13,41 @@ public abstract class Creature {
     boolean isSleeping;
 
     // Méthodes
-    void eat() {
-
+    public void eat(){
+        if(isSleeping = false){
+            if(hungerLevel >= 95){
+                System.out.println("the creature isn't hungry");
+            }
+            else{
+                hungerLevel += 5;
+                System.out.println("you feed the creature");
+            }
+        }
+        else{
+            System.out.println("you can't feed a creature while it's asleep");
+        }
     }
 
-    void makeSound() {
+    public abstract void makeSound();
 
-    }
-
-    void heal() {
-
+    public void heal() {
+        if(health == 100){
+            System.out.println("the creature is already full health");
+        }
+        else{
+            health = 100;
+            System.out.println("you heal the creature");
+        }
     }
 
     void sleep() {
-
+        if(isSleeping = true){
+            System.out.println("the creature is already asleep");
+        }
+        else {
+            isSleeping = true;
+            System.out.println("the creature is now asleep");
+        }
     }
 
     void age() {
