@@ -1,6 +1,8 @@
 package Creatures.Viviparous;
 
-public class Nymph extends Viviparous {
+import Creatures.type.Renascent;
+
+public class Nymph extends Viviparous implements Renascent {
 
     public Nymph(String species, String gender, double weight, double size, int age) {
         super(species, gender, weight, size, age);
@@ -8,6 +10,6 @@ public class Nymph extends Viviparous {
 
     @Override
     public void makeSound() {
-        System.out.println("");
+        System.out.println("YOUUUUUUUUUUUUUUU");
     }
 }

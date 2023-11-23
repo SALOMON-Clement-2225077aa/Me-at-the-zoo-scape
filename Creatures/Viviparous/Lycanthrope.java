@@ -1,6 +1,8 @@
 package Creatures.Viviparous;
 
-public class Lycanthrope extends Viviparous {
+import Creatures.type.Runner;
+
+public class Lycanthrope extends Viviparous implements Runner {
 
     public Lycanthrope(String species, String gender, double weight, double size, int age) {
         super(species, gender, weight, size, age);
@@ -10,5 +12,4 @@ public class Lycanthrope extends Viviparous {
     public void makeSound() {
         System.out.println("WAF WAF WAF");
     }
-
 }

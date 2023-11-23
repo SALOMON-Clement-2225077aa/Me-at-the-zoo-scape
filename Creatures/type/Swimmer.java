@@ -1,6 +1,6 @@
 package Creatures.type;
 
-public interface nageant {
+public interface Swimmer {
 
     default void swim() {
         System.out.println("The creature is swimming");

@@ -1,6 +1,6 @@
 package Creatures.type;
 
-public interface coureur {
+public interface Runner {
 
     default void run() {
         System.out.println("The creature is running");
