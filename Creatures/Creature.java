@@ -3,14 +3,32 @@ package Creatures;
 public abstract class Creature {
 
     // Variables
-    String species;
-    String gender;
-    double weight;
-    double size;
-    int age;
-    int hungerLevel;
-    String health;
-    boolean isSleeping;
+    private String species;
+    private String gender;
+    private double weight;
+    private double size;
+    private int age;
+    private int hungerLevel;
+    private int slumberLevel;
+    private int health;
+    private boolean isSleeping;
+
+        // Constructeur
+    public Creature(String species, String gender, double weight, double size, int age) {
+        this.species = species;
+        this.gender = gender;
+        this.weight = weight;
+        this.size = size;
+        this.age = age;
+        this.hungerLevel = 100; // 100 = rassasié
+        this.slumberLevel = 100; // 100 = en pleine forme
+        this.health = 30;
+        this.isSleeping = false;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
 
     // Méthodes
     public void eat(){
@@ -31,16 +49,16 @@ public abstract class Creature {
     public abstract void makeSound();
 
     public void heal() {
-        if(health.equals("Normal")){
+        if(health == 30){
             System.out.println("The " + species + " is already full health");
         }
         else{
-            health = "Normal";
+            health = 30;
             System.out.println("You heal the " + species);
         }
     }
 
-    void sleep() {
+    public void sleep() {
         if(isSleeping){
             System.out.println("The " + species + " creature is already asleep");
         }
@@ -50,7 +68,7 @@ public abstract class Creature {
         }
     }
 
-    void wakeup() {
+    public void wakeup() {
         if(isSleeping) {
             isSleeping = false;
             System.out.println("The " + species + " creature is now awake");
@@ -60,19 +78,20 @@ public abstract class Creature {
         }
     }
 
-    void age() {
+    public void age() {
         age += 1;
+        if (age >= 100) {
+            die();
+        }
     }
 
-    // Constructeur
-    public Creature(String species, String gender, double weight, double size, int age) {
-        this.species = species;
-        this.gender = gender;
-        this.weight = weight;
-        this.size = size;
-        this.age = age;
-        this.hungerLevel = 100; // 100 = rassasié
-        this.health = "Normal";
-        this.isSleeping = false;
+    public void ill () {
+        health -= 1;
+        if (health == 0) {
+            die();
+        }
+    }
+
+    void die () {
     }
 }
