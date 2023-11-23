@@ -7,7 +7,6 @@ public class Enclos {
     // Pas besoin d'abstract ça sera l'enclos de base
     // On fera des extends de celui là pour les 2 autres
 
-
     // Variables
     String name;
     double area;
@@ -16,7 +15,14 @@ public class Enclos {
     ArrayList<Creature> creatures;
     boolean isDirty;
 
-
+    public Enclos(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, boolean isDirty) {
+        this.name = name;
+        this.area = area;
+        this.maxCapacity = maxCapacity;
+        this.currentCapacity = currentCapacity;
+        this.creatures = creatures;
+        this.isDirty = isDirty;
+    }
 
     // Méthodes
     void displayInfo() {
