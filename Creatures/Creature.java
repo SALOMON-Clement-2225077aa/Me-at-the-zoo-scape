@@ -14,17 +14,17 @@ public abstract class Creature {
 
     // Méthodes
     public void eat(){
-        if(isSleeping = false){
+        if(!isSleeping){
             if(hungerLevel >= 95){
-                System.out.println("the creature isn't hungry");
+                System.out.println("The " + species + " isn't hungry");
             }
             else{
                 hungerLevel += 5;
-                System.out.println("you feed the creature");
+                System.out.println("You fed the " + species);
             }
         }
         else{
-            System.out.println("you can't feed a creature while it's asleep");
+            System.out.println("You can't feed a creature while it's asleep");
         }
     }
 
@@ -32,26 +32,36 @@ public abstract class Creature {
 
     public void heal() {
         if(health == 100){
-            System.out.println("the creature is already full health");
+            System.out.println("The " + species + " is already full health");
         }
         else{
             health = 100;
-            System.out.println("you heal the creature");
+            System.out.println("You heal the " + species);
         }
     }
 
     void sleep() {
-        if(isSleeping = true){
-            System.out.println("the creature is already asleep");
+        if(isSleeping){
+            System.out.println("The " + species + " creature is already asleep");
         }
         else {
             isSleeping = true;
-            System.out.println("the creature is now asleep");
+            System.out.println("The " + species + " is now asleep");
+        }
+    }
+
+    void wakeup() {
+        if(isSleeping) {
+            isSleeping = false;
+            System.out.println("The " + species + " creature is now awake");
+        }
+        else {
+            System.out.println("The " + species + " creature is already awake");
         }
     }
 
     void age() {
-
+        age += 1;
     }
 
     // Constructeur
