@@ -9,7 +9,7 @@ public abstract class Creature {
     double size;
     int age;
     int hungerLevel;
-    int health;
+    String health;
     boolean isSleeping;
 
     // Méthodes
@@ -31,11 +31,11 @@ public abstract class Creature {
     public abstract void makeSound();
 
     public void heal() {
-        if(health == 100){
+        if(health.equals("Normal")){
             System.out.println("The " + species + " is already full health");
         }
         else{
-            health = 100;
+            health = "Normal";
             System.out.println("You heal the " + species);
         }
     }
@@ -72,7 +72,7 @@ public abstract class Creature {
         this.size = size;
         this.age = age;
         this.hungerLevel = 100; // 100 = rassasié
-        this.health = 100;
+        this.health = "Normal";
         this.isSleeping = false;
     }
 }
