@@ -1,6 +1,6 @@
-import UI.UI;
-import Zoo.CreateZoo;
-import Zoo.FantasticZoo;
+import View.UI;
+import Model.Zoo.CreateZoo;
+import Model.Zoo.FantasticZoo;
 
 import java.util.Scanner;
 
@@ -10,10 +10,10 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("--- Welcome to Me at The zoo-scape ! ---");
 
-        // Création du Zoo :
+        // Création du Model.Zoo :
         FantasticZoo zoo = CreateZoo.createZoo();
 
-        // Affiche le Zoo :
+        // Affiche le Model.Zoo :
         UI ui = new UI();
         ui.display(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 
