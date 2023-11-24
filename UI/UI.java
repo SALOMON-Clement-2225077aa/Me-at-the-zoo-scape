@@ -17,6 +17,7 @@ public class UI {
     }
 
     public void display(char e0, char e1, char e2, char e3, char e4, char e5, char e6, char e7, char e8, char e9, char e10, char e11, char e12, char e13, char e14){
+        System.out.print("\033[H\033[2J"); // Clear
         System.out.println("" +
                 "---------------------------------------------------\n" +
                 "|         |         |         |         |         |\n" +
@@ -64,8 +65,8 @@ public class UI {
         display(e0, e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14);
     }
 
-    public void move(char playerInput) {
-        if (playerInput == 'Z' || playerInput == 'z') {
+    public void move(String playerInput) {
+        if (playerInput == "Z" || playerInput == "z") {
             if(getPosition() >= 0 && getPosition() <= 4) {
                 setPosition(getPosition()+10);
             }
@@ -73,7 +74,7 @@ public class UI {
                 setPosition(getPosition()-5);
             }
         }
-        if (playerInput == 'Q' || playerInput == 'q') {
+        if (playerInput == "Q" || playerInput == "q") {
             if(getPosition() == 0 || getPosition() == 5 || getPosition() == 10) {
                 setPosition(getPosition()+4);
             }
@@ -81,7 +82,7 @@ public class UI {
                 setPosition(getPosition()-1);
             }
         }
-        if (playerInput == 'S' || playerInput == 's') {
+        if (playerInput == "S" || playerInput == "s") {
             if(getPosition() >= 10 && getPosition() <= 14) {
                 setPosition(getPosition()-10);
             }
@@ -89,7 +90,7 @@ public class UI {
                 setPosition(getPosition()+5);
             }
         }
-        if (playerInput == 'D' || playerInput == 'd') {
+        if (playerInput == "D" || playerInput == "d") {
             if(getPosition() == 4 || getPosition() == 9 || getPosition() == 14) {
                 setPosition(getPosition()-4);
             }

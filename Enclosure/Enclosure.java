@@ -25,23 +25,36 @@ public class Enclosure {
     }
 
     // Méthodes
-    void displayInfo() {
+    public String displayInfo() {
         // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
+        return "Enclosure{" +
+                "name='" + name + '\'' +
+                ", area=" + area +
+                ", maxCapacity=" + maxCapacity +
+                ", currentCapacity=" + currentCapacity +
+                ", creatures=" + creatures +
+                ", isDirty=" + isDirty +
+                '}';
     }
 
-    void addCreature(Creature creature) {
-        // Ajouter une créature à l'enclos
+    public String displayCreatures() {
+        // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
+        return ""+creatures;
     }
 
-    void removeCreature(Creature creature) {
-        // Enlever une créature de l'enclos
+    public void addCreature(Creature creature) {
+        creatures.add(creature);
     }
 
-    void feedCreatures() {
+    public void removeCreature(Creature creature) {
+        creatures.remove(creature);
+    }
+
+    public void feedCreatures() {
         // Nourrir les créatures de l'enclos
     }
 
-    void cleanEnclosure() {
+    public void cleanEnclosure() {
         // Nettoyer l'enclos
     }
 
