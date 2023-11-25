@@ -1,10 +1,13 @@
 package Controller;
 
+import Model.Enclosure.Enclosure;
 import View.UI;
+
+import java.util.ArrayList;
 
 public class MovementInput {
 
-    public static void move(UI ui, String playerInput) {
+    public static void move(UI ui, ArrayList<Enclosure> ListEnclosure, String playerInput) {
         if (playerInput == "Z" || playerInput == "z") {
             if(ui.getPosition() >= 0 && ui.getPosition() <= 4) {
                 ui.setPosition(ui.getPosition()+10);
@@ -37,7 +40,7 @@ public class MovementInput {
                 ui.setPosition(ui.getPosition()+1);
             }
         }
-        ui.updateEnclosure();
+        ui.updateEnclosure(ListEnclosure.get(ui.getPosition()));
     }
 
 }

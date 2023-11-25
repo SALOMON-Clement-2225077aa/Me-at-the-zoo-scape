@@ -9,9 +9,19 @@ public class Aquarium extends Enclosure {
     private int depth;
     private int salinity;
 
-    public Aquarium(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, boolean isDirty, int depth, int salinity) {
-        super(name, area, maxCapacity, currentCapacity, creatures, isDirty);
+    public Aquarium(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, int enclosureDirtiness, int depth, int salinity) {
+        super(name, area, maxCapacity, currentCapacity, creatures, enclosureDirtiness);
         this.depth = depth;
         this.salinity = salinity;
     }
+
+
+
+
+    // ---------------------------------
+    // Enclosure Info
+    public String type() {
+        return "Aquarium";
+    }
+
 }

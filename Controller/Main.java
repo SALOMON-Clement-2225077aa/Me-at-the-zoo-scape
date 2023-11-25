@@ -1,11 +1,14 @@
 package Controller;
 
+import static Model.Zoo.CreateEnclosure.createEmptyEnclosure;
+import Model.Enclosure.Enclosure;
 import Model.Zoo.FantasticZooMaster;
 import View.UI;
-import Model.Zoo.CreateZoo;
 import Model.Zoo.FantasticZoo;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 // Classe Controller.Main pour l'exécution de la simulation
 public class Main {
@@ -15,21 +18,21 @@ public class Main {
 
         // Création du Maître et du Zoo fantastique :
         FantasticZooMaster zooMaster = new FantasticZooMaster("playerName","Man",19);
-        FantasticZoo zoo = CreateZoo.createZoo(zooMaster);
+        ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
+        FantasticZoo zoo = new FantasticZoo("First Zoo",zooMaster,15,ListEnclosure);
 
-        // Affiche le Model.Zoo :
+        // Affiche le Zoo :
         UI ui = new UI();
-        char[] charArray = {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
-        ui.display(charArray);
+        ui.updateEnclosure(ListEnclosure.get(ui.getPosition()));
 
         Scanner readInput = new Scanner(System.in);
 
         // Déplacement test
-        MovementInput.move(ui,"Z");
-        MovementInput.move(ui,"Z");
-        MovementInput.move(ui,"Q");
-        MovementInput.move(ui,"Q");
-        MovementInput.move(ui,"Q");
+        MovementInput.move(ui,ListEnclosure,"Z");
+        MovementInput.move(ui,ListEnclosure,"Z");
+        MovementInput.move(ui,ListEnclosure,"Q");
+        MovementInput.move(ui,ListEnclosure,"Q");
+        MovementInput.move(ui,ListEnclosure,"Q");
 
     }
 }

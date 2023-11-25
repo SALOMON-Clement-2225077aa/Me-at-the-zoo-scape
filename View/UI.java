@@ -1,5 +1,7 @@
 package View;
 
+import Model.Enclosure.*;
+
 public class UI {
 
     int cursorPosition;
@@ -16,7 +18,7 @@ public class UI {
         this.cursorPosition = position;
     }
 
-    public void display(char[] charArray){
+    public void display(char[] charArray, String[] enclosureInfo){
         System.out.print("\033[H\033[2J"); // Clear
         System.out.println("" +
                 "---------------------------------------------------\n" +
@@ -40,11 +42,10 @@ public class UI {
                 "---------------------------------------------------\n" +
                 "\n" +
                 "o Selected enclosure :\n" +
-                "- enclosure type\n" +
-                "- creatures type\n" +
-                "- x/10\n" +
-                "- show creatures\n" +
-                "- enclosure dirtiness\n" +
+                "- enclosure type : " + enclosureInfo[0] + "\n" +
+                "- creatures species: " + enclosureInfo[1] + "\n" +
+                "- capacity : " + enclosureInfo[2] + "\n" +
+                "- enclosure dirtiness : " + enclosureInfo[3] + "\n" +
                 "\n" +
                 "o Actions :\n" +
                 "- Move (Z,Q,S,D)\n" +
@@ -55,14 +56,27 @@ public class UI {
                 "*Licorn noises*");
     }
 
-    public void updateEnclosure() {
+    public void updateEnclosure(Enclosure enclosure) {
+
+        // ---------------------------------
+        // charArray
         char[] charArray = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
 
         // Player position
         charArray[cursorPosition] = 'X';
 
+        // ---------------------------------
+        // Enclosure Info
+        String enclosureType = enclosure.type();
+        String creatureType = enclosure.creatureSpecies();
+        String enclosureCapacity = enclosure.capacity();
+        String enclosureDirtiness = enclosure.dirtyness();
+
+        String[] enclosureInfo = {enclosureType,creatureType,enclosureCapacity,enclosureDirtiness};
+
+        // ---------------------------------
         // Display
-        display(charArray);
+        display(charArray,enclosureInfo);
     }
 
 }

@@ -13,7 +13,7 @@ public abstract class Creature {
     private int health;
     private boolean isSleeping;
 
-        // Constructeur
+    // Constructeur
     public Creature(String species, String gender, double weight, double size, int age) {
         this.species = species;
         this.gender = gender;

@@ -8,20 +8,20 @@ public class Enclosure {
     // On fera des extends de celui là pour les 2 autres
 
     // Variables
-    String name;
-    double area;
-    int maxCapacity;
-    int currentCapacity;
-    ArrayList<Creature> creatures;
-    boolean isDirty;
+    public String name;
+    public double area;
+    public int maxCapacity;
+    public int currentCapacity;
+    public ArrayList<Creature> creatures;
+    public int enclosureDirtiness;
 
-    public Enclosure(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, boolean isDirty) {
+    public Enclosure(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, int enclosureDirtiness) {
         this.name = name;
         this.area = area;
         this.maxCapacity = maxCapacity;
         this.currentCapacity = currentCapacity;
         this.creatures = creatures;
-        this.isDirty = isDirty;
+        this.enclosureDirtiness = enclosureDirtiness;
     }
 
     // Méthodes
@@ -33,16 +33,12 @@ public class Enclosure {
                 ", maxCapacity=" + maxCapacity +
                 ", currentCapacity=" + currentCapacity +
                 ", creatures=" + creatures +
-                ", isDirty=" + isDirty +
+                ", isDirty=" + enclosureDirtiness +
                 '}';
     }
 
-    public String type() {
-        return "Basic enclosure";
-    }
-
     public String displayCreatures() {
-        // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
+        // Afficher les créatures qu'il contient
         return ""+creatures;
     }
 
@@ -59,7 +55,28 @@ public class Enclosure {
     }
 
     public void cleanEnclosure() {
-        // Nettoyer l'enclos
+        enclosureDirtiness = 0;
     }
 
+
+
+    // ---------------------------------
+    // Enclosure Info
+    public String type() {
+        return "Basic enclosure";
+    }
+    public String creatureSpecies() {
+        if(creatures.isEmpty()) {
+            return "None";
+        }
+        else {
+            return creatures.get(0).getSpecies();
+        }
+    }
+    public String capacity() {
+        return currentCapacity+"/"+maxCapacity;
+    }
+    public String dirtyness() {
+        return ""+enclosureDirtiness;
+    }
 }
