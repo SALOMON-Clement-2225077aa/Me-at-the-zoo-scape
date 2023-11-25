@@ -86,4 +86,5 @@ public class Enclosure {
     public String dirtyness() {
         return ""+enclosureDirtiness;
     }
+
 }

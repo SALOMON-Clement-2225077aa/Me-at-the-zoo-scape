@@ -27,14 +27,14 @@ public class Main {
 
         // Ajout de créature :
         Unicorn unicorn1 = new Unicorn("Unicorn","male",75,100,35);
-        ListEnclosure.get(2).addCreature(unicorn1);
+        ListEnclosure.get(4).addCreature(unicorn1);
 
         Mermaid mermaid1 = new Mermaid("Mermaid","female",60,90,25);
-        ListEnclosure.get(7).addCreature(mermaid1);
+        ListEnclosure.get(6).addCreature(mermaid1);
 
         // Affiche le Zoo :
         UI ui = new UI();
-        ui.updateEnclosure(ListEnclosure.get(ui.getPosition()));
+        ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
 
         Scanner readInput = new Scanner(System.in);
 

@@ -40,7 +40,7 @@ public class MovementInput {
                 ui.setPosition(ui.getPosition()+1);
             }
         }
-        ui.updateEnclosure(ListEnclosure.get(ui.getPosition()));
+        ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
     }
 
 }

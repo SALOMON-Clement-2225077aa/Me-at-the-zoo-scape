@@ -2,6 +2,8 @@ package View;
 
 import Model.Enclosure.*;
 
+import java.util.ArrayList;
+
 public class UI {
 
     int cursorPosition;
@@ -55,32 +57,43 @@ public class UI {
                 "- - - - - - - - - -\n");
     }
 
-    public void updateEnclosure(Enclosure enclosure) {
+    public void updateEnclosure(ArrayList<Enclosure> ListEnclosure, Enclosure currentEnclosure) {
 
         // ---------------------------------
         // charArray
-        char[] charArray = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+        char[] charArray = new char[ListEnclosure.size()];
+
+        for (int i = 0; i < ListEnclosure.size(); i++) {
+            if (ListEnclosure.get(i).currentCapacity == 0) {
+                charArray[i] = '?';
+            } else if (ListEnclosure.get(i).enclosureDirtiness > 75) {
+                charArray[i] = '~';
+            } else {
+                charArray[i] = ' ';
+            }
+        }
 
         // Player position
+        // (priorité max donc écrase potentiellement une info)
         charArray[cursorPosition] = 'X';
 
         // ---------------------------------
         // Enclosure Info
-        String enclosureType = enclosure.type();
-        String creatureSpecies = enclosure.creatureSpecies();
-        String enclosureCapacity = enclosure.capacity();
-        String enclosureDirtiness = enclosure.dirtyness();
+        String enclosureType = currentEnclosure.type();
+        String creatureSpecies = currentEnclosure.creatureSpecies();
+        String enclosureCapacity = currentEnclosure.capacity();
+        String enclosureDirtiness = currentEnclosure.dirtyness();
 
         String[] enclosureInfo = {enclosureType,creatureSpecies,enclosureCapacity,enclosureDirtiness};
 
         // ---------------------------------
         // Creature Info
-        String[] creatureInfo = new String[enclosure.maxCapacity];
+        String[] creatureInfo = new String[currentEnclosure.maxCapacity];
 
-        for (int i = 0; i < enclosure.creatures.size(); i++) {
-            creatureInfo[i] = enclosure.creatures.get(i).toString();
+        for (int i = 0; i < currentEnclosure.creatures.size(); i++) {
+            creatureInfo[i] = currentEnclosure.creatures.get(i).toString();
         }
-        for (int i = enclosure.creatures.size(); i < enclosure.maxCapacity; i++) {
+        for (int i = currentEnclosure.creatures.size(); i < currentEnclosure.maxCapacity; i++) {
             creatureInfo[i] = "";
         }
 
