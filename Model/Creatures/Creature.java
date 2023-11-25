@@ -3,15 +3,15 @@ package Model.Creatures;
 public abstract class Creature {
 
     // Variables
-    private String species;
-    private String gender;
-    private double weight;
-    private double size;
-    private int age;
-    private int hungerLevel;
-    private int slumberLevel;
-    private int health;
-    private boolean isSleeping;
+    public String species;
+    public String gender;
+    public double weight;
+    public double size;
+    public int age;
+    public int hungerLevel;
+    public int slumberLevel;
+    public int health;
+    public boolean isSleeping;
 
     // Constructeur
     public Creature(String species, String gender, double weight, double size, int age) {
@@ -98,14 +98,14 @@ public abstract class Creature {
     @Override
     public String toString() {
         return ' '+species + " : "
-                + "gender='" + gender + '\'' +
-                ", weight=" + weight +
-                ", size=" + size +
-                ", age=" + age +
-                ", hungerLevel=" + hungerLevel +
-                ", slumberLevel=" + slumberLevel +
-                ", health=" + health +
-                ", isSleeping=" + isSleeping +
+                + gender +
+                ", " + weight + "kg"+
+                ", "+ size + "m" +
+                ", " + age + "yo" +
+                ", " + health + "hp" +
+                ", asleep=" + isSleeping +
+                ", hungerlvl=" + hungerLevel +
+                ", slumberlvl=" + slumberLevel +
                 '}';
     }
 }

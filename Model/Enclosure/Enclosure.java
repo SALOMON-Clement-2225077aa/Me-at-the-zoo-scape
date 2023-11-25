@@ -52,6 +52,15 @@ public class Enclosure {
         currentCapacity -= 1;
     }
 
+    public boolean isThereHungryCreature() {
+        for (Creature creature : creatures) {
+            if (creature.hungerLevel <= 25) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void feedCreatures() {
         // Nourrir les créatures de l'enclos
     }
@@ -83,7 +92,7 @@ public class Enclosure {
     public String capacity() {
         return currentCapacity+"/"+maxCapacity;
     }
-    public String dirtyness() {
+    public String dirtiness() {
         return ""+enclosureDirtiness;
     }
 
