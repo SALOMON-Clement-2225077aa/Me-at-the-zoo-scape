@@ -18,6 +18,7 @@ public class CreateCreatures {
         addRunner(ListEnclosure);
         addSwimmer(ListEnclosure);
         addFlyer(ListEnclosure);
+        addNymph(ListEnclosure);
         addMoreDragons(ListEnclosure);
     }
 
@@ -110,6 +111,26 @@ public class CreateCreatures {
         ListEnclosure.get(13).addCreature(phoenix2);
         ListEnclosure.get(13).addCreature(phoenix3);
         ListEnclosure.get(13).addCreature(phoenix4);
+    }
+
+    private static void addNymph(ArrayList<Enclosure> ListEnclosure) {
+    // C'est pas marqué mais j'imagine qu'elles vont dans les enclos de bases ?
+        // - - - - - - - - - -
+        // Création des animaux
+        // - - - - - - - - - -
+        Nymph nymph1 = new Nymph("Nymph", "female", 50, 4.5, 25);
+        Nymph nymph2 = new Nymph("Nymph", "male", 55, 5.0, 27);
+        Nymph nymph3 = new Nymph("Nymph", "female", 45, 4.0, 23);
+        Nymph nymph4 = new Nymph("Nymph", "male", 60, 5.5, 30);
+        Nymph nymph5 = new Nymph("Nymph", "female", 52, 4.8, 28);
+        // - - - - - - - - - - - - - -
+        // Ajout des animaux aux enclos
+        // - - - - - - - - - - - - - -
+        ListEnclosure.get(3).addCreature(nymph1);
+        ListEnclosure.get(3).addCreature(nymph2);
+        ListEnclosure.get(3).addCreature(nymph3);
+        ListEnclosure.get(3).addCreature(nymph4);
+        ListEnclosure.get(3).addCreature(nymph5);
     }
 
     private static void addMoreDragons(ArrayList<Enclosure> ListEnclosure) {
