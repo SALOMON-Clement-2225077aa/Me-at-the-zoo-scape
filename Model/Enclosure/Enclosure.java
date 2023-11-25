@@ -37,6 +37,10 @@ public class Enclosure {
                 '}';
     }
 
+    public String type() {
+        return "Basic enclosure";
+    }
+
     public String displayCreatures() {
         // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
         return ""+creatures;

@@ -11,10 +11,7 @@ import java.util.Arrays;
 
 public class CreateZoo {
 
-    public static FantasticZoo createZoo() {
-
-        // Création du Maître fantastique :
-        FantasticZooMaster zooMaster = new FantasticZooMaster("playerName","Man",19);
+    public static FantasticZoo createZoo(FantasticZooMaster zooMaster) {
 
         // Création des enclos :
         ArrayList<Creature> creatures = new ArrayList<Creature>();

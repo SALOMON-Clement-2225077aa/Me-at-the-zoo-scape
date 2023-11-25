@@ -1,30 +1,36 @@
+package Controller;
+
+import Model.Zoo.FantasticZooMaster;
 import View.UI;
 import Model.Zoo.CreateZoo;
 import Model.Zoo.FantasticZoo;
 
 import java.util.Scanner;
 
-// Classe Main pour l'exécution de la simulation
+// Classe Controller.Main pour l'exécution de la simulation
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("--- Welcome to Me at The zoo-scape ! ---");
 
-        // Création du Model.Zoo :
-        FantasticZoo zoo = CreateZoo.createZoo();
+        // Création du Maître et du Zoo fantastique :
+        FantasticZooMaster zooMaster = new FantasticZooMaster("playerName","Man",19);
+        FantasticZoo zoo = CreateZoo.createZoo(zooMaster);
 
         // Affiche le Model.Zoo :
         UI ui = new UI();
-        ui.display(' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+        char[] charArray = {' ', ' ', ' ', ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+        ui.display(charArray);
 
         Scanner readInput = new Scanner(System.in);
 
         // Déplacement test
-        ui.move("Z");
-        ui.move("Z");
-        ui.move("Q");
-        ui.move("Q");
-        ui.move("Q");
+        MovementInput.move(ui,"Z");
+        MovementInput.move(ui,"Z");
+        MovementInput.move(ui,"Q");
+        MovementInput.move(ui,"Q");
+        MovementInput.move(ui,"Q");
+
     }
 }
 
