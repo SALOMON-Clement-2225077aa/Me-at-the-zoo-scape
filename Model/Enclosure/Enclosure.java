@@ -15,11 +15,11 @@ public class Enclosure {
     public ArrayList<Creature> creatures;
     public int enclosureDirtiness;
 
-    public Enclosure(String name, double area, int maxCapacity, int currentCapacity, ArrayList<Creature> creatures, int enclosureDirtiness) {
+    public Enclosure(String name, double area, int maxCapacity, ArrayList<Creature> creatures, int enclosureDirtiness) {
         this.name = name;
         this.area = area;
         this.maxCapacity = maxCapacity;
-        this.currentCapacity = currentCapacity;
+        this.currentCapacity = creatures.size();
         this.creatures = creatures;
         this.enclosureDirtiness = enclosureDirtiness;
     }
@@ -44,10 +44,12 @@ public class Enclosure {
 
     public void addCreature(Creature creature) {
         creatures.add(creature);
+        currentCapacity += 1;
     }
 
     public void removeCreature(Creature creature) {
         creatures.remove(creature);
+        currentCapacity -= 1;
     }
 
     public void feedCreatures() {
@@ -55,9 +57,14 @@ public class Enclosure {
     }
 
     public void cleanEnclosure() {
-        enclosureDirtiness = 0;
+        if(currentCapacity == 0) {
+            enclosureDirtiness = 0;
+            System.out.println("The enclosure has been cleared !");
+        }
+        else {
+            System.out.println("The enclosure has to be empty :(");
+        }
     }
-
 
 
     // ---------------------------------

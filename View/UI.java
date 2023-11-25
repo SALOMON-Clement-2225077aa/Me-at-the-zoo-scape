@@ -18,42 +18,41 @@ public class UI {
         this.cursorPosition = position;
     }
 
-    public void display(char[] charArray, String[] enclosureInfo){
+    public void display(char[] charArray, String[] enclosureInfo, String[] creatureInfo){
         System.out.print("\033[H\033[2J"); // Clear
         System.out.println("" +
-                "---------------------------------------------------\n" +
+                "---------------------------------------------------                                    o Key symbols :\n" +
+                "|         |         |         |         |         |                                      - X : Player\n" +
+                "|         |         |         |         |         |                                      - ? : Empty enclosure\n" +
+                "|    "+charArray[0]+"    |    "+charArray[1]+"    |    "+charArray[2]+"    |    "+charArray[3]+"    |    "+charArray[4]+"    |    => Basic Enclosure                - ~ : Dirty enclosure\n" +
+                "|         |         |         |         |         |                                      - ! : Hungry creatures\n" +
                 "|         |         |         |         |         |\n" +
-                "|         |         |         |         |         |                          o Key symbols :\n" +
-                "|    "+charArray[0]+"    |    "+charArray[1]+"    |    "+charArray[2]+"    |    "+charArray[3]+"    |    "+charArray[4]+"    |    => Model.Enclosure\n" +
-                "|         |         |         |         |         |                          - X : Player\n" +
-                "|         |         |         |         |         |                          - ? : Empty enclosure\n" +
-                "---------------------------------------------------                          - ~ : Dirty enclosure\n" +
-                "(         (         (         (         (         (                          - ! : Hungry creatures\n" +
-                " )         )         )         )         )         )\n" +
-                "(    "+charArray[5]+"    (    "+charArray[6]+"    (    "+charArray[7]+"    (    "+charArray[8]+"    (    "+charArray[9]+"    (    => Aquarium\n" +
-                " )         )         )         )         )         )\n" +
-                "(         (         (         (         (         (\n" +
                 "---------------------------------------------------\n" +
-                "<         >         <         >         <         >\n" +
-                ">         <         >         <         >         <\n" +
-                "<    "+charArray[10]+"    >    "+charArray[11]+"    <    "+charArray[12]+"    >    "+charArray[13]+"    <    "+charArray[14]+"    >    => Aviary\n" +
-                ">         <         >         <         >         <\n" +
-                "<         >         <         >         <         >\n" +
+                "(         (         (         (         (         (                                    o Creatures (" + enclosureInfo[2] + ") :\n" +
+                " )         )         )         )         )         )                                     -"+ creatureInfo[0] +"\n" +
+                "(    "+charArray[5]+"    (    "+charArray[6]+"    (    "+charArray[7]+"    (    "+charArray[8]+"    (    "+charArray[9]+"    (    => Aquarium                       -"+ creatureInfo[1] +"\n" +
+                " )         )         )         )         )         )                                     -"+ creatureInfo[2] +"\n" +
+                "(         (         (         (         (         (                                      -"+ creatureInfo[3] +"\n" +
+                "---------------------------------------------------                                      -"+ creatureInfo[4] +"\n" +
+                "<         >         <         >         <         >                                      -"+ creatureInfo[5] +"\n" +
+                ">         <         >         <         >         <                                      -"+ creatureInfo[6] +"\n" +
+                "<    "+charArray[10]+"    >    "+charArray[11]+"    <    "+charArray[12]+"    >    "+charArray[13]+"    <    "+charArray[14]+"    >    => Aviary                         -"+ creatureInfo[7] +"\n" +
+                ">         <         >         <         >         <                                      -"+ creatureInfo[7] +"\n" +
+                "<         >         <         >         <         >                                      -"+ creatureInfo[8] +"\n" +
                 "---------------------------------------------------\n" +
                 "\n" +
                 "o Selected enclosure :\n" +
-                "- enclosure type : " + enclosureInfo[0] + "\n" +
-                "- creatures species: " + enclosureInfo[1] + "\n" +
-                "- capacity : " + enclosureInfo[2] + "\n" +
-                "- enclosure dirtiness : " + enclosureInfo[3] + "\n" +
+                "  - enclosure type : " + enclosureInfo[0] + "\n" +
+                "  - creatures species: " + enclosureInfo[1] + "\n" +
+                "  - capacity : " + enclosureInfo[2] + "\n" +
+                "  - enclosure dirtiness : " + enclosureInfo[3] + "\n" +
                 "\n" +
                 "o Actions :\n" +
-                "- Move (Z,Q,S,D)\n" +
-                "- Clean (or C)\n" +
-                "- Feed (or F)\n" +
+                "  - Move (Z,Q,S,D)\n" +
+                "  - Clean (or C)\n" +
+                "  - Feed (or F)\n" +
                 "\n" +
-                "- - - - - - - - - -\n" +
-                "*Licorn noises*");
+                "- - - - - - - - - -\n");
     }
 
     public void updateEnclosure(Enclosure enclosure) {
@@ -68,15 +67,26 @@ public class UI {
         // ---------------------------------
         // Enclosure Info
         String enclosureType = enclosure.type();
-        String creatureType = enclosure.creatureSpecies();
+        String creatureSpecies = enclosure.creatureSpecies();
         String enclosureCapacity = enclosure.capacity();
         String enclosureDirtiness = enclosure.dirtyness();
 
-        String[] enclosureInfo = {enclosureType,creatureType,enclosureCapacity,enclosureDirtiness};
+        String[] enclosureInfo = {enclosureType,creatureSpecies,enclosureCapacity,enclosureDirtiness};
+
+        // ---------------------------------
+        // Creature Info
+        String[] creatureInfo = new String[enclosure.maxCapacity];
+
+        for (int i = 0; i < enclosure.creatures.size(); i++) {
+            creatureInfo[i] = enclosure.creatures.get(i).toString();
+        }
+        for (int i = enclosure.creatures.size(); i < enclosure.maxCapacity; i++) {
+            creatureInfo[i] = "";
+        }
 
         // ---------------------------------
         // Display
-        display(charArray,enclosureInfo);
+        display(charArray,enclosureInfo,creatureInfo);
     }
 
 }

@@ -60,7 +60,7 @@ public abstract class Creature {
 
     public void sleep() {
         if(isSleeping){
-            System.out.println("The " + species + " creature is already asleep");
+            System.out.println("The " + species + " is already asleep");
         }
         else {
             isSleeping = true;
@@ -71,10 +71,10 @@ public abstract class Creature {
     public void wakeup() {
         if(isSleeping) {
             isSleeping = false;
-            System.out.println("The " + species + " creature is now awake");
+            System.out.println("The " + species + " is now awake");
         }
         else {
-            System.out.println("The " + species + " creature is already awake");
+            System.out.println("The " + species + " is already awake");
         }
     }
 
@@ -93,5 +93,19 @@ public abstract class Creature {
     }
 
     void die () {
+    }
+
+    @Override
+    public String toString() {
+        return ' '+species + " : "
+                + "gender='" + gender + '\'' +
+                ", weight=" + weight +
+                ", size=" + size +
+                ", age=" + age +
+                ", hungerLevel=" + hungerLevel +
+                ", slumberLevel=" + slumberLevel +
+                ", health=" + health +
+                ", isSleeping=" + isSleeping +
+                '}';
     }
 }

@@ -1,6 +1,10 @@
 package Controller;
 
 import static Model.Zoo.CreateEnclosure.createEmptyEnclosure;
+
+import Model.Creatures.Creature;
+import Model.Creatures.Viviparous.Mermaid;
+import Model.Creatures.Viviparous.Unicorn;
 import Model.Enclosure.Enclosure;
 import Model.Zoo.FantasticZooMaster;
 import View.UI;
@@ -20,6 +24,13 @@ public class Main {
         FantasticZooMaster zooMaster = new FantasticZooMaster("playerName","Man",19);
         ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
         FantasticZoo zoo = new FantasticZoo("First Zoo",zooMaster,15,ListEnclosure);
+
+        // Ajout de créature :
+        Unicorn unicorn1 = new Unicorn("Unicorn","male",75,100,35);
+        ListEnclosure.get(2).addCreature(unicorn1);
+
+        Mermaid mermaid1 = new Mermaid("Mermaid","female",60,90,25);
+        ListEnclosure.get(7).addCreature(mermaid1);
 
         // Affiche le Zoo :
         UI ui = new UI();
