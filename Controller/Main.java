@@ -47,10 +47,12 @@ public class Main {
         UI ui = new UI();
         ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
 
-        Scanner readInput = new Scanner(System.in);
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            String userInput = scanner.nextLine();
 
-        // Déplacement test
-        MovementInput.move(ui,ListEnclosure,"Q");
+            MovementInput.move(ui,ListEnclosure,userInput);
+        }
 
     }
 }

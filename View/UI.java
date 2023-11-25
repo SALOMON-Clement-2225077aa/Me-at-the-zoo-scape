@@ -20,34 +20,33 @@ public class UI {
         this.cursorPosition = position;
     }
 
-    public void display(char[] charArray, String[] enclosureInfo, String[] creatureInfo){
-        System.out.print("\033[H\033[2J"); // Clear
-        System.out.println("" +
+    public void display(String[] symbolArray, String[] enclosureInfo, String[] creatureInfo){
+        clearScreen();
+        System.out.println(
                 "---------------------------------------------------                                    o Key symbols :\n" +
-                "|         |         |         |         |         |                                      - X : Player\n" +
-                "|         |         |         |         |         |                                      - ! : Hungry creatures\n" +
-                "|    "+charArray[0]+"    |    "+charArray[1]+"    |    "+charArray[2]+"    |    "+charArray[3]+"    |    "+charArray[4]+"    |    => Basic Enclosure                - ~ : Dirty enclosure\n" +
-                "|         |         |         |         |         |                                      - ? : Empty enclosure\n" +
+                "|         |         |         |         |         |                                      - \u001B[36mX\u001B[0m : Player\n" +
+                "|         |         |         |         |         |                                      - \u001B[31m!\u001B[0m : Hungry creatures\n" +
+                "|   "+symbolArray[0]+"   |   "+symbolArray[1]+"   |   "+symbolArray[2]+"   |   "+symbolArray[3]+"   |   "+symbolArray[4]+"   |    => Basic Enclosure                - \u001B[35m~\u001B[0m : Dirty enclosure\n" +
+                "|         |         |         |         |         |                                      - \u001B[90m?\u001B[0m : Empty enclosure\n" +
                 "|         |         |         |         |         |\n" +
                 "---------------------------------------------------\n" +
                 "(         (         (         (         (         (                          o Creatures (" + enclosureInfo[2] + ") :\n" +
                 " )         )         )         )         )         )                           -"+ creatureInfo[0] +"\n" +
-                "(    "+charArray[5]+"    (    "+charArray[6]+"    (    "+charArray[7]+"    (    "+charArray[8]+"    (    "+charArray[9]+"    (    => Aquarium             -"+ creatureInfo[1] +"\n" +
+                "(   "+symbolArray[5]+"   (   "+symbolArray[6]+"   (   "+symbolArray[7]+"   (   "+symbolArray[8]+"   (   "+symbolArray[9]+"   (    => Aquarium             -"+ creatureInfo[1] +"\n" +
                 " )         )         )         )         )         )                           -"+ creatureInfo[2] +"\n" +
                 "(         (         (         (         (         (                            -"+ creatureInfo[3] +"\n" +
                 "---------------------------------------------------                            -"+ creatureInfo[4] +"\n" +
                 "<         >         <         >         <         >                            -"+ creatureInfo[5] +"\n" +
                 ">         <         >         <         >         <                            -"+ creatureInfo[6] +"\n" +
-                "<    "+charArray[10]+"    >    "+charArray[11]+"    <    "+charArray[12]+"    >    "+charArray[13]+"    <    "+charArray[14]+"    >    => Aviary               -"+ creatureInfo[7] +"\n" +
+                "<   "+symbolArray[10]+"   >   "+symbolArray[11]+"   <   "+symbolArray[12]+"   >   "+symbolArray[13]+"   <   "+symbolArray[14]+"   >    => Aviary               -"+ creatureInfo[7] +"\n" +
                 ">         <         >         <         >         <                            -"+ creatureInfo[7] +"\n" +
                 "<         >         <         >         <         >                            -"+ creatureInfo[8] +"\n" +
                 "---------------------------------------------------\n" +
                 "\n" +
                 "o Actions :                                                                            o Selected enclosure :\n" +
-                "  - Move (Z,Q,S,D)                                                                       - enclosure type : " + enclosureInfo[0] + "\n" +
-                "  - Clean (or C)                                                                         - creatures species: " + enclosureInfo[1] + "\n" +
-                "  - Feed (or F)                                                                          - capacity : " + enclosureInfo[2] + "\n" +
-                "                                                                                         - enclosure dirtiness : " + enclosureInfo[3] + "\n" +
+                "  - Move ('Z','Q','S' or 'D')                                                            - enclosure type : " + enclosureInfo[0] + "\n" +
+                "  - 'Clean' (or 'C')                                                                     - creatures species: " + enclosureInfo[1] + "\n" +
+                "  - 'Feed' (or 'F')                                                                      - enclosure dirtiness : " + enclosureInfo[3] + "\n" +
                 "- - - - - - - - - -\n");
     }
 
@@ -55,22 +54,22 @@ public class UI {
 
         // ---------------------------------
         // charArray
-        char[] charArray = new char[ListEnclosure.size()];
+        String[] symbolArray = new String[ListEnclosure.size()];
 
         for (int i = 0; i < ListEnclosure.size(); i++) {
             if (ListEnclosure.get(i).isThereHungryCreature()) {
-                charArray[i] = '!';
+                symbolArray[i] = "\u001B[31m ! \u001B[0m";
             } else if (ListEnclosure.get(i).enclosureDirtiness > 75) {
-                charArray[i] = '~';
+                symbolArray[i] = "\u001B[35m ~ \u001B[0m";
             } else if (ListEnclosure.get(i).currentCapacity == 0) {
-                charArray[i] = '?';
+                symbolArray[i] = "\u001B[90m ? \u001B[0m";
             } else {
-                charArray[i] = ' ';
+                symbolArray[i] = "   ";
             }
         }
         // Player position
         // (priorité max donc écrase potentiellement une info)
-        charArray[cursorPosition] = 'X';
+        symbolArray[cursorPosition] = "\u001B[36m X \u001B[0m";
 
         // ---------------------------------
         // Enclosure Info
@@ -94,7 +93,11 @@ public class UI {
 
         // ---------------------------------
         // Display
-        display(charArray,enclosureInfo,creatureInfo);
+        display(symbolArray,enclosureInfo,creatureInfo);
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
     }
 
 }
