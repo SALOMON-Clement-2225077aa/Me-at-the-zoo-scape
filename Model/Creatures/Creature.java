@@ -97,8 +97,12 @@ public abstract class Creature {
 
     @Override
     public String toString() {
-        return ' '+species + " : "
-                + gender +
+        String red = "";
+        if(hungerLevel<=25) {
+            red = "\u001B[31m";
+        }
+        return red+species + " : " +
+                gender +
                 ", " + weight + "kg"+
                 ", "+ size + "m" +
                 ", " + age + "yo" +
@@ -106,6 +110,6 @@ public abstract class Creature {
                 ", asleep=" + isSleeping +
                 ", hungerlvl=" + hungerLevel +
                 ", slumberlvl=" + slumberLevel +
-                '}';
+                "}\u001B[0m";
     }
 }

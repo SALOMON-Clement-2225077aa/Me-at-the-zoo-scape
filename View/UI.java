@@ -31,23 +31,23 @@ public class UI {
                 "|         |         |         |         |         |\n" +
                 "---------------------------------------------------\n" +
                 "(         (         (         (         (         (                          o Creatures (" + enclosureInfo[2] + ") :\n" +
-                " )         )         )         )         )         )                           -"+ creatureInfo[0] +"\n" +
-                "(   "+symbolArray[5]+"   (   "+symbolArray[6]+"   (   "+symbolArray[7]+"   (   "+symbolArray[8]+"   (   "+symbolArray[9]+"   (    => Aquarium             -"+ creatureInfo[1] +"\n" +
-                " )         )         )         )         )         )                           -"+ creatureInfo[2] +"\n" +
-                "(         (         (         (         (         (                            -"+ creatureInfo[3] +"\n" +
-                "---------------------------------------------------                            -"+ creatureInfo[4] +"\n" +
-                "<         >         <         >         <         >                            -"+ creatureInfo[5] +"\n" +
-                ">         <         >         <         >         <                            -"+ creatureInfo[6] +"\n" +
-                "<   "+symbolArray[10]+"   >   "+symbolArray[11]+"   <   "+symbolArray[12]+"   >   "+symbolArray[13]+"   <   "+symbolArray[14]+"   >    => Aviary               -"+ creatureInfo[7] +"\n" +
-                ">         <         >         <         >         <                            -"+ creatureInfo[7] +"\n" +
-                "<         >         <         >         <         >                            -"+ creatureInfo[8] +"\n" +
+                " )         )         )         )         )         )                           - "+ creatureInfo[0] +"\n" +
+                "(   "+symbolArray[5]+"   (   "+symbolArray[6]+"   (   "+symbolArray[7]+"   (   "+symbolArray[8]+"   (   "+symbolArray[9]+"   (    => Aquarium             - "+ creatureInfo[1] +"\n" +
+                " )         )         )         )         )         )                           - "+ creatureInfo[2] +"\n" +
+                "(         (         (         (         (         (                            - "+ creatureInfo[3] +"\n" +
+                "---------------------------------------------------                            - "+ creatureInfo[4] +"\n" +
+                "<         >         <         >         <         >                            - "+ creatureInfo[5] +"\n" +
+                ">         <         >         <         >         <                            - "+ creatureInfo[6] +"\n" +
+                "<   "+symbolArray[10]+"   >   "+symbolArray[11]+"   <   "+symbolArray[12]+"   >   "+symbolArray[13]+"   <   "+symbolArray[14]+"   >    => Aviary               - "+ creatureInfo[7] +"\n" +
+                ">         <         >         <         >         <                            - "+ creatureInfo[7] +"\n" +
+                "<         >         <         >         <         >                            - "+ creatureInfo[8] +"\n" +
                 "---------------------------------------------------\n" +
                 "\n" +
                 "o Actions :                                                                            o Selected enclosure :\n" +
-                "  - Move ('Z','Q','S' or 'D')                                                            - enclosure type : " + enclosureInfo[0] + "\n" +
-                "  - 'Clean' (or 'C')                                                                     - creatures species: " + enclosureInfo[1] + "\n" +
-                "  - 'Feed' (or 'F')                                                                      - enclosure dirtiness : " + enclosureInfo[3] + "\n" +
-                "- - - - - - - - - -\n");
+                "  - Move ('z','q','s' or 'd')                                                            - enclosure type : " + enclosureInfo[0] + "\n" +
+                "  - 'clean' (or 'c')                                                                     - creatures species: " + enclosureInfo[1] + "\n" +
+                "  - 'feed' (or 'f')                                                                      - enclosure dirtiness : " + enclosureInfo[3] + "\n" +
+                "- - - - - - - - - -");
     }
 
     public void updateEnclosure(ArrayList<Enclosure> ListEnclosure, Enclosure currentEnclosure) {
