@@ -1,15 +1,12 @@
 package Controller;
 
-import static Model.Zoo.CreateEnclosure.createEmptyEnclosure;
+import static Model.Zoo.Init.CreateEnclosure.createEmptyEnclosure;
 
-import Model.Creatures.Creature;
-import Model.Creatures.Oviparous.Dragon;
-import Model.Creatures.Viviparous.Mermaid;
-import Model.Creatures.Viviparous.Unicorn;
 import Model.Enclosure.Enclosure;
 import Model.Zoo.FantasticZooMaster;
 import View.UI;
 import Model.Zoo.FantasticZoo;
+import Model.Zoo.Init.CreateCreatures;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,30 +24,16 @@ public class Main {
         FantasticZoo zoo = new FantasticZoo("First Zoo",zooMaster,15,ListEnclosure);
 
         // Ajout de créature :
-        Unicorn unicorn1 = new Unicorn("Unicorn","male",75,3,35);
-        ListEnclosure.get(4).addCreature(unicorn1);
-
-        ListEnclosure.get(6).addCreature(new Mermaid("Mermaid","female",60,6,35));
-        ListEnclosure.get(7).addCreature(new Mermaid("Mermaid","female",40,4.1,27));
-        ListEnclosure.get(7).addCreature(new Mermaid("Mermaid","female",65,5.3,38));
-        ListEnclosure.get(7).addCreature(new Mermaid("Mermaid","male",71,8.2,40));
-        ListEnclosure.get(7).addCreature(new Mermaid("Mermaid","female",33,3.5,15));
-
-        Dragon dragon1 = new Dragon("Dragon","male", 120,10,40);
-        ListEnclosure.get(14).addCreature(dragon1);
-
-        // Un animal à faim et un enclos est sale
-        dragon1.hungerLevel = 20;
-        ListEnclosure.get(10).enclosureDirtiness = 80;
+        CreateCreatures.addCreatureToTheZoo(ListEnclosure);
 
         // Affiche le Zoo :
         UI ui = new UI();
         ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
 
+        // Boucle de jeu
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
-
             MovementInput.move(ui,ListEnclosure,userInput);
         }
 

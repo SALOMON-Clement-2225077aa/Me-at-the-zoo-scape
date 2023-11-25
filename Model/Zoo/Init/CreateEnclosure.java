@@ -1,4 +1,4 @@
-package Model.Zoo;
+package Model.Zoo.Init;
 
 import Model.Creatures.Creature;
 import Model.Enclosure.Enclosure;
