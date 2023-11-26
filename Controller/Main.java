@@ -8,8 +8,7 @@ import View.UI;
 import Model.Zoo.FantasticZoo;
 import Model.Zoo.Init.CreateCreatures;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 
 // Classe Controller.Main pour l'exécution de la simulation
@@ -30,11 +29,25 @@ public class Main {
         UI ui = new UI();
         ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
 
+        // Comandes possibles :
+        Set<String> validMovements = new HashSet<>(Arrays.asList("Z", "z", "Q", "q", "S", "s", "D", "d"));
+        Set<String> validClean = new HashSet<>(Arrays.asList("CLEAN", "Clean", "clean", "C", "c"));
+        Set<String> validFeed = new HashSet<>(Arrays.asList("FEED", "Feed", "feed", "F", "f"));
+
         // Boucle de jeu
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
-            MovementInput.move(ui,ListEnclosure,userInput);
+            if(validMovements.contains(userInput)) {
+                MovementInput.move(ui,ListEnclosure,userInput);
+            } else if (validClean.contains(userInput)) {
+                System.out.println("Nettoayge");
+            } else if (validFeed.contains(userInput)) {
+                FeedInput.feed(ui,ListEnclosure);
+            }
+            // Actualise et affiche le Zoo
+            ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
+            // Actions des créatures
             zoo.everyoneDoSomethingInZoo();
         }
 
