@@ -7,8 +7,8 @@ import Model.Creatures.Type.Renascent;
 
 public class Dragon extends Oviparous implements Runner, Swimmer, Flyer, Renascent {
 
-    public Dragon(String species, String gender, double weight, double size, int age) {
-        super(species, gender, weight, size, age, 20);
+    public Dragon(String species, String gender, double weight, double size, int age, int hungerLevel) {
+        super(species, gender, weight, size, age, 20, hungerLevel);
     }
 
     @Override

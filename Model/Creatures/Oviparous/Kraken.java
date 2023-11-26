@@ -4,8 +4,8 @@ import Model.Creatures.Type.Swimmer;
 
 public class Kraken extends Oviparous implements Swimmer {
 
-    public Kraken(String species, String gender, double weight, double size, int age) {
-        super(species, gender, weight, size, age, 10);
+    public Kraken(String species, String gender, double weight, double size, int age, int hungerLevel) {
+        super(species, gender, weight, size, age, 10, hungerLevel);
     }
 
     @Override

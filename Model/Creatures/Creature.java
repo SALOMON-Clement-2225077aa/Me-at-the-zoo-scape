@@ -14,13 +14,13 @@ public abstract class Creature {
     public boolean isSleeping;
 
     // Constructeur
-    public Creature(String species, String gender, double weight, double size, int age) {
+    public Creature(String species, String gender, double weight, double size, int age,int hungerLevel) {
         this.species = species;
         this.gender = gender;
         this.weight = weight;
         this.size = size;
         this.age = age;
-        this.hungerLevel = 100; // 100 = rassasié
+        this.hungerLevel = hungerLevel;
         this.slumberLevel = 100; // 100 = en pleine forme
         this.health = 30;
         this.isSleeping = false;

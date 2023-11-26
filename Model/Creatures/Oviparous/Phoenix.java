@@ -5,8 +5,8 @@ import Model.Creatures.Type.Renascent;
 
 public class Phoenix extends Oviparous implements Flyer, Renascent {
 
-    public Phoenix(String species, String gender, double weight, double size, int age) {
-        super(species, gender, weight, size, age, 40);
+    public Phoenix(String species, String gender, double weight, double size, int age, int hungerLevel) {
+        super(species, gender, weight, size, age, 40, hungerLevel);
     }
 
     @Override
