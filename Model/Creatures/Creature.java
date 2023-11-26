@@ -1,5 +1,7 @@
 package Model.Creatures;
 
+import java.util.Random;
+
 public abstract class Creature {
 
     // Variables
@@ -59,7 +61,34 @@ public abstract class Creature {
         return possibleAction;
     }
 
+    public void doSomething() {
+        Random random = new Random();
+        int rdNb = random.nextInt(100); //Nb entre 0 et 99
+        int selectedAction = possibleAction[rdNb];
 
+        switch (selectedAction) {
+            case 0:
+                break;
+            case 1:
+                hungerLevel -= 1;
+                break;
+            case 2:
+                age();
+                break;
+            case 3:
+                makeSound();
+                break;
+            case 4:
+                System.out.println("Poop (+1 enclosure dirtiness)");
+                break;
+            case 5:
+                sleepOrWakeUp();
+                break;
+            default:
+                System.out.println("Invalid action");
+                break;
+        }
+    }
 
     public String getSpecies() {
         return species;
