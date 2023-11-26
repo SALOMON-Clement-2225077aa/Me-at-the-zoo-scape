@@ -44,14 +44,22 @@ public class CreateCreatures {
         // - - - - - - - - - - - - - -
         // Unicorn
         ListEnclosure.get(0).addCreature(unicorn1);
+        unicorn1.setEnclosure(ListEnclosure.get(0));
         ListEnclosure.get(0).addCreature(unicorn2);
+        unicorn2.setEnclosure(ListEnclosure.get(0));
         ListEnclosure.get(0).addCreature(unicorn3);
+        unicorn3.setEnclosure(ListEnclosure.get(0));
         ListEnclosure.get(0).addCreature(unicorn4);
+        unicorn4.setEnclosure(ListEnclosure.get(0));
         // Lycanthrope
         ListEnclosure.get(1).addCreature(lycanthrope1);
+        lycanthrope1.setEnclosure(ListEnclosure.get(1));
         ListEnclosure.get(1).addCreature(lycanthrope2);
+        lycanthrope2.setEnclosure(ListEnclosure.get(1));
         ListEnclosure.get(1).addCreature(lycanthrope3);
+        lycanthrope3.setEnclosure(ListEnclosure.get(1));
         ListEnclosure.get(1).addCreature(lycanthrope4);
+        lycanthrope4.setEnclosure(ListEnclosure.get(1));
     }
 
     private static void addSwimmer(ArrayList<Enclosure> ListEnclosure) {
@@ -76,16 +84,25 @@ public class CreateCreatures {
         // - - - - - - - - - - - - - -
         // Mermaids
         ListEnclosure.get(5).addCreature(mermaid1);
+        mermaid1.setEnclosure(ListEnclosure.get(5));
         ListEnclosure.get(5).addCreature(mermaid2);
+        mermaid2.setEnclosure(ListEnclosure.get(5));
         ListEnclosure.get(5).addCreature(mermaid3);
+        mermaid3.setEnclosure(ListEnclosure.get(5));
         // Krakens
         ListEnclosure.get(6).addCreature(kraken1);
+        kraken1.setEnclosure(ListEnclosure.get(6));
         ListEnclosure.get(6).addCreature(kraken2);
+        kraken2.setEnclosure(ListEnclosure.get(6));
         ListEnclosure.get(6).addCreature(kraken3);
+        kraken3.setEnclosure(ListEnclosure.get(6));
         // Megalodons
         ListEnclosure.get(7).addCreature(megalodon1);
+        megalodon1.setEnclosure(ListEnclosure.get(7));
         ListEnclosure.get(7).addCreature(megalodon2);
+        megalodon2.setEnclosure(ListEnclosure.get(7));
         ListEnclosure.get(7).addCreature(megalodon3);
+        megalodon3.setEnclosure(ListEnclosure.get(7));
     }
 
     private static void addFlyer(ArrayList<Enclosure> ListEnclosure) {
@@ -108,14 +125,22 @@ public class CreateCreatures {
         // - - - - - - - - - - - - - -
         // Dragons
         ListEnclosure.get(14).addCreature(dragon1);
+        dragon1.setEnclosure(ListEnclosure.get(14));
         ListEnclosure.get(14).addCreature(dragon2);
+        dragon2.setEnclosure(ListEnclosure.get(14));
         ListEnclosure.get(14).addCreature(dragon3);
+        dragon3.setEnclosure(ListEnclosure.get(14));
         ListEnclosure.get(14).addCreature(dragon4);
+        dragon4.setEnclosure(ListEnclosure.get(14));
         // Phoenix
         ListEnclosure.get(13).addCreature(phoenix1);
+        phoenix1.setEnclosure(ListEnclosure.get(13));
         ListEnclosure.get(13).addCreature(phoenix2);
+        phoenix2.setEnclosure(ListEnclosure.get(13));
         ListEnclosure.get(13).addCreature(phoenix3);
+        phoenix3.setEnclosure(ListEnclosure.get(13));
         ListEnclosure.get(13).addCreature(phoenix4);
+        phoenix4.setEnclosure(ListEnclosure.get(13));
     }
 
     private static void addNymph(ArrayList<Enclosure> ListEnclosure) {
@@ -132,11 +157,17 @@ public class CreateCreatures {
         // - - - - - - - - - - - - - -
         // Ajout des animaux aux enclos
         // - - - - - - - - - - - - - -
+        // Nymphs
         ListEnclosure.get(3).addCreature(nymph1);
+        nymph1.setEnclosure(ListEnclosure.get(3));
         ListEnclosure.get(3).addCreature(nymph2);
+        nymph2.setEnclosure(ListEnclosure.get(3));
         ListEnclosure.get(3).addCreature(nymph3);
+        nymph3.setEnclosure(ListEnclosure.get(3));
         ListEnclosure.get(3).addCreature(nymph4);
+        nymph4.setEnclosure(ListEnclosure.get(3));
         ListEnclosure.get(3).addCreature(nymph5);
+        nymph5.setEnclosure(ListEnclosure.get(3));
     }
 
     private static void addMoreDragons(ArrayList<Enclosure> ListEnclosure) {
@@ -153,14 +184,20 @@ public class CreateCreatures {
         // - - - - - - - - - - - - - -
         // Ajout des animaux aux enclos
         // - - - - - - - - - - - - - -
-        // Enclos normaux
+        // Normal Enclosures
         ListEnclosure.get(4).addCreature(dragon5);
+        dragon5.setEnclosure(ListEnclosure.get(4));
         ListEnclosure.get(4).addCreature(dragon6);
+        dragon6.setEnclosure(ListEnclosure.get(4));
         ListEnclosure.get(4).addCreature(dragon7);
+        dragon7.setEnclosure(ListEnclosure.get(4));
         // Aquariums
         ListEnclosure.get(9).addCreature(dragon8);
+        dragon8.setEnclosure(ListEnclosure.get(9));
         ListEnclosure.get(9).addCreature(dragon9);
+        dragon9.setEnclosure(ListEnclosure.get(9));
         ListEnclosure.get(9).addCreature(dragon10);
+        dragon10.setEnclosure(ListEnclosure.get(9));
     }
 
     public static int[] generateRandomArray(int size) {
@@ -173,5 +210,6 @@ public class CreateCreatures {
 
         return randomArray;
     }
+
 
 }

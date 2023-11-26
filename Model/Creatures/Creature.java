@@ -1,5 +1,7 @@
 package Model.Creatures;
 
+import Model.Enclosure.Enclosure;
+
 import java.util.Random;
 
 public abstract class Creature {
@@ -11,10 +13,10 @@ public abstract class Creature {
     public double size;
     public int age;
     public int hungerLevel;
-    public int slumberLevel;
     public int health;
     public boolean isSleeping;
     public int[] possibleAction;
+    public Enclosure enclosure;
 
     // Constructeur
     public Creature(String species, String gender, double weight, double size, int age,int hungerLevel) {
@@ -79,7 +81,7 @@ public abstract class Creature {
                 makeSound();
                 break;
             case 4:
-                System.out.println("Poop (+1 enclosure dirtiness)");
+                poop();
                 break;
             case 5:
                 sleepOrWakeUp();
@@ -139,6 +141,12 @@ public abstract class Creature {
         }
     }
 
+    public void poop() {
+        if (enclosure != null) {
+            enclosure.poopInside();
+        }
+    }
+
     public void ill() {
         health -= 1;
         if (health == 0) {
@@ -146,8 +154,12 @@ public abstract class Creature {
         }
     }
 
-    void die () {
+    public void die () {
         System.out.println("Oh no, a " + species + " died :(");
+    }
+
+    public void setEnclosure(Enclosure enclosure) {
+        this.enclosure = enclosure;
     }
 
     @Override
@@ -155,8 +167,7 @@ public abstract class Creature {
         String color = "";
         if(hungerLevel<=25) {
             color = "\u001B[31m"; //red
-        }
-        if(isSleeping) {
+        } else if(isSleeping) {
             color = "\u001B[94m"; //light blue
         }
         return color+species + " : " +

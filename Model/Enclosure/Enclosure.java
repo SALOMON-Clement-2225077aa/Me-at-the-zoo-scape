@@ -25,33 +25,14 @@ public class Enclosure {
     }
 
     // Méthodes
-    public String displayInfo() {
-        // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
-        return "Model.Enclosure{" +
-                "name='" + name + '\'' +
-                ", area=" + area +
-                ", maxCapacity=" + maxCapacity +
-                ", currentCapacity=" + currentCapacity +
-                ", creatures=" + creatures +
-                ", isDirty=" + enclosureDirtiness +
-                '}';
-    }
-
-    public String displayCreatures() {
-        // Afficher les créatures qu'il contient
-        return ""+creatures;
-    }
-
     public void addCreature(Creature creature) {
         creatures.add(creature);
         currentCapacity += 1;
     }
-
     public void removeCreature(Creature creature) {
         creatures.remove(creature);
         currentCapacity -= 1;
     }
-
     public boolean isThereHungryCreature() {
         for (Creature creature : creatures) {
             if (creature.hungerLevel <= 25) {
@@ -60,11 +41,9 @@ public class Enclosure {
         }
         return false;
     }
-
     public void feedCreatures() {
         // Nourrir les créatures de l'enclos
     }
-
     public void cleanEnclosure() {
         if(currentCapacity == 0) {
             enclosureDirtiness = 0;
@@ -74,7 +53,19 @@ public class Enclosure {
             System.out.println("The enclosure has to be empty :(");
         }
     }
+    public ArrayList<Creature> getCreatures() {
+        return creatures;
+    }
 
+    public void everyoneDoSomething() {
+        for (Creature creature : creatures) {
+            creature.doSomething();
+        }
+    }
+
+    public void poopInside() {
+        enclosureDirtiness += 1;
+    }
 
     // ---------------------------------
     // Enclosure Info
@@ -96,4 +87,15 @@ public class Enclosure {
         return ""+enclosureDirtiness;
     }
 
+    public String displayInfo() {
+        // Afficher les caractéristiques de l'enclos et des créatures qu'il contient
+        return "Enclosure{" +
+                "name='" + name + '\'' +
+                ", area=" + area +
+                ", maxCapacity=" + maxCapacity +
+                ", currentCapacity=" + currentCapacity +
+                ", creatures=" + creatures +
+                ", isDirty=" + enclosureDirtiness +
+                '}';
+    }
 }

@@ -35,6 +35,7 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
             MovementInput.move(ui,ListEnclosure,userInput);
+            zoo.everyoneDoSomethingInZoo();
         }
 
     }

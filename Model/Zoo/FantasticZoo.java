@@ -17,4 +17,14 @@ public class FantasticZoo {
         MaxEnclosure = maxEnclosure;
         ListEnclosure = listeEnclosure;
     }
+
+    public void everyoneDoSomethingInZoo() {
+        for (Enclosure enclosure : ListEnclosure) {
+            enclosure.everyoneDoSomething();
+        }
+    }
+
+    public ArrayList<Enclosure> getListEnclosure() {
+        return ListEnclosure;
+    }
 }

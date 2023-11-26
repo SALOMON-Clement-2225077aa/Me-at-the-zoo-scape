@@ -59,7 +59,7 @@ public class UI {
         for (int i = 0; i < ListEnclosure.size(); i++) {
             if (ListEnclosure.get(i).isThereHungryCreature()) {
                 symbolArray[i] = "\u001B[31m ! \u001B[0m";
-            } else if (ListEnclosure.get(i).enclosureDirtiness > 75) {
+            } else if (ListEnclosure.get(i).enclosureDirtiness >= 75) {
                 symbolArray[i] = "\u001B[35m ~ \u001B[0m";
             } else if (ListEnclosure.get(i).currentCapacity == 0) {
                 symbolArray[i] = "\u001B[90m ? \u001B[0m";
