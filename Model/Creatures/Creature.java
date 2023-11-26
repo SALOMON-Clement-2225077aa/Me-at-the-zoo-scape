@@ -12,6 +12,7 @@ public abstract class Creature {
     public int slumberLevel;
     public int health;
     public boolean isSleeping;
+    public int[] possibleAction;
 
     // Constructeur
     public Creature(String species, String gender, double weight, double size, int age,int hungerLevel) {
@@ -21,16 +22,49 @@ public abstract class Creature {
         this.size = size;
         this.age = age;
         this.hungerLevel = hungerLevel;
-        this.slumberLevel = 100; // 100 = en pleine forme
         this.health = 30;
         this.isSleeping = false;
+        this.possibleAction = createPossibleAction();
     }
+
+    public int[] createPossibleAction() {
+        // 0 = do nothing                     => 20%
+        // 1 = -1 hunger                      => 35%
+        // 2 = +1 age                         => 20%
+        // 3 = poop (+1 enclosure dirtiness)  => 15%
+        // 4 = make sound                     => 5%
+        // 5 = sleep/wakeUp                   => 5%
+
+        int[] possibleAction = new int[100];;
+        int index = 0;
+
+        for (int i = 0; i < 20; i++) {
+            possibleAction[index++] = 0; // "do nothing"
+        }
+        for (int i = 0; i < 35; i++) {
+            possibleAction[index++] = 1; // "-1 hunger"
+        }
+        for (int i = 0; i < 20; i++) {
+            possibleAction[index++] = 2; // "+1 age"
+        }
+        for (int i = 0; i < 15; i++) {
+            possibleAction[index++] = 3; // "make sound"
+        }
+        for (int i = 0; i < 5; i++) {
+            possibleAction[index++] = 4; // "poop"
+        }
+        for (int i = 0; i < 5; i++) {
+            possibleAction[index++] = 5; // "sleep/wakeUp"
+        }
+        return possibleAction;
+    }
+
+
 
     public String getSpecies() {
         return species;
     }
 
-    // Méthodes
     public void eat(){
         if(!isSleeping){
             if(hungerLevel >= 95){
@@ -58,23 +92,14 @@ public abstract class Creature {
         }
     }
 
-    public void sleep() {
+    public void sleepOrWakeUp() {
         if(isSleeping){
-            System.out.println("The " + species + " is already asleep");
-        }
-        else {
-            isSleeping = true;
-            System.out.println("The " + species + " is now asleep");
-        }
-    }
-
-    public void wakeup() {
-        if(isSleeping) {
             isSleeping = false;
             System.out.println("The " + species + " is now awake");
         }
         else {
-            System.out.println("The " + species + " is already awake");
+            isSleeping = true;
+            System.out.println("The " + species + " is now asleep");
         }
     }
 
@@ -85,7 +110,7 @@ public abstract class Creature {
         }
     }
 
-    public void ill () {
+    public void ill() {
         health -= 1;
         if (health == 0) {
             die();
@@ -93,23 +118,26 @@ public abstract class Creature {
     }
 
     void die () {
+        System.out.println("Oh no, a " + species + " died :(");
     }
 
     @Override
     public String toString() {
-        String red = "";
+        String color = "";
         if(hungerLevel<=25) {
-            red = "\u001B[31m";
+            color = "\u001B[31m"; //red
         }
-        return red+species + " : " +
-                gender +
+        if(isSleeping) {
+            color = "\u001B[94m"; //light blue
+        }
+        return color+species + " : " +
+                color +
                 ", " + weight + "kg"+
                 ", "+ size + "m" +
                 ", " + age + "yo" +
                 ", " + health + "hp" +
                 ", asleep=" + isSleeping +
                 ", hungerlvl=" + hungerLevel +
-                ", slumberlvl=" + slumberLevel +
                 "}\u001B[0m";
     }
 }
