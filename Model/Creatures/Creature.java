@@ -79,7 +79,7 @@ public abstract class Creature {
                 case 0:
                     break;
                 case 1:
-                    hungerLevel -= 1;
+                    hunger();
                     break;
                 case 2:
                     age();
@@ -102,6 +102,17 @@ public abstract class Creature {
 
     public String getSpecies() {
         return species;
+    }
+
+    public void hunger() {
+        hungerLevel -= 1;
+        if(hungerLevel<0) {
+            hungerLevel = 0;
+            starve();
+        }
+        if(hungerLevel <= 5) {
+            starve();
+        }
     }
 
     public void eat(){
@@ -141,7 +152,7 @@ public abstract class Creature {
         }
         else {
             isSleeping = true;
-            System.out.println("The " + species + " is now asleep");
+            System.out.println("\u001B[94mThe " + species + " is now asleep\u001B[0m");
         }
     }
 
@@ -165,8 +176,15 @@ public abstract class Creature {
         }
     }
 
+    public void starve() {
+        health -= 1;
+        if (health == 0) {
+            die("starvation");
+        }
+    }
+
     public void die (String causeOfDeath) {
-        System.out.println("Oh no, a " + species + " died of " + causeOfDeath + " :(");
+        System.out.println("\u001B[31mOh no, a " + species + " died of " + causeOfDeath + " :(\u001B[0m");
     }
 
     public void setEnclosure(Enclosure enclosure) {

@@ -11,7 +11,7 @@ import Model.Zoo.Init.CreateCreatures;
 import java.util.*;
 
 
-// Classe Controller.Main pour l'exécution de la simulation
+// Classe Controller pour l'exécution de la simulation
 public class Main {
 
     public static void main(String[] args) {
