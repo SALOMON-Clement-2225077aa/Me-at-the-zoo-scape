@@ -52,10 +52,10 @@ public abstract class Creature {
             possibleAction[index++] = 2; // "+1 age"
         }
         for (int i = 0; i < 15; i++) {
-            possibleAction[index++] = 3; // "make sound"
+            possibleAction[index++] = 3; // "poop"
         }
         for (int i = 0; i < 5; i++) {
-            possibleAction[index++] = 4; // "poop"
+            possibleAction[index++] = 4; // "make sound"
         }
         for (int i = 0; i < 5; i++) {
             possibleAction[index++] = 5; // "sleep/wakeUp"
@@ -78,10 +78,10 @@ public abstract class Creature {
                 age();
                 break;
             case 3:
-                makeSound();
+                poop();
                 break;
             case 4:
-                poop();
+                makeSound();
                 break;
             case 5:
                 sleepOrWakeUp();
@@ -136,7 +136,7 @@ public abstract class Creature {
 
     public void age() {
         age += 1;
-        if (age >= 100) {
+        if (age%100==0) {
             die();
         }
     }
@@ -165,10 +165,12 @@ public abstract class Creature {
     @Override
     public String toString() {
         String color = "";
+        String asleepOrAwake = "awake";
         if(hungerLevel<=25) {
             color = "\u001B[31m"; //red
         } else if(isSleeping) {
             color = "\u001B[94m"; //light blue
+            asleepOrAwake = "asleep";
         }
         return color+species + " : " +
                 color +
@@ -176,7 +178,7 @@ public abstract class Creature {
                 ", "+ size + "m" +
                 ", " + age + "yo" +
                 ", " + health + "hp" +
-                ", asleep=" + isSleeping +
+                ", " + asleepOrAwake +
                 ", hungerlvl=" + hungerLevel +
                 "}\u001B[0m";
     }

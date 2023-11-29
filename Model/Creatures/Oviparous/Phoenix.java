@@ -11,6 +11,6 @@ public class Phoenix extends Oviparous implements Flyer, Renascent {
 
     @Override
     public void makeSound() {
-        System.out.println("PIOU PIOU");
+        System.out.println(getSpecies() + " *PIOU-PIOOOUUUU*");
     }
 }

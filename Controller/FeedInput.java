@@ -26,10 +26,10 @@ public class FeedInput {
         }
         if(!(currentEnclosureCreatures.size()==0)) {
             if(nbOfCreatureFed == 0) {
-                infoInput = "The " + currentEnclosureCreatures.get(0).getSpecies() + " are not hungry";
+                infoInput = "The " + currentEnclosureCreatures.get(0).getSpecies() + "s are not hungry";
             }
             else {
-                infoInput = "The " + currentEnclosureCreatures.get(0).getSpecies() + " have been fed";
+                infoInput = "You fed the " + currentEnclosureCreatures.get(0).getSpecies() + "s";
             }
         }
         else {

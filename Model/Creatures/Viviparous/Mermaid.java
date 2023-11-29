@@ -10,6 +10,6 @@ public class Mermaid extends Viviparous implements Swimmer {
 
     @Override
     public void makeSound() {
-        System.out.println("SPLOUCH");
+        System.out.println(getSpecies() + " *SPLOUCHH*");
     }
 }

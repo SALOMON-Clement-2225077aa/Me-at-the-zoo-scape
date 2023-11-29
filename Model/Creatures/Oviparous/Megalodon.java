@@ -10,6 +10,6 @@ public class Megalodon extends Oviparous implements Swimmer {
 
     @Override
     public void makeSound() {
-        System.out.println("GLOUGLOUGLOUGLGOU");
+        System.out.println(getSpecies() + " *GLOUGLOUGLOUGLGOU*");
     }
 }

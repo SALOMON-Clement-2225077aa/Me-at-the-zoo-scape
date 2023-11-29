@@ -10,6 +10,6 @@ public class Lycanthrope extends Viviparous implements Runner {
 
     @Override
     public void makeSound() {
-        System.out.println("WAF WAF WAOUUUF");
+        System.out.println(getSpecies() + " *WAF WAF WAOUUUF*");
     }
 }
