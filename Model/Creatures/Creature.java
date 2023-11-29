@@ -67,28 +67,36 @@ public abstract class Creature {
         Random random = new Random();
         int rdNb = random.nextInt(100); //Nb entre 0 et 99
         int selectedAction = possibleAction[rdNb];
+        int zeroOrOne = random.nextInt(2); //Nb entre 0 et 1 compris
 
-        switch (selectedAction) {
-            case 0:
-                break;
-            case 1:
-                hungerLevel -= 1;
-                break;
-            case 2:
-                age();
-                break;
-            case 3:
-                poop();
-                break;
-            case 4:
-                makeSound();
-                break;
-            case 5:
-                sleepOrWakeUp();
-                break;
-            default:
-                System.out.println("Invalid action");
-                break;
+        // Si l'enclos est sale la créature à 1/2 chance de perdre de la vie
+        if(enclosure.enclosureDirtiness <= 3 && zeroOrOne == 1) {
+            ill();
+        }
+        // Sinon elle fait une action au hasard selon les probas définies plus haut
+        else {
+            switch (selectedAction) {
+                case 0:
+                    break;
+                case 1:
+                    hungerLevel -= 1;
+                    break;
+                case 2:
+                    age();
+                    break;
+                case 3:
+                    poop();
+                    break;
+                case 4:
+                    makeSound();
+                    break;
+                case 5:
+                    sleepOrWakeUp();
+                    break;
+                default:
+                    System.out.println("Invalid action");
+                    break;
+            }
         }
     }
 
@@ -113,13 +121,16 @@ public abstract class Creature {
 
     public abstract void makeSound();
 
-    public void heal() {
+    public String heal() {
         if(health == 30){
-            System.out.println("The " + species + " is already full health");
+            return "The " + species + " is already full health";
         }
         else{
-            health = 30;
-            System.out.println("You heal the " + species);
+            health += 15;
+            if(health>30) {
+                health = 30;
+            }
+            return "You heal the " + species;
         }
     }
 
@@ -137,7 +148,7 @@ public abstract class Creature {
     public void age() {
         age += 1;
         if (age%100==0) {
-            die();
+            die("old age");
         }
     }
 
@@ -150,12 +161,12 @@ public abstract class Creature {
     public void ill() {
         health -= 1;
         if (health == 0) {
-            die();
+            die("illness");
         }
     }
 
-    public void die () {
-        System.out.println("Oh no, a " + species + " died :(");
+    public void die (String causeOfDeath) {
+        System.out.println("Oh no, a " + species + " died of " + causeOfDeath + " :(");
     }
 
     public void setEnclosure(Enclosure enclosure) {
