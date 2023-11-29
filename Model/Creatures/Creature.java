@@ -172,7 +172,7 @@ public abstract class Creature {
         }
         return color+species + " : " +
                 color +
-                ", " + weight + "kg"+
+                weight + "kg"+
                 ", "+ size + "m" +
                 ", " + age + "yo" +
                 ", " + health + "hp" +

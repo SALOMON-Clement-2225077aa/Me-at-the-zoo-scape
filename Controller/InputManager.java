@@ -16,16 +16,16 @@ public class InputManager {
     private static Set<String> validFeed = new HashSet<>(Arrays.asList("FEED", "Feed", "feed", "F", "f"));
 
 
-    public static void executeInput(UI ui, ArrayList<Enclosure> ListEnclosure, String userInput) {
-
+    public static String executeInput(UI ui, ArrayList<Enclosure> ListEnclosure, String userInput) {
+        String infoInput = "";
         if(validMovements.contains(userInput)) {
-            MovementInput.move(ui,ListEnclosure,userInput);
+            infoInput = MovementInput.move(ui,ListEnclosure,userInput);
         } else if (validClean.contains(userInput)) {
-            System.out.println("Nettoayge");
+            infoInput = "Nettoayge";
         } else if (validFeed.contains(userInput)) {
-            FeedInput.feed(ui,ListEnclosure);
+            infoInput = FeedInput.feed(ui,ListEnclosure);
         }
-
+        return infoInput;
     }
 
 }

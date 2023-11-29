@@ -33,9 +33,10 @@ public class Main {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
-            InputManager.executeInput(ui, ListEnclosure, userInput);
+            String returnInfoInput = InputManager.executeInput(ui, ListEnclosure, userInput);
             // Actualise et affiche le Zoo
             ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
+            System.out.println(returnInfoInput+"\n- - - - - - - - - -");
             // Actions des créatures
             zoo.everyoneDoSomethingInZoo();
         }

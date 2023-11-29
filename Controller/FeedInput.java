@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class FeedInput {
 
-    public static void feed(UI ui, ArrayList<Enclosure> ListEnclosure) {
+    public static String feed(UI ui, ArrayList<Enclosure> ListEnclosure) {
+        String infoInput = "";
 
         Enclosure currentEnclosure = ListEnclosure.get(ui.getPosition());
         ArrayList<Creature> currentEnclosureCreatures = currentEnclosure.getCreatures();
@@ -23,13 +24,18 @@ public class FeedInput {
                 creature.hungerLevel=100;
             }
         }
-        if(nbOfCreatureFed == 0) {
-            System.out.println("The " + currentEnclosureCreatures.get(0).getSpecies() + " are not hungry");
+        if(!(currentEnclosureCreatures.size()==0)) {
+            if(nbOfCreatureFed == 0) {
+                infoInput = "The " + currentEnclosureCreatures.get(0).getSpecies() + " are not hungry";
+            }
+            else {
+                infoInput = "The " + currentEnclosureCreatures.get(0).getSpecies() + " have been fed";
+            }
         }
         else {
-            System.out.println("The " + currentEnclosureCreatures.get(0).getSpecies() + " have been fed");
+            infoInput = "There are no creature here.";
         }
-
+        return infoInput;
     }
 
 }

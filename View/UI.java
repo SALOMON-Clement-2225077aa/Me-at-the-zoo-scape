@@ -98,6 +98,8 @@ public class UI {
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
+        for(int i = 0; i <50; i++) {
+            System.out.println();
+        }
     }
-
 }
