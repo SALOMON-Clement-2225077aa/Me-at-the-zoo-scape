@@ -41,6 +41,7 @@ public class Enclosure {
         }
         return false;
     }
+
     public void feedCreatures() {
         // Nourrir les créatures de l'enclos
     }
@@ -73,6 +74,26 @@ public class Enclosure {
         for (Creature Dcreature : deadCreatures) {
             this.removeCreature(Dcreature);
         }
+    }
+
+    public void reproduce() {
+        ArrayList<Creature> creaturesThatWantToReproduce = new ArrayList<>();
+        for (Creature creature : creatures) {
+            if (creature.wantToReproduce) {
+                creaturesThatWantToReproduce.add(creature);
+            }
+        }
+        if(creaturesThatWantToReproduce.size()>1) {
+            if(creaturesThatWantToReproduce.get(0).gender == "male" && creaturesThatWantToReproduce.get(1).gender == "female") {
+                giveBirth(creaturesThatWantToReproduce);
+            } else if(creaturesThatWantToReproduce.get(1).gender == "male" && creaturesThatWantToReproduce.get(0).gender == "female") {
+                giveBirth(creaturesThatWantToReproduce);
+            }
+        }
+    }
+
+    private void giveBirth(ArrayList<Creature> creaturesThatWantToReproduce) {
+        System.out.println(creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced !");
     }
 
     public void poopInside() {

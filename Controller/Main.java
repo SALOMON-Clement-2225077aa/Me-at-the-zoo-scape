@@ -31,6 +31,7 @@ public class Main {
 
         // Boucle de jeu
         while (true) {
+            // Récup input
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
             String returnInfoInput = InputManager.executeInput(ui, ListEnclosure, userInput);
@@ -41,7 +42,6 @@ public class Main {
             zoo.everyoneDoSomethingInZoo();
             zoo.everyoneRemoveDead();
         }
-
     }
 }
 

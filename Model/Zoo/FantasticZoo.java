@@ -30,6 +30,12 @@ public class FantasticZoo {
         }
     }
 
+    public void reproduction() {
+        for (Enclosure enclosure : ListEnclosure) {
+            enclosure.reproduce();
+        }
+    }
+
     public ArrayList<Enclosure> getListEnclosure() {
         return ListEnclosure;
     }

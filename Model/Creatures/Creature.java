@@ -18,6 +18,7 @@ public abstract class Creature {
     public int[] possibleAction;
     public Enclosure enclosure;
     public boolean isDead = false;
+    public boolean wantToReproduce = false;
 
     // Constructeur
     public Creature(String species, String gender, double weight, double size, int age,int hungerLevel) {
@@ -33,17 +34,18 @@ public abstract class Creature {
     }
 
     public int[] createPossibleAction() {
-        // 0 = do nothing                     => 20%
+        // 0 = do nothing                     => 10%
         // 1 = -1 hunger                      => 35%
         // 2 = +1 age                         => 20%
         // 3 = poop (+1 enclosure dirtiness)  => 15%
         // 4 = make sound                     => 5%
         // 5 = sleep/wakeUp                   => 5%
+        // 6  = want to reproduce state       => 10%
 
         int[] possibleAction = new int[100];;
         int index = 0;
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             possibleAction[index++] = 0; // "do nothing"
         }
         for (int i = 0; i < 35; i++) {
@@ -60,6 +62,9 @@ public abstract class Creature {
         }
         for (int i = 0; i < 5; i++) {
             possibleAction[index++] = 5; // "sleep/wakeUp"
+        }
+        for (int i = 0; i < 10; i++) {
+            possibleAction[index++] = 6; // "reproduce state"
         }
         return possibleAction;
     }
@@ -94,6 +99,8 @@ public abstract class Creature {
                 case 5:
                     sleepOrWakeUp();
                     break;
+                case 6 :
+                    reproduceState();
                 default:
                     System.out.println("Invalid action");
                     break;
@@ -165,6 +172,10 @@ public abstract class Creature {
         if (age%100==0) {
             die("old age");
         }
+    }
+
+    public void reproduceState() {
+        wantToReproduce = true;
     }
 
     public void poop() {
