@@ -7,7 +7,7 @@ import Model.Enclosure.Enclosure;
 
 import Model.Creatures.Viviparous.Nymph;
 import Model.Creatures.Viviparous.Unicorn;
-import Model.Creatures.Viviparous.Lycanthrope;
+import Model.Creatures.Viviparous.Lycanthrope.Lycanthrope;
 import Model.Creatures.Viviparous.Mermaid;
 import Model.Creatures.Oviparous.Kraken;
 import Model.Creatures.Oviparous.Megalodon;
