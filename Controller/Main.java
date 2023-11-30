@@ -45,9 +45,6 @@ public class Main {
     }
 }
 
-
-
-
 // Victor's cooking process :
     //import com.googlecode.lanterna.TerminalSize;
     //import com.googlecode.lanterna.TextColor;

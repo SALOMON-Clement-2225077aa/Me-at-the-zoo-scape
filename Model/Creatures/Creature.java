@@ -71,7 +71,7 @@ public abstract class Creature {
         int zeroOrOne = random.nextInt(2); //Nb entre 0 et 1 compris
 
         // Si l'enclos est sale la créature à 1/2 chance de perdre de la vie
-        if(enclosure.enclosureDirtiness <= 3 && zeroOrOne == 1) {
+        if(enclosure.enclosureDirtiness >= 95 && zeroOrOne == 1) {
             ill();
         }
         // Sinon elle fait une action au hasard selon les probas définies plus haut
@@ -171,6 +171,10 @@ public abstract class Creature {
         if (enclosure != null) {
             enclosure.poopInside();
         }
+        if(enclosure.enclosureDirtiness > 100) {
+            enclosure.enclosureDirtiness = 100;
+            ill();
+        }
     }
 
     public void ill() {
@@ -201,7 +205,11 @@ public abstract class Creature {
         String color = "";
         String asleepOrAwake = "awake";
         String hunger = "fed up";
+        String showHealth = ""+health;
 
+        if(health <= 20){
+            showHealth = "\u001B[31m" + health;
+        }
         if(hungerLevel<=10) {
             color = "\u001b[31;1m"; // bright red
             hunger = "starving";
@@ -217,9 +225,9 @@ public abstract class Creature {
                 weight + "kg"+
                 ", "+ size + "m" +
                 ", " + age + "yo" +
-                ", " + health + "hp" +
                 ", " + asleepOrAwake +
                 ", " + hunger +
+                ", " + showHealth + "hp" +
                 "\u001B[0m";
     }
 }
