@@ -107,11 +107,14 @@ public abstract class Creature {
 
     public void hunger() {
         hungerLevel -= 1;
-        if(hungerLevel<0) {
-            hungerLevel = 0;
+        if(hungerLevel <= 5) {
             starve();
         }
-        if(hungerLevel <= 5) {
+        if(hungerLevel <= 3) {
+            starve();
+        }
+        if(hungerLevel<0) {
+            hungerLevel = 0;
             starve();
         }
     }
@@ -197,8 +200,14 @@ public abstract class Creature {
     public String toString() {
         String color = "";
         String asleepOrAwake = "awake";
-        if(hungerLevel<=25) {
+        String hunger = "fed up";
+
+        if(hungerLevel<=10) {
+            color = "\u001b[31;1m"; // bright red
+            hunger = "starving";
+        } else if (hungerLevel<=25) {
             color = "\u001B[31m"; //red
+            hunger = "hungry";
         } else if(isSleeping) {
             color = "\u001B[94m"; //light blue
             asleepOrAwake = "asleep";
@@ -210,7 +219,7 @@ public abstract class Creature {
                 ", " + age + "yo" +
                 ", " + health + "hp" +
                 ", " + asleepOrAwake +
-                ", hungerlvl=" + hungerLevel +
-                "}\u001B[0m";
+                ", " + hunger +
+                "\u001B[0m";
     }
 }
