@@ -62,6 +62,18 @@ public class Enclosure {
             creature.doSomething();
         }
     }
+    public void removeDead() {
+        ArrayList<Creature> deadCreatures = new ArrayList<>();
+
+        for (Creature creature : creatures) {
+            if(creature.isDead == true) {
+                deadCreatures.add(creature);
+            }
+        }
+        for (Creature Dcreature : deadCreatures) {
+            this.removeCreature(Dcreature);
+        }
+    }
 
     public void poopInside() {
         enclosureDirtiness += 1;

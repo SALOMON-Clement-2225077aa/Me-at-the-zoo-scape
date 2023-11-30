@@ -24,6 +24,12 @@ public class FantasticZoo {
         }
     }
 
+    public void everyoneRemoveDead() {
+        for (Enclosure enclosure : ListEnclosure) {
+            enclosure.removeDead();
+        }
+    }
+
     public ArrayList<Enclosure> getListEnclosure() {
         return ListEnclosure;
     }

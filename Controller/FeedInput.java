@@ -16,7 +16,7 @@ public class FeedInput {
         int nbOfCreatureFed = 0;
 
         for (Creature creature : currentEnclosureCreatures) {
-            if(creature.hungerLevel<80) {
+            if(creature.hungerLevel<90) {
                 creature.hungerLevel += 50;
                 nbOfCreatureFed += 1;
             }

@@ -17,6 +17,7 @@ public abstract class Creature {
     public boolean isSleeping;
     public int[] possibleAction;
     public Enclosure enclosure;
+    public boolean isDead = false;
 
     // Constructeur
     public Creature(String species, String gender, double weight, double size, int age,int hungerLevel) {
@@ -185,6 +186,7 @@ public abstract class Creature {
 
     public void die (String causeOfDeath) {
         System.out.println("\u001B[31mOh no, a " + species + " died of " + causeOfDeath + " :(\u001B[0m");
+        isDead = true;
     }
 
     public void setEnclosure(Enclosure enclosure) {
