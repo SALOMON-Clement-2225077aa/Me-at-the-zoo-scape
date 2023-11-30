@@ -45,7 +45,7 @@ public class CreateEnclosure {
         Random rd = new Random();
 
         for (int i = 0; i < size; i++) {
-            randomArray[i] = rd.nextInt(76); // Entre 0 et 75 compris
+            randomArray[i] = rd.nextInt(51); // Entre 0 et 50 compris
         }
 
         return randomArray;
