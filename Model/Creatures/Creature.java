@@ -33,6 +33,10 @@ public abstract class Creature {
         this.possibleAction = createPossibleAction();
     }
 
+    public String getGender() {
+        return gender;
+    }
+
     public int[] createPossibleAction() {
         // 0 = do nothing                     => 10%
         // 1 = -1 hunger                      => 35%
