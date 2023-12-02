@@ -3,6 +3,8 @@ package Model.Zoo.Init;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Model.Creatures.Viviparous.Lycanthrope.Hound;
+import Model.Creatures.Viviparous.Lycanthrope.Pair;
 import Model.Enclosure.Enclosure;
 
 import Model.Creatures.Viviparous.Nymph;
@@ -35,10 +37,16 @@ public class CreateCreatures {
         Unicorn unicorn3 = new Unicorn("Unicorn", "male", 70, 2.5, 32,randomArray[2]);
         Unicorn unicorn4 = new Unicorn("Unicorn", "female", 85, 4, 40,randomArray[3]);
         // Lycanthrope
-        Lycanthrope lycanthrope1 = new Lycanthrope("Lycanthrope", "male", 80, 6, 30,randomArray[4]);
-        Lycanthrope lycanthrope2 = new Lycanthrope("Lycanthrope", "female", 85, 6.5, 32,randomArray[5]);
-        Lycanthrope lycanthrope3 = new Lycanthrope("Lycanthrope", "male", 75, 5.5, 28,randomArray[6]);
-        Lycanthrope lycanthrope4 = new Lycanthrope("Lycanthrope", "female", 90, 7, 35,randomArray[7]);
+        Hound hound = new Hound(null, new ArrayList<Lycanthrope>());
+        Lycanthrope lycanthrope1 = new Lycanthrope("Lycanthrope", "male", 80, 6, 30, randomArray[4], 20, 15, 3, 1,10, "Aggressive", hound);
+        Lycanthrope lycanthrope2 = new Lycanthrope("Lycanthrope", "female", 85, 6.5, 32, randomArray[5], 22, 18, 4, 2,12, "Fierce", hound);
+        Lycanthrope lycanthrope3 = new Lycanthrope("Lycanthrope", "male", 75, 5.5, 28, randomArray[6], 18, 12, 2, 3,9, "Bold", hound);
+        Lycanthrope lycanthrope4 = new Lycanthrope("Lycanthrope", "female", 90, 7, 35, randomArray[7], 25, 20, 5, 4,15, "Wild", hound);
+
+        ArrayList<Lycanthrope> setHound = new ArrayList<>();
+        setHound.add(lycanthrope1);setHound.add(lycanthrope2);setHound.add(lycanthrope3);setHound.add(lycanthrope4);
+        hound.setPair(lycanthrope1);
+        hound.setLycanthropesHound(setHound);
         // - - - - - - - - - - - - - -
         // Ajout des animaux aux enclos
         // - - - - - - - - - - - - - -
