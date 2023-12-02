@@ -10,8 +10,25 @@ import Model.Enclosure.Enclosure;
 import View.UI;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class MoveCreaInput {
+
+    public static String deplacer(UI ui, ArrayList<Enclosure> ListEnclosure) {
+
+        ArrayList<Integer> possible = validPlacement(ui,ListEnclosure);
+        if(!possible.isEmpty()) {
+            int choix = choicePlacement(possible);
+            moveEveryone(ui, ListEnclosure, choix);
+            return "The creatures have been moved to enclosure n°"+choix;
+        }
+        else {
+            return "You cannot move those creatures...";
+        }
+    }
+
+
 
     public static ArrayList<Integer> validPlacement(UI ui, ArrayList<Enclosure> ListEnclosure) {
 
@@ -55,6 +72,43 @@ public class MoveCreaInput {
         return possibleMoves;
     }
 
+    public static int choicePlacement(ArrayList<Integer> possibleMoves) {
+
+        while(true) {
+            if(possibleMoves.isEmpty()){
+                System.out.println("You cannot move those creatures...");
+                return -1;
+            }
+            else {
+                System.out.println("Where do you want to place them ? The possible position are :");
+                System.out.println(possibleMoves.toString());
+                // Récup input
+                Scanner scanner = new Scanner(System.in);
+                String userInput = scanner.nextLine();
+                for (Integer possibleMove : possibleMoves) {
+                    if (Objects.equals(userInput, possibleMove.toString())) {
+                        return possibleMove;
+                    }
+                }
+            }
+            System.out.println("Not Valid Input");
+        }
+    }
+
+    public static void moveEveryone(UI ui, ArrayList<Enclosure> ListEnclosure, int choix) {
+
+        Enclosure currentEnclosure = ListEnclosure.get(ui.getPosition());
+        ArrayList<Creature> creaturesToMove = new ArrayList<>(currentEnclosure.getCreatures());
+
+        // Move each creature to the chosen enclosure
+        for (Creature creature : creaturesToMove) {
+            // Remove the creature from the current enclosure
+            currentEnclosure.removeCreature(creature);
+            ListEnclosure.get(choix).addCreature(creature);
+            // Update the creature enclosure reference
+            creature.setEnclosure(ListEnclosure.get(choix));
+        }
+    }
 
 
 }
