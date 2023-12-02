@@ -4,6 +4,7 @@ import Model.Creatures.Oviparous.Dragon;
 import Model.Creatures.Oviparous.Kraken;
 import Model.Creatures.Oviparous.Megalodon;
 import Model.Creatures.Oviparous.Phoenix;
+import Model.Creatures.Type.Renascent;
 import Model.Creatures.Viviparous.Lycanthrope.Lycanthrope;
 import Model.Creatures.Viviparous.Mermaid;
 import Model.Creatures.Viviparous.Nymph;
@@ -231,7 +232,17 @@ public abstract class Creature {
 
     public void die (String causeOfDeath) {
         System.out.println("\u001B[31mOh no, a " + species + " died of " + causeOfDeath + " :(\u001B[0m");
-        isDead = true;
+        if(this instanceof Renascent) {
+            System.out.println("\u001B[32mWhat a miracle ! The " + species + " turned back to life !\u001B[0m");
+            this.age = 1;
+            this.health = 30;
+            this.hungerLevel = 100;
+            this.size = this.size/2;
+            this.weight = this.weight/2;
+        }
+        else{
+            isDead = true;
+        }
     }
 
     public void setEnclosure(Enclosure enclosure) {
