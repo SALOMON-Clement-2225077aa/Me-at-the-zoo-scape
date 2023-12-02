@@ -41,6 +41,7 @@ public class Main {
             // Actions des créatures
             zoo.everyoneDoSomethingInZoo();
             zoo.everyoneRemoveDead();
+            zoo.reproduction();
         }
     }
 }

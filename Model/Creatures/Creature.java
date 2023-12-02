@@ -39,18 +39,18 @@ public abstract class Creature {
     }
 
     public int[] createPossibleAction() {
-        // 0 = do nothing                     => 10%
+        // 0 = do nothing                     => 19%
         // 1 = -1 hunger                      => 35%
         // 2 = +1 age                         => 20%
         // 3 = poop (+1 enclosure dirtiness)  => 15%
         // 4 = make sound                     => 5%
         // 5 = sleep/wakeUp                   => 5%
-        // 6  = want to reproduce state       => 10%
+        // 6 = change reproduce state         => 1%
 
         int[] possibleAction = new int[100];;
         int index = 0;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 19; i++) {
             possibleAction[index++] = 0; // "do nothing"
         }
         for (int i = 0; i < 35; i++) {
@@ -68,7 +68,7 @@ public abstract class Creature {
         for (int i = 0; i < 5; i++) {
             possibleAction[index++] = 5; // "sleep/wakeUp"
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             possibleAction[index++] = 6; // "reproduce state"
         }
         return possibleAction;
@@ -105,9 +105,10 @@ public abstract class Creature {
                     sleepOrWakeUp();
                     break;
                 case 6 :
-                    reproduceState();
+                    changeReproduceState();
+                    break;
                 default:
-                    System.out.println("Invalid action");
+                    System.out.println("Invalid action : " + selectedAction);
                     break;
             }
         }
@@ -134,11 +135,11 @@ public abstract class Creature {
     public void eat(){
         if(!isSleeping){
             if(hungerLevel >= 95){
-                System.out.println("The " + species + " isn't hungry");
+                System.out.println("The " + species + "s aren't hungry");
             }
             else{
                 hungerLevel += 5;
-                System.out.println("You fed the " + species);
+                System.out.println("You fed the " + species + "s");
             }
         }
         else{
@@ -179,8 +180,13 @@ public abstract class Creature {
         }
     }
 
-    public void reproduceState() {
-        wantToReproduce = true;
+    public void changeReproduceState() {
+        if(wantToReproduce) {
+            wantToReproduce = false;
+        }
+        else {
+            wantToReproduce = true;
+        }
     }
 
     public void poop() {
@@ -238,6 +244,7 @@ public abstract class Creature {
         }
         return color+species + " : " +
                 color +
+                gender + ", " +
                 weight + "kg"+
                 ", "+ size + "m" +
                 ", " + age + "yo" +

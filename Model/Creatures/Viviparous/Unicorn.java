@@ -10,6 +10,6 @@ public class Unicorn extends Viviparous implements Runner {
 
     @Override
     public void makeSound() {
-        System.out.println(getSpecies() + " *HIAN HIAN*");
+        System.out.println("\u001B[90m"+getSpecies() + " *HIAN HIAN*\u001B[0m");
     }
 }

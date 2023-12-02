@@ -10,6 +10,6 @@ public class Kraken extends Oviparous implements Swimmer {
 
     @Override
     public void makeSound() {
-        System.out.println(getSpecies() + " *OQUFHQIUDFGBQDUGVDQB*");
+        System.out.println("\u001B[90m"+getSpecies() + " *OQUFHQIUDFGBQDUGVDQB*\u001B[0m");
     }
 }

@@ -13,6 +13,6 @@ public class Dragon extends Oviparous implements Runner, Swimmer, Flyer, Renasce
 
     @Override
     public void makeSound() {
-        System.out.println(getSpecies() + " *AGROUUUUUUUUUUUUU*");
+        System.out.println("\u001B[90m"+getSpecies() + " *AGROUUUUUUUUUUUUU*\u001B[0m");
     }
 }

@@ -10,6 +10,6 @@ public class Nymph extends Viviparous implements Renascent {
 
     @Override
     public void makeSound() {
-        System.out.println(getSpecies() + " *YOUUUUUUUUUUUUUUU*");
+        System.out.println("\u001B[90m"+getSpecies() + " *YOUUUUUUUUUUUUUUU*\u001B[0m");
     }
 }

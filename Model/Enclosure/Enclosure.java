@@ -2,6 +2,7 @@ package Model.Enclosure;
 
 import Model.Creatures.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Enclosure {
     // Pas besoin d'abstract ça sera l'enclos de base
@@ -77,23 +78,29 @@ public class Enclosure {
     }
 
     public void reproduce() {
-        ArrayList<Creature> creaturesThatWantToReproduce = new ArrayList<>();
+        boolean alreadyMale = false;
+        boolean alreadyFemale = false;
+        ArrayList<Creature> couple = new ArrayList<>();
         for (Creature creature : creatures) {
             if (creature.wantToReproduce) {
-                creaturesThatWantToReproduce.add(creature);
+                if(Objects.equals(creature.gender, "female") && !alreadyFemale) {
+                    alreadyFemale = true;
+                    couple.add(creature);
+                } else if (Objects.equals(creature.gender, "male") && !alreadyMale){
+                    alreadyMale = true;
+                    couple.add(creature);
+                }
             }
         }
-        if(creaturesThatWantToReproduce.size()>1) {
-            if(creaturesThatWantToReproduce.get(0).gender == "male" && creaturesThatWantToReproduce.get(1).gender == "female") {
-                giveBirth(creaturesThatWantToReproduce);
-            } else if(creaturesThatWantToReproduce.get(1).gender == "male" && creaturesThatWantToReproduce.get(0).gender == "female") {
-                giveBirth(creaturesThatWantToReproduce);
-            }
+        if(couple.size() == 2) {
+            giveBirth(couple);
+            couple.get(0).wantToReproduce = false;
+            couple.get(1).wantToReproduce = false;
         }
     }
 
     private void giveBirth(ArrayList<Creature> creaturesThatWantToReproduce) {
-        System.out.println(creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced !");
+        System.out.println("\u001B[32m"+creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced !\u001B[0m");
     }
 
     public void poopInside() {
