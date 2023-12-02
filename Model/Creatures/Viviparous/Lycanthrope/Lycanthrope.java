@@ -2,6 +2,7 @@ package Model.Creatures.Viviparous.Lycanthrope;
 
 import Model.Creatures.Type.Runner;
 import Model.Creatures.Viviparous.Viviparous;
+import Model.Zoo.FantasticZooMaster;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,8 +16,10 @@ public class Lycanthrope extends Viviparous implements Runner {
     private int lvl;
     private String impetuosity;
     private Hound hound;
+    private boolean isHuman = false;
+    private FantasticZooMaster humanForm;
 
-    public Lycanthrope(String species, String gender, double weight, double size, int age, int gestationDuration, int hungerLevel, int strength, int domFactor, int rank, int lvl, String impetuosity, Hound hound) {
+    public Lycanthrope(String species, String gender, double weight, double size, int age, int gestationDuration, int hungerLevel, int strength, int domFactor, int rank, int lvl, String impetuosity, Hound hound, String name) {
         super(species, gender, weight, size, age, gestationDuration, hungerLevel);
         this.strength = strength;
         this.domFactor = domFactor;
@@ -24,6 +27,7 @@ public class Lycanthrope extends Viviparous implements Runner {
         this.lvl = lvl;
         this.impetuosity = impetuosity;
         this.hound = hound;
+        humanForm = new FantasticZooMaster(name, gender, age);
     }
 
     public int getStrength() {
@@ -151,7 +155,7 @@ public class Lycanthrope extends Viviparous implements Runner {
     }
 
     public void affiliationsHowl() {
-        System.out.println(getSpecies() + " *WAF WAF WAOUUUF*");
+        System.out.println(species + " *WAF WAF WAOUUUF*");
     }
 
     public void superiorityHowl() {
@@ -165,6 +169,26 @@ public class Lycanthrope extends Viviparous implements Runner {
     public void aggressivenessHowl() {
         System.out.println(species + "*GRRRRRRRRRRRRR*");
     }
+
+    public boolean canHear() {
+        return !isSleeping && !isIll;
+    }
+
+    public void splitUp () {
+        hound.removeLycanthrope(this);
+    }
+
+    public void shift() {
+        if (!isHuman) {
+            isHuman = true;
+            System.out.println(humanForm.getName() + " reprend ses esprits, il/elle n'est plus un lycanthrope");
+        }
+        else {
+            isHuman = false;
+            System.out.println(humanForm.getName() + " : Je suis devenu le monstre que j'ai toujours été (ref à Warwick)");
+        }
+    }
+
     @Override
     public void makeSound() {
         System.out.println(getSpecies() + " *WAF WAF WAOUUUF*");

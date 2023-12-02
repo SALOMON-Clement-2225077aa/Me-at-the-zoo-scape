@@ -12,4 +12,7 @@ public class FantasticZooMaster {
         this.age = age;
     }
 
+    public String getName() {
+        return name;
+    }
 }

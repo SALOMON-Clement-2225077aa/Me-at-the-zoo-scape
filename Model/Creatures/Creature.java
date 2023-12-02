@@ -14,6 +14,7 @@ public abstract class Creature {
     public int age;
     public int hungerLevel;
     public int health;
+    public boolean isIll = false;
     public boolean isSleeping;
     public int[] possibleAction;
     public Enclosure enclosure;

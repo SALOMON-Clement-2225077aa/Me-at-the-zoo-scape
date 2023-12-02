@@ -22,6 +22,10 @@ public class Hound {
         this.lycanthropesHound = lycanthropesHound;
     }
 
+    public void removeLycanthrope(Lycanthrope lycanthrope) {
+        lycanthropesHound.remove(lycanthrope);
+    }
+
     public Pair getPairA() {
         return pairA;
     }
