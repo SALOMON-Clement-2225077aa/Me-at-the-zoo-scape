@@ -1,6 +1,9 @@
 package Model.Enclosure;
 
 import Model.Creatures.*;
+import Model.Creatures.Oviparous.Oviparous;
+import Model.Creatures.Viviparous.Viviparous;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -102,11 +105,16 @@ public class Enclosure {
     }
 
     private void giveBirth(ArrayList<Creature> creaturesThatWantToReproduce) {
-        System.out.println("\u001B[32m"+creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced !\u001B[0m");
-        timeUntilBirth = 15;
+        if (creaturesThatWantToReproduce.get(0) instanceof Viviparous) {
+            timeUntilBirth = 15;
+            System.out.println("\u001B[32m" + creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced ! The baby-" + creaturesThatWantToReproduce.get(0).getSpecies() + " will be born in 15 turns.\u001B[0m");
+        } else if (creaturesThatWantToReproduce.get(0) instanceof Oviparous) {
+            timeUntilBirth = 10;
+            System.out.println("\u001B[32m" + creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced ! The egg will hatch in 10 turns.\u001B[0m");
+        }
     }
 
-    public void updateBirth() {
+        public void updateBirth() {
         if(timeUntilBirth == 0) {
             if(currentCapacity<maxCapacity && currentCapacity>0) {
                 System.out.println("\u001B[32mA "+creatures.get(0).getSpecies() + " is born !\u001B[0m");
