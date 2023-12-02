@@ -3,27 +3,30 @@ package Controller;
 import Model.Enclosure.Enclosure;
 import View.UI;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class InputManager {
 
     // Comandes possibles :
-    private static Set<String> validMovements = new HashSet<>(Arrays.asList("Z", "z", "Q", "q", "S", "s", "D", "d"));
+    private static Set<String> validWalk = new HashSet<>(Arrays.asList("Z", "z", "Q", "q", "S", "s", "D", "d"));
     private static Set<String> validClean = new HashSet<>(Arrays.asList("CLEAN", "Clean", "clean", "C", "c"));
     private static Set<String> validFeed = new HashSet<>(Arrays.asList("FEED", "Feed", "feed", "F", "f"));
+    private static Set<String> validMoveCreatures = new HashSet<>(Arrays.asList("MOVECREATURES", "MoveCreatures", "movecreatures", "M", "m"));
 
 
     public static String executeInput(UI ui, ArrayList<Enclosure> ListEnclosure, String userInput) {
         String infoInput = "";
-        if(validMovements.contains(userInput)) {
+        if(validWalk.contains(userInput)) {
             infoInput = MovementInput.move(ui,ListEnclosure,userInput);
+        } else if (Objects.equals(userInput, "walk") || Objects.equals(userInput, "w")) {
+            infoInput = "You have to type 'z', 'q', 's' or 'd' to move";
         } else if (validClean.contains(userInput)) {
-            infoInput = "Nettoayge";
+            infoInput = ListEnclosure.get(ui.getPosition()).cleanEnclosure();
         } else if (validFeed.contains(userInput)) {
             infoInput = FeedInput.feed(ui,ListEnclosure);
+        }
+        else {
+            infoInput = "Invalid input...";
         }
         return infoInput;
     }

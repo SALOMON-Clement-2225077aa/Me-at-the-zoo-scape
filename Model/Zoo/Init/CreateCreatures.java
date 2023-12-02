@@ -213,7 +213,7 @@ public class CreateCreatures {
         Random rd = new Random();
 
         for (int i = 0; i < size; i++) {
-            randomArray[i] = rd.nextInt(81) + 15; // Entre 15 et 95 compris
+            randomArray[i] = rd.nextInt(81) + 20; // Entre 20 et 100 compris
         }
 
         return randomArray;

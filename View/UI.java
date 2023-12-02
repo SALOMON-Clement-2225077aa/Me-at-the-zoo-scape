@@ -44,9 +44,10 @@ public class UI {
                 "---------------------------------------------------\n" +
                 "\n" +
                 "o Actions :                                                                            o Selected enclosure :\n" +
-                "  - Move ('z','q','s' or 'd')                                                            - enclosure type : " + enclosureInfo[0] + "\n" +
+                "  -  walk ('z','q','s' or 'd')                                                            - enclosure type : " + enclosureInfo[0] + "\n" +
                 "  - 'clean' (or 'c')                                                                     - creatures species: " + enclosureInfo[1] + "\n" +
-                "  - 'feed' (or 'f')                                                                      - enclosure dirtiness : " + enclosureInfo[3] + "\n" +
+                "  - 'feed' (or 'f')                                                                      - " + enclosureInfo[4] + "enclosure dirtiness : " + enclosureInfo[3] + "\u001B[0m\n" +
+                "  - 'moveCreatures' 'or ('m')\n"+
                 "- - - - - - - - - -");
     }
 
@@ -77,8 +78,12 @@ public class UI {
         String creatureSpecies = currentEnclosure.creatureSpecies();
         String enclosureCapacity = currentEnclosure.capacity();
         String enclosureDirtiness = currentEnclosure.dirtiness();
+        String dirtinessWarning = "";
+        if(currentEnclosure.enclosureDirtiness>=75){
+            dirtinessWarning = "\u001B[35m";
+        }
 
-        String[] enclosureInfo = {enclosureType,creatureSpecies,enclosureCapacity,enclosureDirtiness};
+        String[] enclosureInfo = {enclosureType,creatureSpecies,enclosureCapacity,enclosureDirtiness,dirtinessWarning};
 
         // ---------------------------------
         // Creature Info
