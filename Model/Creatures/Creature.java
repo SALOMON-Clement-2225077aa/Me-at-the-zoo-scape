@@ -270,10 +270,6 @@ public abstract class Creature {
                 "\u001B[0m";
     }
 
-
-
-
-
     public Creature createNewCreature(Creature c) {
         String species = c.getSpecies();
         if (Objects.equals(species, "Unicorn")) {

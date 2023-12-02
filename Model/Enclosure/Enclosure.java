@@ -119,6 +119,9 @@ public class Enclosure {
 
     public void poopInside() {
         enclosureDirtiness += 1;
+        if(enclosureDirtiness==75){
+            System.out.println("\u001B[35mThe "+this.getCreatures().get(0).getSpecies()+" enclosure is dirty !\u001B[0m");
+        }
     }
 
     // ---------------------------------
