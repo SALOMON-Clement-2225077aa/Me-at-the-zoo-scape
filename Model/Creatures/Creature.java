@@ -1,7 +1,16 @@
 package Model.Creatures;
 
+import Model.Creatures.Oviparous.Dragon;
+import Model.Creatures.Oviparous.Kraken;
+import Model.Creatures.Oviparous.Megalodon;
+import Model.Creatures.Oviparous.Phoenix;
+import Model.Creatures.Viviparous.Lycanthrope.Lycanthrope;
+import Model.Creatures.Viviparous.Mermaid;
+import Model.Creatures.Viviparous.Nymph;
+import Model.Creatures.Viviparous.Unicorn;
 import Model.Enclosure.Enclosure;
 
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class Creature {
@@ -120,6 +129,15 @@ public abstract class Creature {
 
     public void hunger() {
         hungerLevel -= 1;
+        if(hungerLevel == 20) {
+            System.out.println("\u001b[31mA" + this.getSpecies() + " is hungry\u001b[0m");
+        }
+        if(hungerLevel == 10) {
+            System.out.println("\u001b[31;1mA" + this.getSpecies() + "is starving !\u001b[0m");
+        }
+        if(hungerLevel <= 10) {
+            starve();
+        }
         if(hungerLevel <= 5) {
             starve();
         }
@@ -165,11 +183,9 @@ public abstract class Creature {
     public void sleepOrWakeUp() {
         if(isSleeping){
             isSleeping = false;
-            System.out.println("The " + species + " is now awake");
         }
         else {
             isSleeping = true;
-            System.out.println("\u001B[94mThe " + species + " is now asleep\u001B[0m");
         }
     }
 
@@ -235,7 +251,7 @@ public abstract class Creature {
         if(hungerLevel<=10) {
             color = "\u001b[31;1m"; // bright red
             hunger = "starving";
-        } else if (hungerLevel<=25) {
+        } else if (hungerLevel<=20) {
             color = "\u001B[31m"; //red
             hunger = "hungry";
         } else if(isSleeping) {
@@ -252,5 +268,62 @@ public abstract class Creature {
                 ", " + hunger +
                 ", " + showHealth + "hp" +
                 "\u001B[0m";
+    }
+
+
+
+
+
+    public Creature createNewCreature(Creature c) {
+        String species = c.getSpecies();
+        if (Objects.equals(species, "Unicorn")) {
+            Unicorn babyUnicorn = new Unicorn("Unicorn", c.getGender(), c.weight / 2, c.size / 2, 1, 100);
+            c.enclosure.addCreature(babyUnicorn);
+            babyUnicorn.setEnclosure(c.enclosure);
+            return babyUnicorn;
+        }
+        if (Objects.equals(species, "Mermaid")) {
+            Mermaid babyMermaid = new Mermaid("Mermaid", c.getGender(), c.weight / 2, c.size / 2, 1, 100);
+            c.enclosure.addCreature(babyMermaid);
+            babyMermaid.setEnclosure(c.enclosure);
+            return babyMermaid;
+        }
+        if (Objects.equals(species, "Nymph")) {
+            Nymph babyNymph = new Nymph("Nymph", c.getGender(), c.weight / 2, c.size / 2, 1, 100);
+            c.enclosure.addCreature(babyNymph);
+            babyNymph.setEnclosure(c.enclosure);
+            return babyNymph;
+        }
+        if (Objects.equals(species, "Lycanthrope")) {
+            Lycanthrope babyLycanthrope = new Lycanthrope("Lycanthrope", c.getGender(), c.weight / 2, c.size / 2, 1, 0, 100, 0, 0, 0, 0, "",null,"");
+            c.enclosure.addCreature(babyLycanthrope);
+            babyLycanthrope.setEnclosure(c.enclosure);
+            return babyLycanthrope;
+        }
+        if (Objects.equals(species, "Dragon")) {
+            Dragon babyDragon = new Dragon("Dragon", c.getGender(), c.weight / 2, c.size / 2, 1, 100);
+            c.enclosure.addCreature(babyDragon);
+            babyDragon.setEnclosure(c.enclosure);
+            return babyDragon;
+        }
+        if (Objects.equals(species, "Megalodon")) {
+            Megalodon babyMegalodon = new Megalodon("Megalodon", c.getGender(), c.weight / 2, c.size / 2, 1, 100);
+            c.enclosure.addCreature(babyMegalodon);
+            babyMegalodon.setEnclosure(c.enclosure);
+            return babyMegalodon;
+        }
+        if (Objects.equals(species, "Kraken")) {
+            Kraken babyKraken = new Kraken("Kraken", c.getGender(), c.weight / 2, c.size / 2, 1, 100);
+            c.enclosure.addCreature(babyKraken);
+            babyKraken.setEnclosure(c.enclosure);
+            return babyKraken;
+        }
+        if (Objects.equals(species, "Phoenix")) {
+            Phoenix babyPhoenix = new Phoenix("Phoenix", c.getGender(), c.weight / 2, c.size/ 2, 1, 100);
+            c.enclosure.addCreature(babyPhoenix);
+            babyPhoenix.setEnclosure(c.enclosure);
+            return babyPhoenix;
+        }
+        return null;
     }
 }

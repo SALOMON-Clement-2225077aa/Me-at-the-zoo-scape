@@ -10,9 +10,4 @@ public abstract class Viviparous extends Creature {
         super(species, gender, weight, size, age, hungerLevel);
         this.gestationDuration = gestationDuration;
     }
-
-    // Méthode supplémentaire
-    void giveBirth() { // (mettre bas)
-
-    }
 }

@@ -10,9 +10,4 @@ public abstract class Oviparous extends Creature {
         super(species, gender, weight, size, age, hungerLevel);
         this.incubationDuration = incubationDuration;
     }
-
-    // Méthode supplémentaire
-    void lay() { // (pondre un oeuf)
-
-    }
 }

@@ -3,6 +3,7 @@ package Model.Enclosure;
 import Model.Creatures.*;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class Enclosure {
     // Pas besoin d'abstract ça sera l'enclos de base
@@ -15,6 +16,7 @@ public class Enclosure {
     public int currentCapacity;
     public ArrayList<Creature> creatures;
     public int enclosureDirtiness;
+    public int timeUntilBirth = -1;
 
     public Enclosure(String name, double area, int maxCapacity, ArrayList<Creature> creatures, int enclosureDirtiness) {
         this.name = name;
@@ -36,7 +38,7 @@ public class Enclosure {
     }
     public boolean isThereHungryCreature() {
         for (Creature creature : creatures) {
-            if (creature.hungerLevel <= 25) {
+            if (creature.hungerLevel <= 20) {
                 return true;
             }
         }
@@ -46,13 +48,13 @@ public class Enclosure {
     public void feedCreatures() {
         // Nourrir les créatures de l'enclos
     }
-    public void cleanEnclosure() {
+    public String cleanEnclosure() {
         if(currentCapacity == 0) {
             enclosureDirtiness = 0;
-            System.out.println("The enclosure has been cleared !");
+            return "The enclosure has been cleared !";
         }
         else {
-            System.out.println("The enclosure has to be empty :(");
+            return "The enclosure has to be empty :(";
         }
     }
     public ArrayList<Creature> getCreatures() {
@@ -68,7 +70,7 @@ public class Enclosure {
         ArrayList<Creature> deadCreatures = new ArrayList<>();
 
         for (Creature creature : creatures) {
-            if(creature.isDead == true) {
+            if(creature.isDead) {
                 deadCreatures.add(creature);
             }
         }
@@ -101,6 +103,18 @@ public class Enclosure {
 
     private void giveBirth(ArrayList<Creature> creaturesThatWantToReproduce) {
         System.out.println("\u001B[32m"+creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced !\u001B[0m");
+        timeUntilBirth = 15;
+    }
+
+    public void updateBirth() {
+        if(timeUntilBirth == 0) {
+            if(currentCapacity<maxCapacity && currentCapacity>0) {
+                System.out.println("\u001B[32mA "+creatures.get(0).getSpecies() + " is born !\u001B[0m");
+                Random rd = new Random();
+                creatures.get(0).createNewCreature(creatures.get(rd.nextInt(creatures.size())));
+            }
+        }
+        timeUntilBirth -= 1;
     }
 
     public void poopInside() {
@@ -138,4 +152,5 @@ public class Enclosure {
                 ", isDirty=" + enclosureDirtiness +
                 '}';
     }
+
 }
