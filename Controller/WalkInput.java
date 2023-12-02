@@ -6,7 +6,7 @@ import View.UI;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MovementInput {
+public class WalkInput {
 
     static String infoInput = "";
 

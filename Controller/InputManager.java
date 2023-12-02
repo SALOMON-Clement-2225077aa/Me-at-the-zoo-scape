@@ -17,13 +17,15 @@ public class InputManager {
     public static String executeInput(UI ui, ArrayList<Enclosure> ListEnclosure, String userInput) {
         String infoInput = "";
         if(validWalk.contains(userInput)) {
-            infoInput = MovementInput.move(ui,ListEnclosure,userInput);
+            infoInput = WalkInput.move(ui,ListEnclosure,userInput);
         } else if (Objects.equals(userInput, "walk") || Objects.equals(userInput, "w")) {
             infoInput = "You have to type 'z', 'q', 's' or 'd' to move";
         } else if (validClean.contains(userInput)) {
             infoInput = ListEnclosure.get(ui.getPosition()).cleanEnclosure();
         } else if (validFeed.contains(userInput)) {
             infoInput = FeedInput.feed(ui,ListEnclosure);
+        } else if (validMoveCreatures.contains(userInput)) {
+            MoveCreaInput.validPlacement(ui,ListEnclosure);
         }
         else {
             infoInput = "Invalid input...";

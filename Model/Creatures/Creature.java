@@ -130,10 +130,10 @@ public abstract class Creature {
     public void hunger() {
         hungerLevel -= 1;
         if(hungerLevel == 20) {
-            System.out.println("\u001b[31mA" + this.getSpecies() + " is hungry\u001b[0m");
+            System.out.println("\u001b[31mA " + this.getSpecies() + " is hungry\u001b[0m");
         }
         if(hungerLevel == 10) {
-            System.out.println("\u001b[31;1mA" + this.getSpecies() + "is starving !\u001b[0m");
+            System.out.println("\u001b[31;1mA " + this.getSpecies() + " is starving !\u001b[0m");
         }
         if(hungerLevel <= 10) {
             starve();
