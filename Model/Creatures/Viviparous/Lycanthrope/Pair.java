@@ -27,6 +27,8 @@ public class Pair {
     }
 
     public void giveBirth() {
+        // portée compte d’un à sept « jeunes »
+        // lycanthropes rang 2 (ou 1 s’il n’y a pas déjà dans la meute)
     }
     @Override
     public String toString() {

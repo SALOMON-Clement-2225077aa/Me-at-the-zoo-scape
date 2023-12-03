@@ -16,16 +16,16 @@ public class Lycanthrope extends Viviparous implements Runner {
     private String impetuosity;
     private Hound hound;
     private boolean isHuman = false;
-    private FantasticZooMaster humanForm;
+    private final FantasticZooMaster humanForm;
 
-    public Lycanthrope(String species, String gender, double weight, double size, int age, int gestationDuration, int hungerLevel, int strength, int domFactor, int rank, int lvl, String impetuosity, Hound hound, String name) {
+    public Lycanthrope(String species, String gender, double weight, double size, int age, int gestationDuration, int hungerLevel, int strength, int domFactor, int rank, String impetuosity, String name) {
         super(species, gender, weight, size, age, gestationDuration, hungerLevel);
         this.strength = strength;
         this.domFactor = domFactor;
         this.rank = rank;
-        this.lvl = lvl;
+        lvlCalculation();
         this.impetuosity = impetuosity;
-        this.hound = hound;
+        this.hound = null;
         humanForm = new FantasticZooMaster(name, gender, age);
     }
 
@@ -73,8 +73,27 @@ public class Lycanthrope extends Viviparous implements Runner {
         return hound;
     }
 
-    public void setHound(Hound hound) {
-        this.hound = hound;
+    public void joinHound(Hound toJoinHound) {
+        hound = toJoinHound;
+        toJoinHound.addLycanthrope(this);
+    }
+
+    public void lvlCalculation() {
+        lvl = strength;
+
+        if (age < 30) {
+            lvl += 5;
+        }
+        else if (age < 60) {
+            lvl += 10;
+        }
+        else {
+            lvl += 3;
+        }
+
+        lvl += domFactor/2;
+
+        lvl += 22 - rank;
     }
 
     public void loseRankByDomFactor() { // si le facteur de domination est trop bas le loup garou perd un rang
@@ -110,7 +129,7 @@ public class Lycanthrope extends Viviparous implements Runner {
                 strengthLimit = 5;
                 break;
 
-            case "lively" :
+            case "aggressive" :
                 lowestAge = 0;
                 biggestAge = 0;
                 strengthLimit = 0;
@@ -153,7 +172,14 @@ public class Lycanthrope extends Viviparous implements Runner {
         }
     }
 
-    public void affiliationsHowl(ArrayList<String> creatureActionLog) {
+    public void affiliationsHowl(ArrayList<String> creatureActionLog) { // a implémenter
+
+        // exprimer l’appartenance à une meute (entre les membres de la meute ou pour avertir les
+        //individus d’une autre meute) : lorsqu’un lycanthrope d’une meute utilise ce type de
+        //hurlements, tous les autres membres du clan qui l’entendent lui répondent en lançant un
+        //hurlement du même type (mais cette réponse n’appelle pas d’autres réponses) ; ceux des
+        //autres meutes peuvent répondre par leur propre hurlement de meute ;
+
         creatureActionLog.add(species + " *WAF WAF WAOUUUF*");
     }
 

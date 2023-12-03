@@ -22,8 +22,14 @@ public class Hound {
         this.lycanthropesHound = lycanthropesHound;
     }
 
+    public void addLycanthrope(Lycanthrope lycanthrope) {
+        lycanthropesHound.add(lycanthrope);
+        lycanthrope.joinHound(this);
+    }
+
     public void removeLycanthrope(Lycanthrope lycanthrope) {
         lycanthropesHound.remove(lycanthrope);
+        lycanthrope.splitUp();
     }
 
     public Pair getPairA() {
@@ -47,11 +53,32 @@ public class Hound {
             return "Un couple Alpha est né";
         }
         pairA.getFemale().setLvl(pairA.getMale().getRank());
-        // isDominate(pairA.getMale());
+
+        pairA.getMale().setRank(maleA.getRank());
+        maleA.setRank(0);
+        pairA.getMale().setDomFactor(pairA.getMale().getDomFactor() - 1);
+        pairA.getMale().loseRankByDomFactor();
+
         pairA = new Pair(maleA, highestLvlFemale);
+        pairA.getFemale().setRank(0);
         return "Un nouveau couple Alpha domine la meute.";
     }
 
+    public void decreaseRanks() {
+        for (Lycanthrope lycanthrope : lycanthropesHound) {
+            lycanthrope.setRank(lycanthrope.getRank() - 1);
+        }
+    }
+
+    public void initOmega(ArrayList<Lycanthrope> omegaLycanthropes) {
+        for (Lycanthrope lycanthrope : omegaLycanthropes) {
+            lycanthrope.setRank(23);
+        }
+    }
+
+    public void generalReproduction() {
+        // jsp quoi faire
+    }
     @Override
     public String toString() {
         return "Hound{" +
