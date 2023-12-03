@@ -25,7 +25,7 @@ public class InputManager {
         } else if (validFeed.contains(userInput)) {
             infoInput = FeedInput.feed(ui,ListEnclosure);
         } else if (validMoveCreatures.contains(userInput) && ListEnclosure.get(ui.getPosition()).currentCapacity!=0) {
-            infoInput = MoveCreaInput.deplacer(ui,ListEnclosure);
+            infoInput = MoveCreatureInput.deplacer(ui,ListEnclosure);
         }
         else {
             infoInput = "Invalid input...";

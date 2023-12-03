@@ -182,12 +182,7 @@ public abstract class Creature {
     }
 
     public void sleepOrWakeUp() {
-        if(isSleeping){
-            isSleeping = false;
-        }
-        else {
-            isSleeping = true;
-        }
+        isSleeping = !isSleeping;
     }
 
     public void age() {
@@ -198,21 +193,16 @@ public abstract class Creature {
     }
 
     public void changeReproduceState() {
-        if(wantToReproduce) {
-            wantToReproduce = false;
-        }
-        else {
-            wantToReproduce = true;
-        }
+        wantToReproduce = !wantToReproduce;
     }
 
     public void poop() {
         if (enclosure != null) {
             enclosure.poopInside();
-        }
-        if(enclosure.enclosureDirtiness > 100) {
-            enclosure.enclosureDirtiness = 100;
-            ill();
+            if(enclosure.enclosureDirtiness > 100) {
+                enclosure.enclosureDirtiness = 100;
+                ill();
+            }
         }
     }
 
@@ -237,8 +227,8 @@ public abstract class Creature {
             this.age = 1;
             this.health = 30;
             this.hungerLevel = 100;
-            this.size = this.size/2;
-            this.weight = this.weight/2;
+            this.size = Math.round(this.size/1.5 * 10.0) / 10.0;
+            this.weight = Math.round(this.weight/1.5 * 10.0) / 10.0;
         }
         else{
             isDead = true;

@@ -13,12 +13,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class MoveCreaInput {
+public class MoveCreatureInput {
 
     public static String deplacer(UI ui, ArrayList<Enclosure> ListEnclosure) {
 
         ArrayList<Integer> possible = validPlacement(ui,ListEnclosure);
         if(!possible.isEmpty()) {
+            ui.displayPlacementMap(possible);
             int choix = choicePlacement(possible);
             moveEveryone(ui, ListEnclosure, choix);
             return "The creatures have been moved to enclosure n°"+choix;

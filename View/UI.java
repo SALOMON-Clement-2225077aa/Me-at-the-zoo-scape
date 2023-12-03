@@ -107,4 +107,48 @@ public class UI {
             System.out.println();
         }
     }
+
+
+    public void displayPlacementMap(ArrayList<Integer> possible){
+        // Met en rouge les déplacements impossible et en vert ceux possibles.
+        String[] positionArray = new String[15];
+        for(int i = 0; i < 15; i++) {
+            if(i<10) {
+                positionArray[i] = "\u001B[31m " + i + " \u001B[0m";
+            }
+            else {
+                positionArray[i] = "\u001B[31m" + i + " \u001B[0m";
+            }
+        }
+        for (Integer integer : possible) {
+            if(integer<10) {
+                positionArray[integer] = "\u001B[32m " + integer + " \u001B[0m";
+            }
+            else {
+                positionArray[integer] = "\u001B[32m" + integer + " \u001B[0m";
+            }
+        }
+        positionArray[cursorPosition] = "\u001B[36m X \u001B[0m";
+        System.out.println("---------------------------------------------------\n" +
+                "|         |         |         |         |         | \n" +
+                "|         |         |         |         |         | \n" +
+                "|   "+positionArray[0]+"   |   "+positionArray[1]+"   |   "+positionArray[2]+"   |   "+positionArray[3]+"   |   "+positionArray[4]+"   | \n" +
+                "|         |         |         |         |         | \n" +
+                "|         |         |         |         |         | \n" +
+                "--------------------------------------------------- \n" +
+                "(         (         (         (         (         ( \n" +
+                " )         )         )         )         )         )\n" +
+                "(   "+positionArray[5]+"   (   "+positionArray[6]+"   (   "+positionArray[7]+"   (   "+positionArray[8]+"   (   "+positionArray[9]+"   ( \n" +
+                " )         )         )         )         )         )\n" +
+                "(         (         (         (         (         (\n" +
+                "---------------------------------------------------\n" +
+                "<         >         <         >         <         >\n" +
+                ">         <         >         <         >         <\n" +
+                "<   "+positionArray[10]+"   >   "+positionArray[11]+"   <   "+positionArray[12]+"   >   "+positionArray[13]+"   <   "+positionArray[14]+"   >\n" +
+                ">         <         >         <         >         <\n" +
+                "<         >         <         >         <         >\n" +
+                "---------------------------------------------------\n" +
+                "\n");
+    }
+
 }
