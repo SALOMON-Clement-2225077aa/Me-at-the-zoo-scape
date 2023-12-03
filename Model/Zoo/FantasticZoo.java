@@ -18,15 +18,16 @@ public class FantasticZoo {
         ListEnclosure = listeEnclosure;
     }
 
-    public void everyoneDoSomethingInZoo() {
-        creatureTurn();
+    public ArrayList<String> everyoneDoSomethingInZoo(ArrayList<String> creatureActionLog) {
+        creatureTurn(creatureActionLog);
+        creatureReproduction(creatureActionLog);
         everyoneRemoveDead();
-        creatureReproduction();
+        return creatureActionLog;
     }
 
-    private void creatureTurn() {
+    private void creatureTurn(ArrayList<String> creatureActionLog) {
         for (Enclosure enclosure : ListEnclosure) {
-            enclosure.everyoneDoSomething();
+            enclosure.everyoneDoSomething(creatureActionLog);
         }
     }
 
@@ -36,10 +37,10 @@ public class FantasticZoo {
         }
     }
 
-    private void creatureReproduction() {
+    private void creatureReproduction(ArrayList<String> creatureActionLog) {
         for (Enclosure enclosure : ListEnclosure) {
-            enclosure.reproduce();
-            enclosure.updateBirth();
+            enclosure.reproduce(creatureActionLog);
+            enclosure.updateBirth(creatureActionLog);
         }
     }
 

@@ -33,13 +33,23 @@ public class Main {
         while (true) {
             Scanner scanner = new Scanner(System.in); // Création scanner pour récup input
             String userInput = scanner.nextLine(); // récupération de l'input du joueur
+
             // L'input manager regarde si l'input est correcte et effectue l'action du joueur :
             String returnInfoInput = InputManager.executeInput(ui, ListEnclosure, userInput);
+
+            // Actions des créatures :
+            ArrayList<String> creatureActionLog = new ArrayList<>();
+            creatureActionLog = zoo.everyoneDoSomethingInZoo(creatureActionLog);
+
             // Actualise et affiche le Zoo :
             ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
-            System.out.println(returnInfoInput+"\n- - - - - - - - - -"); // Affiche l'action du joueur
-            // Actions des créatures :
-            zoo.everyoneDoSomethingInZoo();
+            System.out.println(returnInfoInput); // Affiche l'action du joueur
+            System.out.println("- - - - - - - - - -");
+
+            // Affichage des actions des créatures :
+            for (String uneAction : creatureActionLog) {
+                System.out.println(uneAction);
+            }
         }
     }
 }

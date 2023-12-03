@@ -2,6 +2,8 @@ package Model.Creatures.Oviparous;
 
 import Model.Creatures.Type.Swimmer;
 
+import java.util.ArrayList;
+
 public class Kraken extends Oviparous implements Swimmer {
 
     public Kraken(String species, String gender, double weight, double size, int age, int hungerLevel) {
@@ -9,7 +11,7 @@ public class Kraken extends Oviparous implements Swimmer {
     }
 
     @Override
-    public void makeSound() {
-        System.out.println("\u001B[90m"+getSpecies() + " *OQUFHQIUDFGBQDUGVDQB*\u001B[0m");
+    public void makeSound(ArrayList<String> creatureActionLog) {
+        creatureActionLog.add("\u001B[90m"+getSpecies() + " *OQUFHQIUDFGBQDUGVDQB*\u001B[0m");
     }
 }

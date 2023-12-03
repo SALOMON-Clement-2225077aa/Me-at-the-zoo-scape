@@ -11,6 +11,7 @@ import Model.Creatures.Viviparous.Nymph;
 import Model.Creatures.Viviparous.Unicorn;
 import Model.Enclosure.Enclosure;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
@@ -84,7 +85,7 @@ public abstract class Creature {
         return possibleAction;
     }
 
-    public void doSomething() {
+    public void doSomething(ArrayList<String> creatureActionLog) {
         Random random = new Random();
         int rdNb = random.nextInt(100); //Nb entre 0 et 99
         int selectedAction = possibleAction[rdNb];
@@ -92,7 +93,7 @@ public abstract class Creature {
 
         // Si l'enclos est sale la créature à 1/2 chance de perdre de la vie
         if(enclosure.enclosureDirtiness >= 95 && zeroOrOne == 1) {
-            ill();
+            ill(creatureActionLog);
         }
         // Sinon elle fait une action au hasard selon les probas définies plus haut
         else {
@@ -100,16 +101,16 @@ public abstract class Creature {
                 case 0:
                     break;
                 case 1:
-                    hunger();
+                    hunger(creatureActionLog);
                     break;
                 case 2:
-                    age();
+                    age(creatureActionLog);
                     break;
                 case 3:
-                    poop();
+                    poop(creatureActionLog);
                     break;
                 case 4:
-                    makeSound();
+                    makeSound(creatureActionLog);
                     break;
                 case 5:
                     sleepOrWakeUp();
@@ -128,45 +129,45 @@ public abstract class Creature {
         return species;
     }
 
-    public void hunger() {
+    public void hunger(ArrayList<String> creatureActionLog) {
         hungerLevel -= 1;
         if(hungerLevel == 20) {
-            System.out.println("\u001b[31mA " + this.getSpecies() + " is hungry\u001b[0m");
+             creatureActionLog.add("\u001b[31mA " + this.getSpecies() + " is hungry\u001b[0m");
         }
         if(hungerLevel == 10) {
-            System.out.println("\u001b[31;1mA " + this.getSpecies() + " is starving !\u001b[0m");
+            creatureActionLog.add("\u001b[31;1mA " + this.getSpecies() + " is starving !\u001b[0m");
         }
         if(hungerLevel <= 10) {
-            starve();
+            starve(creatureActionLog);
         }
         if(hungerLevel <= 5) {
-            starve();
+            starve(creatureActionLog);
         }
         if(hungerLevel <= 3) {
-            starve();
+            starve(creatureActionLog);
         }
         if(hungerLevel<0) {
             hungerLevel = 0;
-            starve();
+            starve(creatureActionLog);
         }
     }
 
-    public void eat(){
+    public void eat(ArrayList<String> creatureActionLog){
         if(!isSleeping){
             if(hungerLevel >= 95){
-                System.out.println("The " + species + "s aren't hungry");
+                creatureActionLog.add("The " + species + "s aren't hungry");
             }
             else{
                 hungerLevel += 5;
-                System.out.println("You fed the " + species + "s");
+                creatureActionLog.add("You fed the " + species + "s");
             }
         }
         else{
-            System.out.println("You can't feed a creature while it's asleep");
+            creatureActionLog.add("You can't feed a creature while it's asleep");
         }
     }
 
-    public abstract void makeSound();
+    public abstract void makeSound(ArrayList <String> creatureActionLog);
 
     public String heal() {
         if(health == 30){
@@ -185,10 +186,10 @@ public abstract class Creature {
         isSleeping = !isSleeping;
     }
 
-    public void age() {
+    public void age(ArrayList<String> creatureActionLog) {
         age += 1;
         if (age%100==0) {
-            die("old age");
+            die("old age",creatureActionLog);
         }
     }
 
@@ -196,34 +197,34 @@ public abstract class Creature {
         wantToReproduce = !wantToReproduce;
     }
 
-    public void poop() {
+    public void poop(ArrayList<String> creatureActionLog) {
         if (enclosure != null) {
-            enclosure.poopInside();
+            enclosure.poopInside(creatureActionLog);
             if(enclosure.enclosureDirtiness > 100) {
                 enclosure.enclosureDirtiness = 100;
-                ill();
+                ill(creatureActionLog);
             }
         }
     }
 
-    public void ill() {
+    public void ill(ArrayList<String> creatureActionLog) {
         health -= 1;
         if (health == 0) {
-            die("illness");
+            die("illness",creatureActionLog);
         }
     }
 
-    public void starve() {
+    public void starve(ArrayList<String> creatureActionLog) {
         health -= 1;
         if (health == 0) {
-            die("starvation");
+            die("starvation",creatureActionLog);
         }
     }
 
-    public void die (String causeOfDeath) {
-        System.out.println("\u001B[31mOh no, a " + species + " died of " + causeOfDeath + " :(\u001B[0m");
+    public void die (String causeOfDeath, ArrayList<String> creatureActionLog) {
+        creatureActionLog.add("\u001B[31mOh no, a " + species + " died of " + causeOfDeath + " :(\u001B[0m");
         if(this instanceof Renascent) {
-            System.out.println("\u001B[32mWhat a miracle ! The " + species + " turned back to life !\u001B[0m");
+            creatureActionLog.add("\u001B[32mWhat a miracle ! The " + species + " turned back to life !\u001B[0m");
             this.age = 1;
             this.health = 30;
             this.hungerLevel = 100;

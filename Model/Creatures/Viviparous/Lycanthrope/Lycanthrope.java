@@ -5,7 +5,6 @@ import Model.Creatures.Viviparous.Viviparous;
 import Model.Zoo.FantasticZooMaster;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 
 public class Lycanthrope extends Viviparous implements Runner {
@@ -91,7 +90,7 @@ public class Lycanthrope extends Viviparous implements Runner {
         }
     }
 
-    public void domination() {
+    public void domination(ArrayList<String> creatureActionLog) {
         Random random = new Random();
         ArrayList<Lycanthrope> subjugable = new ArrayList<Lycanthrope>(); //arraylist des lycanthropes pouvant être dominés
 
@@ -118,7 +117,7 @@ public class Lycanthrope extends Viviparous implements Runner {
                 break;
 
             default:
-                makeSound();
+                makeSound(creatureActionLog);
         }
         for (Lycanthrope lycanthrope : hound.getLycanthropesHound()) {
             if (age >= lowestAge && age <= biggestAge
@@ -140,11 +139,11 @@ public class Lycanthrope extends Viviparous implements Runner {
                         targetedLycanthrope.setRank(rank);
                         setRank(newRank);
                     }
-                    superiorityHowl();
-                    targetedLycanthrope.submissionHowl();
+                    superiorityHowl(creatureActionLog);
+                    targetedLycanthrope.submissionHowl(creatureActionLog);
                 }
                 else {
-                    aggressivenessHowl();
+                    aggressivenessHowl(creatureActionLog);
                 }
                 targetedLycanthrope.setDomFactor(targetedLycanthrope.getDomFactor() - 1);
 
@@ -154,20 +153,20 @@ public class Lycanthrope extends Viviparous implements Runner {
         }
     }
 
-    public void affiliationsHowl() {
-        System.out.println(species + " *WAF WAF WAOUUUF*");
+    public void affiliationsHowl(ArrayList<String> creatureActionLog) {
+        creatureActionLog.add(species + " *WAF WAF WAOUUUF*");
     }
 
-    public void superiorityHowl() {
-        System.out.println(species + "*AOU AOU AOUUUUUUUUU*");
+    public void superiorityHowl(ArrayList<String> creatureActionLog) {
+        creatureActionLog.add(species + "*AOU AOU AOUUUUUUUUU*");
     }
 
-    public void submissionHowl() {
-        System.out.println(species + "*ouu ouu ouu* :'(");
+    public void submissionHowl(ArrayList<String> creatureActionLog) {
+        creatureActionLog.add(species + "*ouu ouu ouu* :'(");
     }
 
-    public void aggressivenessHowl() {
-        System.out.println(species + "*GRRRRRRRRRRRRR*");
+    public void aggressivenessHowl(ArrayList<String> creatureActionLog) {
+        creatureActionLog.add(species + "*GRRRRRRRRRRRRR*");
     }
 
     public boolean canHear() {
@@ -178,19 +177,19 @@ public class Lycanthrope extends Viviparous implements Runner {
         hound.removeLycanthrope(this);
     }
 
-    public void shift() {
+    public void shift(ArrayList<String> creatureActionLog) {
         if (!isHuman) {
             isHuman = true;
-            System.out.println(humanForm.getName() + " reprend ses esprits, il/elle n'est plus un lycanthrope");
+            creatureActionLog.add(humanForm.getName() + " reprend ses esprits, il/elle n'est plus un lycanthrope");
         }
         else {
             isHuman = false;
-            System.out.println(humanForm.getName() + " : Je suis devenu le monstre que j'ai toujours été (ref à Warwick)");
+            creatureActionLog.add(humanForm.getName() + " : Je suis devenu le monstre que j'ai toujours été (ref à Warwick)");
         }
     }
 
     @Override
-    public void makeSound() {
-        System.out.println("\u001B[90m"+getSpecies() + " *WAF WAF WAOUUUF*\u001B[0m");
+    public void makeSound(ArrayList<String> creatureActionLog) {
+        creatureActionLog.add("\u001B[90m"+getSpecies() + " *WAF WAF WAOUUUF*\u001B[0m");
     }
 }

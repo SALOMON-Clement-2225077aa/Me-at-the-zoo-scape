@@ -62,9 +62,9 @@ public class Enclosure {
         return creatures;
     }
 
-    public void everyoneDoSomething() {
+    public void everyoneDoSomething(ArrayList<String> creatureActionLog) {
         for (Creature creature : creatures) {
-            creature.doSomething();
+            creature.doSomething(creatureActionLog);
         }
     }
     public void removeDead() {
@@ -80,7 +80,7 @@ public class Enclosure {
         }
     }
 
-    public void reproduce() {
+    public void reproduce(ArrayList<String> creatureActionLog) {
         boolean alreadyMale = false;
         boolean alreadyFemale = false;
         ArrayList<Creature> couple = new ArrayList<>();
@@ -96,26 +96,26 @@ public class Enclosure {
             }
         }
         if(couple.size() == 2) {
-            giveBirth(couple);
+            giveBirth(couple,creatureActionLog);
             couple.get(0).wantToReproduce = false;
             couple.get(1).wantToReproduce = false;
         }
     }
 
-    private void giveBirth(ArrayList<Creature> creaturesThatWantToReproduce) {
+    private void giveBirth(ArrayList<Creature> creaturesThatWantToReproduce, ArrayList<String> creatureActionLog) {
         if (creaturesThatWantToReproduce.get(0) instanceof Viviparous) {
             timeUntilBirth = 15;
-            System.out.println("\u001B[32m" + creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced ! The baby-" + creaturesThatWantToReproduce.get(0).getSpecies() + " will be born in 15 turns.\u001B[0m");
+            creatureActionLog.add("\u001B[32m" + creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced ! The baby-" + creaturesThatWantToReproduce.get(0).getSpecies() + " will be born in 15 turns.\u001B[0m");
         } else if (creaturesThatWantToReproduce.get(0) instanceof Oviparous) {
             timeUntilBirth = 10;
-            System.out.println("\u001B[32m" + creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced ! The egg will hatch in 10 turns.\u001B[0m");
+            creatureActionLog.add("\u001B[32m" + creaturesThatWantToReproduce.get(0).getSpecies() + "s reproduced ! The egg will hatch in 10 turns.\u001B[0m");
         }
     }
 
-        public void updateBirth() {
+        public void updateBirth(ArrayList<String> creatureActionLog) {
         if(timeUntilBirth == 0) {
             if(currentCapacity<maxCapacity && currentCapacity>0) {
-                System.out.println("\u001B[32mA "+creatures.get(0).getSpecies() + " is born !\u001B[0m");
+                creatureActionLog.add("\u001B[32mA "+creatures.get(0).getSpecies() + " is born !\u001B[0m");
                 Random rd = new Random();
                 creatures.get(0).createNewCreature(creatures.get(rd.nextInt(creatures.size())));
             }
@@ -123,10 +123,10 @@ public class Enclosure {
         timeUntilBirth -= 1;
     }
 
-    public void poopInside() {
+    public void poopInside(ArrayList<String> creatureActionLog) {
         enclosureDirtiness += 1;
         if(enclosureDirtiness==75){
-            System.out.println("\u001B[35mThe "+this.getCreatures().get(0).getSpecies()+" enclosure is dirty !\u001B[0m");
+            creatureActionLog.add("\u001B[35mThe "+this.getCreatures().get(0).getSpecies()+" enclosure is dirty !\u001B[0m");
         }
     }
 
