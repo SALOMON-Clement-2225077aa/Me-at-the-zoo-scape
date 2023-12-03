@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Enclosure {
-    // Pas besoin d'abstract ça sera l'enclos de base
-    // On fera des extends de celui là pour les 2 autres
+    // Pas besoin d'abstract c'est l'enclos de base
+    // les 2 autres sont des extends de celui là
 
     // Variables
     public String name;
@@ -21,6 +21,7 @@ public class Enclosure {
     public int enclosureDirtiness;
     public int timeUntilBirth = -1;
 
+    // Constructeur
     public Enclosure(String name, double area, int maxCapacity, ArrayList<Creature> creatures, int enclosureDirtiness) {
         this.name = name;
         this.area = area;
@@ -48,9 +49,6 @@ public class Enclosure {
         return false;
     }
 
-    public void feedCreatures() {
-        // Nourrir les créatures de l'enclos
-    }
     public String cleanEnclosure() {
         if(currentCapacity == 0) {
             enclosureDirtiness = 0;

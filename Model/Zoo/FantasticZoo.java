@@ -19,25 +19,28 @@ public class FantasticZoo {
     }
 
     public void everyoneDoSomethingInZoo() {
+        creatureTurn();
+        everyoneRemoveDead();
+        creatureReproduction();
+    }
+
+    private void creatureTurn() {
         for (Enclosure enclosure : ListEnclosure) {
             enclosure.everyoneDoSomething();
         }
     }
 
-    public void everyoneRemoveDead() {
+    private void everyoneRemoveDead() {
         for (Enclosure enclosure : ListEnclosure) {
             enclosure.removeDead();
         }
     }
 
-    public void reproduction() {
+    private void creatureReproduction() {
         for (Enclosure enclosure : ListEnclosure) {
             enclosure.reproduce();
             enclosure.updateBirth();
         }
     }
 
-    public ArrayList<Enclosure> getListEnclosure() {
-        return ListEnclosure;
-    }
 }

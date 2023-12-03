@@ -1,15 +1,13 @@
 package Controller;
 
 import static Model.Zoo.Init.CreateEnclosure.createEmptyEnclosure;
-
 import Model.Enclosure.Enclosure;
 import Model.Zoo.FantasticZooMaster;
-import View.UI;
 import Model.Zoo.FantasticZoo;
 import Model.Zoo.Init.CreateCreatures;
+import View.UI;
 
 import java.util.*;
-
 
 // Classe Controller pour l'exécution de la simulation
 public class Main {
@@ -22,48 +20,26 @@ public class Main {
         ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
         FantasticZoo zoo = new FantasticZoo("First Zoo : The Zoo-Scape",zooMaster,15,ListEnclosure);
 
-        // Ajout des créatures :
+        // Ajout des créatures au zoo :
         CreateCreatures.addCreatureToTheZoo(ListEnclosure);
 
-        // Affiche le Zoo :
+        // Affiche le Zoo en position initiale :
         UI ui = new UI();
         ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
 
-        // Boucle de jeu
+        // -----------------
+        // | Boucle de jeu :
+        // -----------------
         while (true) {
-            // Récup input
-            Scanner scanner = new Scanner(System.in);
-            String userInput = scanner.nextLine();
+            Scanner scanner = new Scanner(System.in); // Création scanner pour récup input
+            String userInput = scanner.nextLine(); // récupération de l'input du joueur
+            // L'input manager regarde si l'input est correcte et effectue l'action du joueur :
             String returnInfoInput = InputManager.executeInput(ui, ListEnclosure, userInput);
-            // Actualise et affiche le Zoo
+            // Actualise et affiche le Zoo :
             ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
-            System.out.println(returnInfoInput+"\n- - - - - - - - - -");
-            // Actions des créatures
+            System.out.println(returnInfoInput+"\n- - - - - - - - - -"); // Affiche l'action du joueur
+            // Actions des créatures :
             zoo.everyoneDoSomethingInZoo();
-            zoo.everyoneRemoveDead();
-            zoo.reproduction();
         }
     }
 }
-
-// Victor's cooking process :
-    //import com.googlecode.lanterna.TerminalSize;
-    //import com.googlecode.lanterna.TextColor;
-    //import com.googlecode.lanterna.gui2.*;
-    //import com.googlecode.lanterna.screen.Screen;
-    //import com.googlecode.lanterna.screen.TerminalScreen;
-    //import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-    //import com.googlecode.lanterna.terminal.Terminal;
-    //import java.io.IOException;
-    //    public static void main(String[] args) throws IOException {
-    //        // Setup terminal and screen layers
-    //        Terminal terminal = new DefaultTerminalFactory().createTerminal();
-    //        Screen screen = new TerminalScreen(terminal);
-    //        screen.startScreen();
-    //
-    //        // Create window to hold the panel
-    //        BasicWindow window = new BasicWindow();
-    //
-    //        // Create gui and start gui
-    //        MultiWindowTextGUI gui = new MultiWindowTextGUI(screen, new DefaultWindowManager(), new EmptySpace(TextColor.ANSI.BLACK));
-    //        gui.addWindowAndWait(window);
