@@ -94,6 +94,8 @@ public abstract class Creature {
         // Si l'enclos est sale la créature à 1/2 chance de perdre de la vie
         if(enclosure.enclosureDirtiness >= 95 && zeroOrOne == 1) {
             ill(creatureActionLog);
+        } else if (enclosure.getCreatures().get(0) instanceof Lycanthrope) {
+            // Force à oit Ma^l
         }
         // Sinon elle fait une action au hasard selon les probas définies plus haut
         else {

@@ -106,6 +106,7 @@ public class Lycanthrope extends Viviparous implements Runner {
 
         if (domFactor < 10 && lycanthropesByRank.size() > 1) {
             rank -= 1;
+
         }
     }
 

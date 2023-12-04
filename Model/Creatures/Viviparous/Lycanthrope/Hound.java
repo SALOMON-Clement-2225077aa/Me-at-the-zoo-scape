@@ -70,9 +70,23 @@ public class Hound {
         }
     }
 
-    public void initOmega(ArrayList<Lycanthrope> omegaLycanthropes) {
-        for (Lycanthrope lycanthrope : omegaLycanthropes) {
-            lycanthrope.setRank(23);
+    public int getLowestRank(){
+        int lowestRank = 1;
+        for (Lycanthrope lycanthrope : lycanthropesHound) {
+            if (lycanthrope.getRank() < lowestRank) {
+                lowestRank = lycanthrope.getRank();
+            }
+        }
+        return lowestRank;
+    }
+
+    public void initOmega() {
+        if (getLowestRank() != 23) {
+            for (Lycanthrope lycanthrope : lycanthropesHound) {
+                if (lycanthrope.getRank() == getLowestRank()) {
+                    lycanthrope.setRank(23);
+                }
+            }
         }
     }
 
