@@ -111,64 +111,68 @@ public class Lycanthrope extends Viviparous implements Runner {
     }
 
     public void domination(ArrayList<String> creatureActionLog) {
-        Random random = new Random();
-        ArrayList<Lycanthrope> subjugable = new ArrayList<Lycanthrope>(); //arraylist des lycanthropes pouvant être dominés
+        if (hound != null) {
+            Random random = new Random();
+            ArrayList<Lycanthrope> subjugable = new ArrayList<Lycanthrope>(); //arraylist des lycanthropes pouvant être dominés
 
-        int lowestAge = 100;
-        int biggestAge = 100;
-        int strengthLimit = 100;
+            int lowestAge = 100;
+            int biggestAge = 100;
+            int strengthLimit = 100;
 
-        switch (impetuosity) {
-            case "calm" :
-                lowestAge = 30;
-                biggestAge = 60;
-                strengthLimit = 10;
-                break;
+            switch (impetuosity) {
+                case "calm":
+                    lowestAge = 30;
+                    biggestAge = 60;
+                    strengthLimit = 10;
+                    break;
 
-            case "moderate" :
-                lowestAge = 30;
-                strengthLimit = 5;
-                break;
+                case "moderate":
+                    lowestAge = 30;
+                    strengthLimit = 5;
+                    break;
 
-            case "aggressive" :
-                lowestAge = 0;
-                biggestAge = 0;
-                strengthLimit = 0;
-                break;
+                case "aggressive":
+                    lowestAge = 0;
+                    biggestAge = 0;
+                    strengthLimit = 0;
+                    break;
 
-            default:
-                makeSound(creatureActionLog);
-        }
-        for (Lycanthrope lycanthrope : hound.getLycanthropesHound()) {
-            if (age >= lowestAge && age <= biggestAge
-                    && lycanthrope.getStrength() <= strength - strengthLimit
-                    && !lycanthrope.isSleeping
-                    && lycanthrope != hound.getPairA().getFemale()) {
-                subjugable.add(lycanthrope);
+                default:
+                    makeSound(creatureActionLog);
             }
-            if (!subjugable.isEmpty()) {
-                int rdNb = random.nextInt(subjugable.size()); //Nb entre 0 et le nombres de lycanthropes dans la liste
-                int tie = random.nextInt(subjugable.size()); //déterminer le gagnant en ca de niveau égal
-                Lycanthrope targetedLycanthrope = subjugable.get(rdNb);
-                if (lvl > targetedLycanthrope.getLvl()
-                        || targetedLycanthrope.getRank() == 23
-                        || (lvl == targetedLycanthrope.getLvl() && tie == 1)) {
-                    domFactor += 1;
-                    if (targetedLycanthrope.getRank() > rank) {
-                        int newRank = targetedLycanthrope.getRank();
-                        targetedLycanthrope.setRank(rank);
-                        setRank(newRank);
-                    }
+            for (Lycanthrope lycanthrope : hound.getLycanthropesHound()) {
+                if (lycanthrope != hound.getPairA().getFemale()
+                        && lycanthrope.canHear()
+                        && !lycanthrope.isSleeping
+                        && age >= lowestAge && age <= biggestAge
+                        && lycanthrope.getStrength() <= strength - strengthLimit) {
+                    subjugable.add(lycanthrope);
+                }
+                if (!subjugable.isEmpty()) {
                     superiorityHowl(creatureActionLog);
-                    targetedLycanthrope.submissionHowl(creatureActionLog);
-                }
-                else {
-                    aggressivenessHowl(creatureActionLog);
-                }
-                targetedLycanthrope.setDomFactor(targetedLycanthrope.getDomFactor() - 1);
+                    int rdNb = random.nextInt(subjugable.size()); //Nb entre 0 et le nombres de lycanthropes dans la liste
+                    int tie = random.nextInt(subjugable.size()); //déterminer le gagnant en ca de niveau égal
+                    Lycanthrope targetedLycanthrope = subjugable.get(rdNb);
+                    if (lvl > targetedLycanthrope.getLvl()
+                            || targetedLycanthrope.getRank() == 23
+                            || (lvl == targetedLycanthrope.getLvl() && tie == 1)) {
+                        domFactor += 1;
+                        if (targetedLycanthrope.getRank() > rank) {
+                            int newRank = targetedLycanthrope.getRank();
+                            targetedLycanthrope.setRank(rank);
+                            setRank(newRank);
+                        }
+                        targetedLycanthrope.submissionHowl(creatureActionLog);
+                    } else {
+                        targetedLycanthrope.aggressivenessHowl(creatureActionLog);
+                    }
+                    targetedLycanthrope.setDomFactor(targetedLycanthrope.getDomFactor() - 1);
 
-                loseRankByDomFactor();
-                targetedLycanthrope.loseRankByDomFactor();
+                    loseRankByDomFactor();
+                    targetedLycanthrope.loseRankByDomFactor();
+                    System.out.println(targetedLycanthrope.rank);
+                    System.out.println(rank);
+                }
             }
         }
     }

@@ -85,6 +85,50 @@ public abstract class Creature {
         return possibleAction;
     }
 
+    public int[] createPossibleActionForLycanthropes() {
+        // 0 = do nothing                     => 14%
+        // 1 = -1 hunger                      => 30%
+        // 2 = +1 age                         => 20%
+        // 3 = poop (+1 enclosure dirtiness)  => 13%
+        // 4 = howl                           => 8%
+        // 5 = dominate                       => 7%
+        // 6 = sleep/wakeUp                   => 5%
+        // 7 = change reproduce state         => 2%
+        // 8 = shift                          => 1%
+
+        int[] possibleAction = new int[100];;
+        int index = 0;
+
+        for (int i = 0; i < 14; i++) {
+            possibleAction[index++] = 0; // "do nothing"
+        }
+        for (int i = 0; i < 30; i++) {
+            possibleAction[index++] = 1; // "-1 hunger"
+        }
+        for (int i = 0; i < 20; i++) {
+            possibleAction[index++] = 2; // "+1 age"
+        }
+        for (int i = 0; i < 13; i++) {
+            possibleAction[index++] = 3; // "poop"
+        }
+        for (int i = 0; i < 10; i++) {
+            possibleAction[index++] = 4; // "dominate"
+        }
+        for (int i = 0; i < 5; i++) {
+            possibleAction[index++] = 5; // "howl"
+        }
+        for (int i = 0; i < 5; i++) {
+            possibleAction[index++] = 6; // "sleep/wakeUp"
+        }
+        for (int i = 0; i < 2; i++) {
+            possibleAction[index++] = 7; // "reproduce state"
+        }
+        for (int i = 0; i < 1; i++) {
+            possibleAction[index++] = 8; // "shift"
+        }
+        return possibleAction;
+    }
+
     public void doSomething(ArrayList<String> creatureActionLog) {
         Random random = new Random();
         int rdNb = random.nextInt(100); //Nb entre 0 et 99
@@ -95,7 +139,40 @@ public abstract class Creature {
         if(enclosure.enclosureDirtiness >= 95 && zeroOrOne == 1) {
             ill(creatureActionLog);
         } else if (enclosure.getCreatures().get(0) instanceof Lycanthrope) {
-            // Force à oit Ma^l
+            possibleAction = createPossibleActionForLycanthropes();
+            Creature creature = this;
+            Lycanthrope lycanthrope = (Lycanthrope) creature;
+            switch (selectedAction) {
+                case 0:
+                    break;
+                case 1:
+                    hunger(creatureActionLog);
+                    break;
+                case 2:
+                    age(creatureActionLog);
+                    break;
+                case 3:
+                    poop(creatureActionLog);
+                    break;
+                case 4:
+                    lycanthrope.domination(creatureActionLog);
+                    break;
+                case 5:
+                    lycanthrope.affiliationsHowl(creatureActionLog);
+                    break;
+                case 6 :
+                    sleepOrWakeUp();
+                    break;
+                case 7:
+                    changeReproduceState();
+                    break;
+                case 8:
+                    lycanthrope.shift(creatureActionLog);
+                    break;
+                default:
+                    System.out.println("Invalid action : " + selectedAction);
+                    break;
+            }
         }
         // Sinon elle fait une action au hasard selon les probas définies plus haut
         else {
