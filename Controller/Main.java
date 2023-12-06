@@ -5,6 +5,7 @@ import Model.Enclosure.Enclosure;
 import Model.Zoo.FantasticZooMaster;
 import Model.Zoo.FantasticZoo;
 import Model.Zoo.Init.CreateCreatures;
+import View.EasterEgg;
 import View.EndScreen;
 import View.UI;
 
@@ -35,7 +36,7 @@ public class Main {
         // | Boucle de jeu :
         // -----------------
         while (true) {
-            if(FantasticZoo.nbOfLife<=0){break;}
+            if(FantasticZoo.nbOfLife<=0 || FantasticZoo.nbOfLife>=666){break;}
             Scanner scanner = new Scanner(System.in); // Création scanner pour récup input
             String userInput = scanner.nextLine(); // récupération de l'input du joueur
 
@@ -56,12 +57,14 @@ public class Main {
                 System.out.println(uneAction);
             }
 
-            if (nbDay % 30 == 0) {
-
-            }
-
+            if (nbDay % 30 == 0) {}
             ++nbDay;
         }
-        EndScreen.displayEndScreen();
+        if(FantasticZoo.nbOfLife<=0) {
+            EndScreen.displayEndScreen();
+        }
+        else{
+            EasterEgg.displayEasterEgg();
+        }
     }
 }

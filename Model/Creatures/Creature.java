@@ -158,7 +158,7 @@ public abstract class Creature {
                     lycanthrope.domination(creatureActionLog);
                     break;
                 case 5:
-                    lycanthrope.affiliationsHowl(creatureActionLog);
+                    // ----> lycanthrope.affiliationsHowl(creatureActionLog);
                     break;
                 case 6 :
                     sleepOrWakeUp();
