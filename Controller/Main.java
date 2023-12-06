@@ -28,6 +28,9 @@ public class Main {
         UI ui = new UI();
         ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
 
+        // nombre de jours écoulés
+        int nbDay = 0;
+
         // -----------------
         // | Boucle de jeu :
         // -----------------
@@ -52,6 +55,12 @@ public class Main {
             for (String uneAction : creatureActionLog) {
                 System.out.println(uneAction);
             }
+
+            if (nbDay % 30 == 0) {
+
+            }
+
+            ++nbDay;
         }
         EndScreen.displayEndScreen();
     }

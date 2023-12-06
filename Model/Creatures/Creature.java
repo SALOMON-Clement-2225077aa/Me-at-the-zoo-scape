@@ -141,8 +141,7 @@ public abstract class Creature {
             ill(creatureActionLog);
         } else if (enclosure.getCreatures().get(0) instanceof Lycanthrope) {
             possibleAction = createPossibleActionForLycanthropes();
-            Creature creature = this;
-            Lycanthrope lycanthrope = (Lycanthrope) creature;
+            Lycanthrope lycanthrope = (Lycanthrope) this;
             switch (selectedAction) {
                 case 0:
                     break;
@@ -322,6 +321,8 @@ public abstract class Creature {
         this.enclosure = enclosure;
     }
 
+    public Enclosure getEnclosure() { return enclosure; }
+
     @Override
     public String toString() {
         String color = "";
@@ -375,12 +376,6 @@ public abstract class Creature {
             c.enclosure.addCreature(babyNymph);
             babyNymph.setEnclosure(c.enclosure);
             return babyNymph;
-        }
-        if (Objects.equals(species, "Lycanthrope")) {
-            Lycanthrope babyLycanthrope = new Lycanthrope("Lycanthrope", c.getGender(), c.weight / 2, c.size / 2, 1, 0, 100, 0, 0, 0, "","");
-            c.enclosure.addCreature(babyLycanthrope);
-            babyLycanthrope.setEnclosure(c.enclosure);
-            return babyLycanthrope;
         }
         if (Objects.equals(species, "Dragon")) {
             Dragon babyDragon = new Dragon("Dragon", c.getGender(), c.weight / 2, c.size / 2, 1, 100);

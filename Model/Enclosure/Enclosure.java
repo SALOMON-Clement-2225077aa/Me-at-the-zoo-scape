@@ -2,6 +2,8 @@ package Model.Enclosure;
 
 import Model.Creatures.*;
 import Model.Creatures.Oviparous.Oviparous;
+import Model.Creatures.Viviparous.Lycanthrope.Hound;
+import Model.Creatures.Viviparous.Lycanthrope.Lycanthrope;
 import Model.Creatures.Viviparous.Viviparous;
 
 import java.util.ArrayList;
@@ -30,6 +32,8 @@ public class Enclosure {
         this.creatures = creatures;
         this.enclosureDirtiness = enclosureDirtiness;
     }
+
+    public String getName() { return name; }
 
     // Méthodes
     public void addCreature(Creature creature) {

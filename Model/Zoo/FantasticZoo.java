@@ -10,14 +10,12 @@ public class FantasticZoo {
     private FantasticZooMaster player;
     private int MaxEnclosure;
     private ArrayList<Enclosure> ListEnclosure;
-    public static int nbOfLife;
 
-    public FantasticZoo(String name, FantasticZooMaster player, int maxEnclosure, ArrayList<Enclosure> listeEnclosure, int nbOfLife) {
+    public FantasticZoo(String name, FantasticZooMaster player, int maxEnclosure, ArrayList<Enclosure> listeEnclosure) {
         this.name = name;
         this.player = player;
-        this.MaxEnclosure = maxEnclosure;
-        this.ListEnclosure = listeEnclosure;
-        this.nbOfLife = nbOfLife;
+        MaxEnclosure = maxEnclosure;
+        ListEnclosure = listeEnclosure;
     }
 
     public ArrayList<String> everyoneDoSomethingInZoo(ArrayList<String> creatureActionLog) {
