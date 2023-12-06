@@ -10,8 +10,6 @@ public class Hound {
     private ArrayList<Lycanthrope> lycanthropesHound;
 
     public Hound(Pair pairA, ArrayList<Lycanthrope> lycanthropesHound) {
-        this.pairA = pairA;
-
         this.pairA.getMale().setRank(0);
         this.pairA.getMale().joinHound(this);
         this.pairA.getFemale().setRank(0);

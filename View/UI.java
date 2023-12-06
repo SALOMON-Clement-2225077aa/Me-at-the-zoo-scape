@@ -101,14 +101,14 @@ public class UI {
         // Nb of Life
         String[] life = new String[3];
         if(FantasticZoo.nbOfLife == 3) {
-            life[0] = "/\\/\\  /\\/\\  /\\/\\";
-            life[1] = "\\  /  \\  /  \\  /";
-            life[2] = " \\/    \\/    \\/ ";
+            life[0] = "/\\/\\  /\\/\\  /\\/\\  ";
+            life[1] = "\\  /  \\  /  \\  /  ";
+            life[2] = " \\/    \\/    \\/   ";
         }
         if(FantasticZoo.nbOfLife == 2) {
-            life[0] = "/\\/\\  /\\/\\     ";
-            life[1] = "\\  /  \\  /     ";
-            life[2] = " \\/    \\/      ";
+            life[0] = "/\\/\\  /\\/\\      ";
+            life[1] = "\\  /  \\  /      ";
+            life[2] = " \\/    \\/       ";
         }
         if(FantasticZoo.nbOfLife == 1) {
             life[0] = "/\\/\\            ";
