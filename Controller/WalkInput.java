@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class WalkInput {
-
     static String infoInput = "";
 
-    public static String move(UI ui, ArrayList<Enclosure> ListEnclosure, String playerInput) {
+    public static String move(UI ui, ArrayList<Enclosure> ListEnclosure, String playerInput, String GoldenPath) {
         if (Objects.equals(playerInput, "Z") || Objects.equals(playerInput, "z")) {
             infoInput = "You moved UP";
             if(ui.getPosition() >= 0 && ui.getPosition() <= 4) {

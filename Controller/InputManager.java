@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Enclosure.Enclosure;
 import View.UI;
-
 import java.util.*;
 
 public class InputManager {
@@ -13,12 +12,12 @@ public class InputManager {
     private static Set<String> validFeed = new HashSet<>(Arrays.asList("FEED", "Feed", "feed", "F", "f"));
     private static Set<String> validWakeUp = new HashSet<>(Arrays.asList("WAKE", "WAKEUP", "WakeUp", "Wakeup", "wakeup", "WAKE UP", "Wake Up", "Wake up", "wake up", "W", "w", "WU", "wu", "Wu", "wU"));
     private static Set<String> validMoveCreatures = new HashSet<>(Arrays.asList("MOVECREATURES", "MoveCreatures", "movecreatures", "M", "m"));
-
+    private static String GoldenPath = new String();
 
     public static String executeInput(UI ui, ArrayList<Enclosure> ListEnclosure, String userInput) {
         String infoInput = "";
         if(validWalk.contains(userInput)) {
-            infoInput = WalkInput.move(ui,ListEnclosure,userInput);
+            infoInput = WalkInput.move(ui,ListEnclosure,userInput,GoldenPath);
         } else if (Objects.equals(userInput, "Walk") || Objects.equals(userInput, "walk")) {
             infoInput = "You have to type 'z', 'q', 's' or 'd' to move";
         } else if (validClean.contains(userInput)) {
@@ -32,6 +31,9 @@ public class InputManager {
         }
         else {
             infoInput = "Invalid input...";
+        }
+        if(!validWalk.contains(userInput)) {
+            GoldenPath = "";
         }
         return infoInput;
     }
