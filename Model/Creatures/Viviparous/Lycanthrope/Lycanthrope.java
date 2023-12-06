@@ -29,6 +29,10 @@ public class Lycanthrope extends Viviparous implements Runner {
         humanForm = new FantasticZooMaster(name, gender, age);
     }
 
+    public FantasticZooMaster getHumanForm() {
+        return humanForm;
+    }
+
     public int getStrength() {
         return strength;
     }
@@ -177,15 +181,13 @@ public class Lycanthrope extends Viviparous implements Runner {
         }
     }
 
-    public void affiliationsHowl(ArrayList<String> creatureActionLog) { // a implémenter
-
-        // exprimer l’appartenance à une meute (entre les membres de la meute ou pour avertir les
-        //individus d’une autre meute) : lorsqu’un lycanthrope d’une meute utilise ce type de
-        //hurlements, tous les autres membres du clan qui l’entendent lui répondent en lançant un
-        //hurlement du même type (mais cette réponse n’appelle pas d’autres réponses) ; ceux des
-        //autres meutes peuvent répondre par leur propre hurlement de meute ;
-
-        creatureActionLog.add(species + " *WAF WAF WAOUUUF*");
+    public void affiliationsHowl(ArrayList<String> creatureActionLog) {
+        creatureActionLog.add("Lycanthrope de la meute de l'enclos " + getEnclosure().getName() + ": *WAF WAF WAOUUUF*");
+        for (Lycanthrope lycanthrope : hound.getLycanthropesHound()) {
+            if (lycanthrope.canHear()) {
+                creatureActionLog.add("Lycanthrope de la meute de l'enclos " + getEnclosure().getName() + ": *WAF WAF WAOUUUF*");
+            }
+        }
     }
 
     public void superiorityHowl(ArrayList<String> creatureActionLog) {

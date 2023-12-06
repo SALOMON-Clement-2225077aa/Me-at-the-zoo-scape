@@ -11,7 +11,24 @@ public class Hound {
 
     public Hound(Pair pairA, ArrayList<Lycanthrope> lycanthropesHound) {
         this.pairA = pairA;
-        this.lycanthropesHound = lycanthropesHound;
+
+        this.pairA.getMale().setRank(0);
+        this.pairA.getMale().joinHound(this);
+        this.pairA.getFemale().setRank(0);
+        this.pairA.getFemale().joinHound(this);
+
+        for (Lycanthrope lycanthrope : lycanthropesHound) {
+            lycanthrope.joinHound(this);
+        }
+    }
+
+    public Hound(Pair pairA) {
+        this.pairA = pairA;
+
+        this.pairA.getMale().setRank(0);
+        this.pairA.getMale().joinHound(this);
+        this.pairA.getFemale().setRank(0);
+        this.pairA.getFemale().joinHound(this);
     }
 
     public ArrayList<Lycanthrope> getLycanthropesHound() {
