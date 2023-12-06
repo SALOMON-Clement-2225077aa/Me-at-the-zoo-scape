@@ -4,6 +4,7 @@ import Model.Creatures.Creature;
 import Model.Creatures.Type.Flyer;
 import Model.Creatures.Type.Runner;
 import Model.Creatures.Type.Swimmer;
+import Model.Creatures.Viviparous.Nymph;
 import Model.Enclosure.Aquarium;
 import Model.Enclosure.Aviary;
 import Model.Enclosure.Enclosure;
@@ -57,7 +58,7 @@ public class MoveCreatureInput {
                             addOrNot = true;
                         }
                     } else {
-                        if (moveCreature instanceof Runner) {
+                        if (moveCreature instanceof Runner || moveCreature instanceof Nymph) {
                             addOrNot = true;
                         }
                     }

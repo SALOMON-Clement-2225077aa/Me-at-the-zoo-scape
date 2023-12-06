@@ -47,6 +47,7 @@ public class UI {
                 "  -  walk ('z','q','s' or 'd')                                                            - enclosure type : " + enclosureInfo[0] + "\n" +
                 "  - 'clean' (or 'c')                                                                     - creatures species: " + enclosureInfo[1] + "\n" +
                 "  - 'feed' (or 'f')                                                                      - " + enclosureInfo[4] + "enclosure dirtiness : " + enclosureInfo[3] + "\u001B[0m\n" +
+                "  - 'WakeUp' the creatures (or 'w')\n"+
                 "  - 'moveCreatures' 'or ('m')\n"+
                 "- - - - - - - - - -");
     }

@@ -332,10 +332,12 @@ public abstract class Creature {
         if(hungerLevel<=10) {
             color = "\u001b[31;1m"; // bright red
             hunger = "starving";
-        } else if (hungerLevel<=20) {
+        }
+        if (hungerLevel<=20) {
             color = "\u001B[31m"; //red
             hunger = "hungry";
-        } else if(isSleeping) {
+        }
+        if(isSleeping) {
             color = "\u001B[94m"; //light blue
             asleepOrAwake = "asleep";
         }
