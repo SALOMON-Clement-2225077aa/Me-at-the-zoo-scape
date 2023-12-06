@@ -10,6 +10,7 @@ import Model.Creatures.Viviparous.Mermaid;
 import Model.Creatures.Viviparous.Nymph;
 import Model.Creatures.Viviparous.Unicorn;
 import Model.Enclosure.Enclosure;
+import Model.Zoo.FantasticZoo;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -290,6 +291,7 @@ public abstract class Creature {
         health -= 1;
         if (health == 0) {
             die("illness",creatureActionLog);
+            FantasticZoo.nbOfLife-=1;
         }
     }
 
@@ -297,6 +299,7 @@ public abstract class Creature {
         health -= 1;
         if (health == 0) {
             die("starvation",creatureActionLog);
+            FantasticZoo.nbOfLife-=1;
         }
     }
 

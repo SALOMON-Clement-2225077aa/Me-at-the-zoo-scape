@@ -1,6 +1,7 @@
 package View;
 
 import Model.Enclosure.*;
+import Model.Zoo.FantasticZoo;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class UI {
         this.cursorPosition = position;
     }
 
-    public void display(String[] symbolArray, String[] enclosureInfo, String[] creatureInfo){
+    public void display(String[] symbolArray, String[] enclosureInfo, String[] creatureInfo, String[] life){
         clearScreen();
         System.out.println(
                 "---------------------------------------------------                                    o Key symbols :\n" +
@@ -44,9 +45,9 @@ public class UI {
                 "---------------------------------------------------\n" +
                 "\n" +
                 "o Actions :                                                                            o Selected enclosure :\n" +
-                "  -  walk ('z','q','s' or 'd')                                                            - enclosure type : " + enclosureInfo[0] + "\n" +
-                "  - 'clean' (or 'c')                                                                     - creatures species: " + enclosureInfo[1] + "\n" +
-                "  - 'feed' (or 'f')                                                                      - " + enclosureInfo[4] + "enclosure dirtiness : " + enclosureInfo[3] + "\u001B[0m\n" +
+                "  -  walk ('z','q','s' or 'd')                           "+life[0]+"                 - enclosure type : " + enclosureInfo[0] + "\n" +
+                "  - 'clean' (or 'c')                                     "+life[1]+"                 - creatures species: " + enclosureInfo[1] + "\n" +
+                "  - 'feed' (or 'f')                                      "+life[2]+"                 - " + enclosureInfo[4] + "enclosure dirtiness : " + enclosureInfo[3] + "\u001B[0m\n" +
                 "  - 'WakeUp' the creatures (or 'w')\n"+
                 "  - 'moveCreatures' 'or ('m')\n"+
                 "- - - - - - - - - -");
@@ -96,10 +97,33 @@ public class UI {
         for (int i = currentEnclosure.creatures.size(); i < currentEnclosure.maxCapacity; i++) {
             creatureInfo[i] = "";
         }
+        // ---------------------------------
+        // Nb of Life
+        String[] life = new String[3];
+        if(FantasticZoo.nbOfLife == 3) {
+            life[0] = "/\\/\\  /\\/\\  /\\/\\";
+            life[1] = "\\  /  \\  /  \\  /";
+            life[2] = " \\/    \\/    \\/ ";
+        }
+        if(FantasticZoo.nbOfLife == 2) {
+            life[0] = "/\\/\\  /\\/\\     ";
+            life[1] = "\\  /  \\  /     ";
+            life[2] = " \\/    \\/      ";
+        }
+        if(FantasticZoo.nbOfLife == 1) {
+            life[0] = "/\\/\\            ";
+            life[1] = "\\  /            ";
+            life[2] = " \\/             ";
+        }
+        if(FantasticZoo.nbOfLife <= 0) {
+            life[0] = "                ";
+            life[1] = "                ";
+            life[2] = "                ";
+        }
 
         // ---------------------------------
         // Display
-        display(symbolArray,enclosureInfo,creatureInfo);
+        display(symbolArray,enclosureInfo,creatureInfo,life);
     }
 
     public static void clearScreen() {

@@ -18,7 +18,7 @@ public class Main {
         // Création du Maître et du Zoo fantastique :
         FantasticZooMaster zooMaster = new FantasticZooMaster("Victir","Man",19);
         ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
-        FantasticZoo zoo = new FantasticZoo("First Zoo : The Zoo-Scape",zooMaster,15,ListEnclosure);
+        FantasticZoo zoo = new FantasticZoo("First Zoo : The Zoo-Scape",zooMaster,15,ListEnclosure,3);
 
         // Ajout des créatures au zoo :
         CreateCreatures.addCreatureToTheZoo(ListEnclosure);
