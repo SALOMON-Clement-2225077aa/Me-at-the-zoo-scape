@@ -111,7 +111,8 @@ public class Hound {
 
     public void lycanthropesDisplay(String[] creatureInfo) {
         strongestToWeakest();
-        for (int i = 0; i < lycanthropesHound.get(0).getEnclosure().creatures.size(); i++) {
+        int minSize = Math.min(lycanthropesHound.size(), lycanthropesHound.get(0).getEnclosure().creatures.size());
+        for (int i = 0; i < minSize; i++) {
             creatureInfo[i] = lycanthropesHound.get(i).toStringLycanthrope();
         }
         for (int i = lycanthropesHound.get(0).getEnclosure().creatures.size(); i < lycanthropesHound.get(0).getEnclosure().maxCapacity; i++) {

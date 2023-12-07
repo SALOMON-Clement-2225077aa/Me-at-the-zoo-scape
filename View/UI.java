@@ -49,12 +49,12 @@ public class UI {
                 "  -  walk ('z','q','s' or 'd')                           "+life[0]+"                 - enclosure type : " + enclosureInfo[0] + "\n" +
                 "  - 'clean' (or 'c')                                     "+life[1]+"                 - creatures species: " + enclosureInfo[1] + "\n" +
                 "  - 'feed' (or 'f')                                      "+life[2]+"                 - " + enclosureInfo[4] + "enclosure dirtiness : " + enclosureInfo[3] + "\u001B[0m\n" +
-                "  - 'WakeUp' the creatures (or 'w')\n"+
-                "  - 'moveCreatures' 'or ('m')\n"+
+                "  - 'WakeUp' the creatures (or 'w')                      "+life[3]+"\n"+
+                "  - 'moveCreatures' 'or ('m')                            "+life[4]+"\n"+
                 "- - - - - - - - - -");
     }
 
-    public void updateEnclosure(ArrayList<Enclosure> ListEnclosure, Enclosure currentEnclosure) {
+    public void updateEnclosure(ArrayList<Enclosure> ListEnclosure, Enclosure currentEnclosure, int nbOfDay) {
 
         // ---------------------------------
         // charArray
@@ -104,26 +104,27 @@ public class UI {
         }
         // ---------------------------------
         // Nb of Life
-        String[] life = new String[3];
+        String[] life = new String[5];
         if(FantasticZoo.nbOfLife == 3) {
             life[0] = "/\\/\\  /\\/\\  /\\/\\  ";
             life[1] = "\\  /  \\  /  \\  /  ";
             life[2] = " \\/    \\/    \\/ㅤ  ";
+            life[3] = "----------------";
+            life[4] = "     Day "+ nbOfDay+"     ";
         }
         if(FantasticZoo.nbOfLife == 2) {
             life[0] = "/\\/\\  /\\/\\      ";
             life[1] = "\\  /  \\  /      ";
             life[2] = " \\/    \\/    ㅤ  ";
+            life[3] = "------------    ";
+            life[4] = "   Day "+ nbOfDay+"   ";
         }
         if(FantasticZoo.nbOfLife == 1) {
             life[0] = "/\\/\\            ";
             life[1] = "\\  /            ";
             life[2] = " \\/         ㅤ  ";
-        }
-        if(FantasticZoo.nbOfLife <= 0) {
-            life[0] = "                ";
-            life[1] = "                ";
-            life[2] = "                ";
+            life[3] = "--------        ";
+            life[4] = " Day "+ nbOfDay+" ";
         }
 
         // ---------------------------------

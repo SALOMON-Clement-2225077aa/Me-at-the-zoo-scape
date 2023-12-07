@@ -27,10 +27,10 @@ public class Main {
 
         // Affiche le Zoo en position initiale :
         UI ui = new UI();
-        ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
+        ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()),0);
 
         // nombre de jours écoulés
-        int nbDay = 0;
+        int nbDay = 1;
 
         // -----------------
 
@@ -50,7 +50,7 @@ public class Main {
             creatureActionLog = zoo.everyoneDoSomethingInZoo(creatureActionLog);
 
             // Actualise et affiche le Zoo :
-            ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()));
+            ui.updateEnclosure(ListEnclosure, ListEnclosure.get(ui.getPosition()),nbDay);
             System.out.println(returnInfoInput); // Affiche l'action du joueur
             System.out.println("- - - - - - - - - -");
 
@@ -63,7 +63,7 @@ public class Main {
             ++nbDay;
         }
         if(FantasticZoo.nbOfLife<=0) {
-            EndScreen.displayEndScreen();
+            EndScreen.displayEndScreen(nbDay);
         }
         else{
             EasterEgg.displayEasterEgg();
