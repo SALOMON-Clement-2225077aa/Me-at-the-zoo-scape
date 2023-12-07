@@ -60,6 +60,9 @@ public class Pair {
 
     @Override
     public String toString() {
-        return "a implementer";
+        return "Pair{" +
+                "male=" + male +
+                ", female=" + female +
+                '}';
     }
 }

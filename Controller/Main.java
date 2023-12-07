@@ -33,6 +33,8 @@ public class Main {
         int nbDay = 0;
 
         // -----------------
+
+
         // | Boucle de jeu :
         // -----------------
         while (true) {

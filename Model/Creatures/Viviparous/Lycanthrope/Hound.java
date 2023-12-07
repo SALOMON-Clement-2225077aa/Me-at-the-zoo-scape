@@ -3,17 +3,18 @@ package Model.Creatures.Viviparous.Lycanthrope;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class Hound {
 
     private Pair pairA;
-    private ArrayList<Lycanthrope> lycanthropesHound;
+    private ArrayList<Lycanthrope> lycanthropesHound = new ArrayList<Lycanthrope>();
 
     public Hound(Pair pairA, ArrayList<Lycanthrope> lycanthropesHound) {
         this.pairA.getMale().setRank(0);
-        this.pairA.getMale().joinHound(this);
+        addLycanthrope(this.pairA.getMale());
         this.pairA.getFemale().setRank(0);
-        this.pairA.getFemale().joinHound(this);
+        addLycanthrope(this.pairA.getFemale());
 
         for (Lycanthrope lycanthrope : lycanthropesHound) {
             lycanthrope.joinHound(this);
@@ -24,9 +25,9 @@ public class Hound {
         this.pairA = pairA;
 
         this.pairA.getMale().setRank(0);
-        this.pairA.getMale().joinHound(this);
+        addLycanthrope(this.pairA.getMale());
         this.pairA.getFemale().setRank(0);
-        this.pairA.getFemale().joinHound(this);
+        addLycanthrope(this.pairA.getFemale());
     }
 
     public ArrayList<Lycanthrope> getLycanthropesHound() {
@@ -44,14 +45,13 @@ public class Hound {
 
     public void removeLycanthrope(Lycanthrope lycanthrope) {
         lycanthropesHound.remove(lycanthrope);
-        lycanthrope.splitUp();
     }
 
     public Pair getPairA() {
         return pairA;
     }
 
-    public String setPair(Lycanthrope maleA) {
+    public void setPair(Lycanthrope maleA, ArrayList<String> creatureActionLog) {
         ArrayList<Lycanthrope> females = new ArrayList<>();
         for (Lycanthrope lycanthrope : lycanthropesHound) {
             if ("female".equals(lycanthrope.getGender())) {
@@ -59,13 +59,13 @@ public class Hound {
             }
         }
         if (females.isEmpty()) {
-            return null;
+            return;
         }
         Lycanthrope highestLvlFemale = Collections.max(females, Comparator.comparingInt(Lycanthrope::getLvl));
 
         if (getPairA() == null) {
             pairA = new Pair(maleA, highestLvlFemale);
-            return "Un couple Alpha est né";
+            creatureActionLog.add("An Alpha pair is born");
         }
         pairA.getFemale().setLvl(pairA.getMale().getRank());
 
@@ -76,7 +76,7 @@ public class Hound {
 
         pairA = new Pair(maleA, highestLvlFemale);
         pairA.getFemale().setRank(0);
-        return "Un nouveau couple Alpha domine la meute.";
+        creatureActionLog.add("A new Alpha pair dominate the hound");
     }
 
     public void decreaseRanks() {
@@ -105,18 +105,25 @@ public class Hound {
         }
     }
 
-    public void generalReproduction() {
-        // jsp quoi faire
+    public void strongestToWeakest() {
+        lycanthropesHound.sort(Comparator.comparingInt(Lycanthrope::getRank));
     }
+
+    public void lycanthropesDisplay(String[] creatureInfo) {
+        strongestToWeakest();
+        for (int i = 0; i < lycanthropesHound.get(0).getEnclosure().creatures.size(); i++) {
+            creatureInfo[i] = lycanthropesHound.get(i).toStringLycanthrope();
+        }
+        for (int i = lycanthropesHound.get(0).getEnclosure().creatures.size(); i < lycanthropesHound.get(0).getEnclosure().maxCapacity; i++) {
+            creatureInfo[i] = "";
+        }
+    }
+
     @Override
     public String toString() {
         return "Hound{" +
                 "pairA=" + pairA +
                 ", lycanthopesHound=" + lycanthropesHound +
                 '}';
-    }
-
-    public String toStringLycanthropes() {
-        return "les loups";
     }
 }

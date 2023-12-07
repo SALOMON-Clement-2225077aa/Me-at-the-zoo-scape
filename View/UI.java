@@ -1,5 +1,6 @@
 package View;
 
+import Model.Creatures.Viviparous.Lycanthrope.Lycanthrope;
 import Model.Enclosure.*;
 import Model.Zoo.FantasticZoo;
 
@@ -90,12 +91,16 @@ public class UI {
         // ---------------------------------
         // Creature Info
         String[] creatureInfo = new String[currentEnclosure.maxCapacity];
-
-        for (int i = 0; i < currentEnclosure.creatures.size(); i++) {
-            creatureInfo[i] = currentEnclosure.creatures.get(i).toString();
+        if (!currentEnclosure.creatures.isEmpty() && currentEnclosure.creatures.get(0) instanceof Lycanthrope) {
+            ((Lycanthrope) currentEnclosure.creatures.get(0)).getHound().lycanthropesDisplay(creatureInfo);
         }
-        for (int i = currentEnclosure.creatures.size(); i < currentEnclosure.maxCapacity; i++) {
-            creatureInfo[i] = "";
+        else {
+            for (int i = 0; i < currentEnclosure.creatures.size(); i++) {
+                creatureInfo[i] = currentEnclosure.creatures.get(i).toString();
+            }
+            for (int i = currentEnclosure.creatures.size(); i < currentEnclosure.maxCapacity; i++) {
+                creatureInfo[i] = "";
+            }
         }
         // ---------------------------------
         // Nb of Life

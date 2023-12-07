@@ -37,16 +37,14 @@ public class CreateCreatures {
         Unicorn unicorn3 = new Unicorn("Unicorn", "male", 70, 2.5, 32,randomArray[2]);
         Unicorn unicorn4 = new Unicorn("Unicorn", "female", 85, 4, 40,randomArray[3]);
         // Lycanthrope
-        // ----> Hound hound = new Hound(null, new ArrayList<Lycanthrope>());
         Lycanthrope lycanthrope1 = new Lycanthrope("Lycanthrope", "male", 80, 6, 30, randomArray[4], 20, 15, 11, 0,"aggressive", "Pierre Garand");
         Lycanthrope lycanthrope2 = new Lycanthrope("Lycanthrope", "female", 85, 6.5, 32, randomArray[5], 22, 18, 12, 1,"moderate", "Juju");
         Lycanthrope lycanthrope3 = new Lycanthrope("Lycanthrope", "male", 75, 5.5, 28, randomArray[6], 18, 12, 7, 2,"calm", "Jean");
         Lycanthrope lycanthrope4 = new Lycanthrope("Lycanthrope", "female", 90, 7, 35, randomArray[7], 25, 20, 9, 23,"calm","Roberta");
 
-        ArrayList<Lycanthrope> setHound = new ArrayList<>();
-        setHound.add(lycanthrope1);setHound.add(lycanthrope2);setHound.add(lycanthrope3);setHound.add(lycanthrope4);
-        // ----> hound.setPair(lycanthrope1);
-        // ----> hound.setLycanthropesHound(setHound);
+        Hound hound = new Hound(new Pair(lycanthrope1, lycanthrope2));
+        hound.addLycanthrope(lycanthrope3);hound.addLycanthrope(lycanthrope4);
+
         // - - - - - - - - - - - - - -
         // Ajout des animaux aux enclos
         // - - - - - - - - - - - - - -

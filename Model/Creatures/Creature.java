@@ -158,7 +158,7 @@ public abstract class Creature {
                     lycanthrope.domination(creatureActionLog);
                     break;
                 case 5:
-                    // ----> lycanthrope.affiliationsHowl(creatureActionLog);
+                    lycanthrope.affiliationsHowl(creatureActionLog);
                     break;
                 case 6 :
                     sleepOrWakeUp();
@@ -370,6 +370,13 @@ public abstract class Creature {
             c.enclosure.addCreature(babyMermaid);
             babyMermaid.setEnclosure(c.enclosure);
             return babyMermaid;
+        }
+        if (Objects.equals(species, "Lycanthrope")) {
+            Lycanthrope l = (Lycanthrope) c;
+            Lycanthrope babyLycanthrope = new Lycanthrope("Lycanthrope", l.getGender(), l.weight / 2, l.size / 2, 1, 0, 100, l.getStrength() - 5, 10, (l.getHound().getLycanthropesHound().isEmpty()) ? 1 : 2, l.getImpetuosity(), l.getHumanForm().getName() + "Jr.");
+            l.enclosure.addCreature(babyLycanthrope);
+            babyLycanthrope.setEnclosure(l.enclosure);
+            return babyLycanthrope;
         }
         if (Objects.equals(species, "Nymph")) {
             Nymph babyNymph = new Nymph("Nymph", c.getGender(), c.weight / 2, c.size / 2, 1, 100);

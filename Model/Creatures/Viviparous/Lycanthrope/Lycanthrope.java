@@ -37,10 +37,6 @@ public class Lycanthrope extends Viviparous implements Runner {
         return strength;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
     public int getDomFactor() {
         return domFactor;
     }
@@ -69,17 +65,12 @@ public class Lycanthrope extends Viviparous implements Runner {
         return impetuosity;
     }
 
-    public void setImpetuosity(String impetuosity) {
-        this.impetuosity = impetuosity;
-    }
-
     public Hound getHound() {
         return hound;
     }
 
     public void joinHound(Hound toJoinHound) {
         hound = toJoinHound;
-        toJoinHound.addLycanthrope(this);
     }
 
     public void lvlCalculation() {
@@ -107,15 +98,15 @@ public class Lycanthrope extends Viviparous implements Runner {
                 lycanthropesByRank.add(lycanthrope);
             }
         }
-
         if (domFactor < 10 && lycanthropesByRank.size() > 1) {
             rank -= 1;
-
         }
     }
 
     public void domination(ArrayList<String> creatureActionLog) {
-        if (hound != null) {
+        if (hound != null
+            && !isSleeping
+            && !isHuman) {
             Random random = new Random();
             ArrayList<Lycanthrope> subjugable = new ArrayList<Lycanthrope>(); //arraylist des lycanthropes pouvant être dominés
 
@@ -152,54 +143,57 @@ public class Lycanthrope extends Viviparous implements Runner {
                         && lycanthrope.getStrength() <= strength - strengthLimit) {
                     subjugable.add(lycanthrope);
                 }
-                if (!subjugable.isEmpty()) {
-                    superiorityHowl(creatureActionLog);
-                    int rdNb = random.nextInt(subjugable.size()); //Nb entre 0 et le nombres de lycanthropes dans la liste
-                    int tie = random.nextInt(subjugable.size()); //déterminer le gagnant en ca de niveau égal
-                    Lycanthrope targetedLycanthrope = subjugable.get(rdNb);
-                    if (lvl > targetedLycanthrope.getLvl()
-                            || targetedLycanthrope.getRank() == 23
-                            || (lvl == targetedLycanthrope.getLvl() && tie == 1)) {
-                        domFactor += 1;
-                        if (targetedLycanthrope.getRank() > rank) {
-                            int newRank = targetedLycanthrope.getRank();
-                            targetedLycanthrope.setRank(rank);
-                            setRank(newRank);
-                        }
-                        targetedLycanthrope.submissionHowl(creatureActionLog);
-                    } else {
-                        targetedLycanthrope.aggressivenessHowl(creatureActionLog);
+            }
+            if (!subjugable.isEmpty()) {
+                superiorityHowl(creatureActionLog);
+                int rdNb = random.nextInt(subjugable.size()); //Nb entre 0 et le nombres de lycanthropes dans la liste
+                int tie = random.nextInt(2); //déterminer le gagnant en cas de niveau égal
+                Lycanthrope targetedLycanthrope = subjugable.get(rdNb);
+                if (lvl > targetedLycanthrope.getLvl()
+                        || targetedLycanthrope.getRank() == 23
+                        || (lvl == targetedLycanthrope.getLvl() && tie == 1)) {
+                    domFactor += 1;
+                    if (targetedLycanthrope.getRank() > rank) {
+                        int newRank = targetedLycanthrope.getRank();
+                        targetedLycanthrope.setRank(rank);
+                        setRank(newRank);
                     }
-                    targetedLycanthrope.setDomFactor(targetedLycanthrope.getDomFactor() - 1);
+                    targetedLycanthrope.submissionHowl(creatureActionLog);
+                } else {
+                    targetedLycanthrope.aggressivenessHowl(creatureActionLog);
+                }
+                targetedLycanthrope.setDomFactor(targetedLycanthrope.getDomFactor() - 1);
 
-                    loseRankByDomFactor();
-                    targetedLycanthrope.loseRankByDomFactor();
-                    System.out.println(targetedLycanthrope.rank);
-                    System.out.println(rank);
+                loseRankByDomFactor();
+                targetedLycanthrope.loseRankByDomFactor();
                 }
             }
-        }
     }
 
     public void affiliationsHowl(ArrayList<String> creatureActionLog) {
-        creatureActionLog.add("Lycanthrope de la meute de l'enclos " + getEnclosure().getName() + ": *WAF WAF WAOUUUF*");
-        for (Lycanthrope lycanthrope : hound.getLycanthropesHound()) {
-            if (lycanthrope.canHear()) {
-                creatureActionLog.add("Lycanthrope de la meute de l'enclos " + getEnclosure().getName() + ": *WAF WAF WAOUUUF*");
+        if (hound != null) {
+            creatureActionLog.add("\u001B[90mLycanthrope de la meute de l'enclos " + getEnclosure().getName() + ": *WAF WAF WAOUUUF*\u001B[0m");
+            for (Lycanthrope lycanthrope : hound.getLycanthropesHound()) {
+                if (lycanthrope.canHear() && lycanthrope != this) {
+                    creatureActionLog.add("\u001B[38;5;239mLycanthrope de la meute de l'enclos " + getEnclosure().getName() + ": *WAF WAF WAOUUUF*\u001B[0m");
+                }
             }
+        }
+        else {
+            makeSound(creatureActionLog);
         }
     }
 
     public void superiorityHowl(ArrayList<String> creatureActionLog) {
-        creatureActionLog.add(species + "*AOU AOU AOUUUUUUUUU*");
+        creatureActionLog.add("\u001B[90m"+species + "*AOU AOU AOUUUUUUUUU*\u001B[0m");
     }
 
     public void submissionHowl(ArrayList<String> creatureActionLog) {
-        creatureActionLog.add(species + "*ouu ouu ouu* :'(");
+        creatureActionLog.add("\u001B[90m"+species + "*ouu ouu ouu* :'(\u001B[0m");
     }
 
     public void aggressivenessHowl(ArrayList<String> creatureActionLog) {
-        creatureActionLog.add(species + "*GRRRRRRRRRRRRR*");
+        creatureActionLog.add("\u001B[90m"+species + "*GRRRRRRRRRRRRR*\u001B[0m");
     }
 
     public boolean canHear() {
@@ -208,17 +202,60 @@ public class Lycanthrope extends Viviparous implements Runner {
 
     public void splitUp () {
         hound.removeLycanthrope(this);
+        hound = null;
+        rank = -1;
     }
 
     public void shift(ArrayList<String> creatureActionLog) {
         if (!isHuman) {
             isHuman = true;
-            creatureActionLog.add(humanForm.getName() + " reprend ses esprits, il/elle n'est plus un lycanthrope");
+            Random rd = new Random();
+            int rdNb = rd.nextInt(3);
+            creatureActionLog.add(humanForm.getName() + " snap out of it, he/she's not a lycanthrope anymore");
+            if (rdNb == 1) {
+                getEnclosure().removeCreature(this);
+                creatureActionLog.add(humanForm.getName() + " managed to escape from his enclosure.");
+                if(hound != null) {
+                    hound.removeLycanthrope(this);
+                }
+            }
         }
         else {
             isHuman = false;
-            creatureActionLog.add(humanForm.getName() + " : Je suis devenu le monstre que j'ai toujours été (ref à Warwick)");
+            creatureActionLog.add(humanForm.getName() + " : I became the monster I always was");
         }
+    }
+
+    private String greekSwitch (int position){
+        String[] greekLetters = {
+                "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι", "κ", "λ", "μ", "ν", "ξ",
+                "ο", "π", "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω"
+        };
+
+        if (position >= 0 && position < greekLetters.length) {
+            return greekLetters[position];
+        }
+        return "";
+    }
+
+    public String toStringLycanthrope() {
+        if (rank == -1) {
+            return toString();
+        }
+
+        String color = "";
+
+        if(hungerLevel<=10) {
+            color = "\u001b[31;1m"; // bright red
+        }
+        if (hungerLevel<=20) {
+            color = "\u001B[31m"; //red
+        }
+        if(isSleeping) {
+            color = "\u001B[94m"; //light blue
+        }
+
+        return this + color + ", " + greekSwitch(rank) + "\u001B[0m";
     }
 
     @Override
