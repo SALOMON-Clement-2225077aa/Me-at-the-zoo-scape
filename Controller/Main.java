@@ -11,9 +11,18 @@ import View.UI;
 
 import java.util.*;
 
-// Classe Controller pour l'exécution de la simulation
+/**
+ * La classe principale qui gère l'exécution de la simulation du zoo fantastique.
+ * Elle initialise le maître du zoo, le zoo, les enclos et les créatures.
+ * La boucle de jeu est gérée ici, avec les actions du joueur et des créatures.
+ */
 public class Main {
 
+    /**
+     * La méthode principale qui démarre la simulation du zoo fantastique.
+     *
+     * @param args (non utilisé).
+     */
     public static void main(String[] args) {
         System.out.println("--- Welcome to Me at The zoo-scape ! ---");
 
@@ -33,8 +42,6 @@ public class Main {
         int nbDay = 1;
 
         // -----------------
-
-
         // | Boucle de jeu :
         // -----------------
         while (true) {

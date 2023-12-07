@@ -6,22 +6,47 @@ import Model.Zoo.FantasticZoo;
 
 import java.util.ArrayList;
 
+/**
+ * La classe UI (User Interface) gère l'affichage et l'interaction avec l'utilisateur dans le contexte
+ * de la simulation du zoo fantastique.
+ */
 public class UI {
 
     int cursorPosition;
 
+
+    /**
+     * Constructeur de la classe UI. Initialise la position du curseur par défaut.
+     */
     public UI() {
         cursorPosition = 7;
     }
 
-    // Get and Set position
+    /**
+     * Obtient la position actuelle du curseur.
+     *
+     * @return La position du curseur.
+     */
     public int getPosition() {
         return cursorPosition;
     }
+    /**
+     * Définit la position du curseur.
+     *
+     * @param position La nouvelle position du curseur.
+     */
     public void setPosition(int position) {
         this.cursorPosition = position;
     }
 
+    /**
+     * Affiche l'interface utilisateur, y compris les informations sur les enclos, les créatures, la vie, etc.
+     *
+     * @param symbolArray    Un tableau de symboles représentant l'état de chaque enclos.
+     * @param enclosureInfo  Informations sur l'enclos actuellement sélectionné.
+     * @param creatureInfo   Informations sur les créatures dans l'enclos actuellement sélectionné.
+     * @param life           Informations sur la vie restante dans le zoo.
+     */
     public void display(String[] symbolArray, String[] enclosureInfo, String[] creatureInfo, String[] life){
         clearScreen();
         System.out.println(
@@ -54,6 +79,13 @@ public class UI {
                 "- - - - - - - - - -");
     }
 
+    /**
+     * Met à jour l'affichage de l'enclos actuellement sélectionné avec les informations les plus récentes.
+     *
+     * @param ListEnclosure   Liste des enclos dans le zoo.
+     * @param currentEnclosure Enclos actuellement sélectionné.
+     * @param nbOfDay         Nombre de jours écoulés dans la simulation.
+     */
     public void updateEnclosure(ArrayList<Enclosure> ListEnclosure, Enclosure currentEnclosure, int nbOfDay) {
 
         // ---------------------------------
@@ -132,6 +164,9 @@ public class UI {
         display(symbolArray,enclosureInfo,creatureInfo,life);
     }
 
+    /**
+     * Efface l'écran de la console.
+     */
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         for(int i = 0; i <50; i++) {
@@ -139,7 +174,11 @@ public class UI {
         }
     }
 
-
+    /**
+     * Affiche une carte de placement, indiquant les positions possibles et la position actuelle du curseur.
+     *
+     * @param possible Liste des positions possibles pour le placement.
+     */
     public void displayPlacementMap(ArrayList<Integer> possible){
         // Met en rouge les déplacements impossible et en vert ceux possibles.
         String[] positionArray = new String[15];

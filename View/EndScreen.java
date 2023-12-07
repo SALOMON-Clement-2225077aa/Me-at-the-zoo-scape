@@ -1,9 +1,15 @@
 package View;
 
-import View.UI;
-
+/**
+ * La classe EndScreen est responsable de l'affichage de l'écran de fin de jeu en cas d'échec.
+ */
 public class EndScreen {
 
+    /**
+     * Affiche l'écran de fin de jeu en cas de défaite.
+     *
+     * @param nbDay Le nombre total de jours que le joueur a réussi à maintenir le zoo avant l'échec.
+     */
     public static void displayEndScreen(int nbDay) {
 
         for(int i = 0; i <50; i++) {

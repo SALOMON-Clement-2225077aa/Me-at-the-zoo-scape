@@ -14,8 +14,18 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * La classe MoveCreatureInput gère l'action de déplacer les créatures vers un autre enclos.
+ */
 public class MoveCreatureInput {
 
+    /**
+     * Déplace les créatures de l'enclos actuel vers un autre enclos.
+     *
+     * @param ui            L'interface utilisateur utilisée pour l'affichage.
+     * @param ListEnclosure La liste des enclos du zoo.
+     * @return              Une String d'informations sur l'action effectuée.
+     */
     public static String deplacer(UI ui, ArrayList<Enclosure> ListEnclosure) {
 
         ArrayList<Integer> possible = validPlacement(ui,ListEnclosure);
@@ -30,8 +40,13 @@ public class MoveCreatureInput {
         }
     }
 
-
-
+    /**
+     * Vérifie les enclos où les créatures peuvent être déplacées.
+     *
+     * @param ui            L'interface utilisateur utilisée pour l'affichage.
+     * @param ListEnclosure La liste des enclos du zoo.
+     * @return              Une liste d'indices des enclos où les créatures peuvent être déplacées.
+     */
     public static ArrayList<Integer> validPlacement(UI ui, ArrayList<Enclosure> ListEnclosure) {
 
         // l'enclos en cours, le type de créatures et leurs nombre
@@ -74,6 +89,12 @@ public class MoveCreatureInput {
         return possibleMoves;
     }
 
+    /**
+     * Permet à l'utilisateur de choisir l'enclos de destination pour le déplacement des créatures.
+     *
+     * @param possibleMoves La liste des enclos possibles pour le déplacement.
+     * @return              L'indice de l'enclos choisi par l'utilisateur.
+     */
     public static int choicePlacement(ArrayList<Integer> possibleMoves) {
 
         while(true) {
@@ -97,6 +118,13 @@ public class MoveCreatureInput {
         }
     }
 
+    /**
+     * Déplace toutes les créatures de l'enclos actuel vers l'enclos choisi.
+     *
+     * @param ui     L'interface utilisateur utilisée pour l'affichage.
+     * @param ListEnclosure La liste des enclos du zoo.
+     * @param choix  L'indice de l'enclos choisi.
+     */
     public static void moveEveryone(UI ui, ArrayList<Enclosure> ListEnclosure, int choix) {
 
         Enclosure currentEnclosure = ListEnclosure.get(ui.getPosition());
