@@ -373,7 +373,7 @@ public abstract class Creature {
         }
         if (Objects.equals(species, "Lycanthrope")) {
             Lycanthrope l = (Lycanthrope) c;
-            Lycanthrope babyLycanthrope = new Lycanthrope("Lycanthrope", l.getGender(), l.weight / 2, l.size / 2, 1, 0, 100, l.getStrength() - 5, 10, (l.getHound().getLycanthropesHound().isEmpty()) ? 1 : 2, l.getImpetuosity(), l.getHumanForm().getName() + "Jr.");
+            Lycanthrope babyLycanthrope = new Lycanthrope("Lycanthrope", l.getGender(), l.weight / 2, l.size / 2, 1, 0, 100, l.getStrength() - 5, 10,(l.getHound() != null && l.getHound().getLycanthropesHound().isEmpty()) ? 1 : 2, l.getImpetuosity(), l.getHumanForm().getName() + "Jr.");
             l.enclosure.addCreature(babyLycanthrope);
             babyLycanthrope.setEnclosure(l.enclosure);
             return babyLycanthrope;

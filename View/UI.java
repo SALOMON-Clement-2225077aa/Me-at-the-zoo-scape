@@ -108,17 +108,17 @@ public class UI {
         if(FantasticZoo.nbOfLife == 3) {
             life[0] = "/\\/\\  /\\/\\  /\\/\\  ";
             life[1] = "\\  /  \\  /  \\  /  ";
-            life[2] = " \\/    \\/    \\/   ";
+            life[2] = " \\/    \\/    \\/ㅤ  ";
         }
         if(FantasticZoo.nbOfLife == 2) {
             life[0] = "/\\/\\  /\\/\\      ";
             life[1] = "\\  /  \\  /      ";
-            life[2] = " \\/    \\/       ";
+            life[2] = " \\/    \\/    ㅤ  ";
         }
         if(FantasticZoo.nbOfLife == 1) {
             life[0] = "/\\/\\            ";
             life[1] = "\\  /            ";
-            life[2] = " \\/             ";
+            life[2] = " \\/         ㅤ  ";
         }
         if(FantasticZoo.nbOfLife <= 0) {
             life[0] = "                ";

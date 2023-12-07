@@ -7,6 +7,7 @@ import Model.Creatures.Viviparous.Lycanthrope.Lycanthrope;
 import Model.Creatures.Viviparous.Viviparous;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -67,10 +68,13 @@ public class Enclosure {
     }
 
     public void everyoneDoSomething(ArrayList<String> creatureActionLog) {
-        for (Creature creature : creatures) {
+        List<Creature> creaturesCopy = new ArrayList<>(creatures);
+        for (Creature creature : creaturesCopy) {
             creature.doSomething(creatureActionLog);
+            // You can modify the original list (creatures) here without issues
         }
     }
+
     public void removeDead() {
         ArrayList<Creature> deadCreatures = new ArrayList<>();
 
