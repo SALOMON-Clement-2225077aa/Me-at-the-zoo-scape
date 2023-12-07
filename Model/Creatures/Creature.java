@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * La classe abstraite représentant une créature générique dans le zoo.
+ * Toutes les classes de créatures spécifiques étendent cette classe.
+ */
 public abstract class Creature {
 
     // Variables
@@ -33,7 +37,16 @@ public abstract class Creature {
     public boolean isDead = false;
     public boolean wantToReproduce = false;
 
-    // Constructeur
+    /**
+     * Constructeur de la classe Creature.
+     *
+     * @param species      L'espèce de la créature.
+     * @param gender       Le genre de la créature.
+     * @param weight       Le poids de la créature.
+     * @param size         La taille de la créature.
+     * @param age          L'âge de la créature.
+     * @param hungerLevel  Le niveau de faim initial de la créature.
+     */
     public Creature(String species, String gender, double weight, double size, int age,int hungerLevel) {
         this.species = species;
         this.gender = gender;
@@ -46,10 +59,20 @@ public abstract class Creature {
         this.possibleAction = createPossibleAction();
     }
 
+    /**
+     * Obtient le genre de la créature.
+     *
+     * @return Le genre de la créature.
+     */
     public String getGender() {
         return gender;
     }
 
+    /**
+     * Crée un tableau d'actions possibles pour la créature en fonction des probabilités.
+     *
+     * @return Un tableau représentant les actions possibles pour la créature.
+     */
     public int[] createPossibleAction() {
         // 0 = do nothing                     => 19%
         // 1 = -1 hunger                      => 35%
@@ -86,6 +109,11 @@ public abstract class Creature {
         return possibleAction;
     }
 
+    /**
+     * Crée un tableau d'actions possibles spécifiquement pour les Lycanthropes en fonction des probabilités.
+     *
+     * @return Un tableau représentant les actions possibles pour les Lycanthropes.
+     */
     public int[] createPossibleActionForLycanthropes() {
         // 0 = do nothing                     => 14%
         // 1 = -1 hunger                      => 30%
@@ -130,6 +158,11 @@ public abstract class Creature {
         return possibleAction;
     }
 
+    /**
+     * Effectue une action aléatoire en fonction des actions possibles de la créature.
+     *
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public void doSomething(ArrayList<String> creatureActionLog) {
         Random random = new Random();
         int rdNb = random.nextInt(100); //Nb entre 0 et 99
@@ -204,10 +237,20 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Obtient l'espèce de la créature.
+     *
+     * @return L'espèce de la créature.
+     */
     public String getSpecies() {
         return species;
     }
 
+    /**
+     * Gère la faim de la créature, en diminuant le niveau de faim et déclenchant des avertissements de famine.
+     *
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public void hunger(ArrayList<String> creatureActionLog) {
         hungerLevel -= 1;
         if(hungerLevel == 20) {
@@ -246,6 +289,11 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Méthode abstraite pour faire un son. Chaque créature implémente cette méthode (avec son bruit)
+     *
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public abstract void makeSound(ArrayList <String> creatureActionLog);
 
     public String heal() {
@@ -261,10 +309,18 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Fait dormir ou réveille la créature en fonction de son état actuel.
+     */
     public void sleepOrWakeUp() {
         isSleeping = !isSleeping;
     }
 
+    /**
+     * Fait vieillir la créature en augmentant son âge et gère le décès de la créature en cas de vieillesse extrême.
+     *
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public void age(ArrayList<String> creatureActionLog) {
         age += 1;
         if (age%100==0) {
@@ -272,10 +328,18 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Modifie l'état de reproduction de la créature, activant ou désactivant son désir de se reproduire.
+     */
     public void changeReproduceState() {
         wantToReproduce = !wantToReproduce;
     }
 
+    /**
+     * Donne la possibilité aux créatures de faire caca (c'est important), ajoutant de la saleté à l'enclos.
+     *
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public void poop(ArrayList<String> creatureActionLog) {
         if (enclosure != null) {
             enclosure.poopInside(creatureActionLog);
@@ -286,6 +350,11 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Simule l'état de maladie de la créature, réduisant son niveau de santé et provoquant la mort si la santé atteint zéro.
+     *
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public void ill(ArrayList<String> creatureActionLog) {
         health -= 1;
         if (health == 0) {
@@ -294,6 +363,11 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Simule la faim de la créature, réduisant son niveau de santé et provoquant la mort si la santé atteint zéro.
+     *
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public void starve(ArrayList<String> creatureActionLog) {
         health -= 1;
         if (health == 0) {
@@ -302,6 +376,13 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Simule la mort de la créature pour une cause donnée, en ajoutant un message approprié à l'ArrayList de journaux d'actions.
+     * Si la créature est de type "Renascent", elle est ressuscitée avec des attributs modifiés.
+     *
+     * @param causeOfDeath      La cause du décès de la créature.
+     * @param creatureActionLog Un ArrayList pour enregistrer les actions effectuées par la créature.
+     */
     public void die (String causeOfDeath, ArrayList<String> creatureActionLog) {
         creatureActionLog.add("\u001B[31mOh no, a " + species + " died of " + causeOfDeath + " :(\u001B[0m");
         if(this instanceof Renascent) {
@@ -317,12 +398,27 @@ public abstract class Creature {
         }
     }
 
+    /**
+     * Associe l'enclos spécifié à la créature.
+     *
+     * @param enclosure L'enclos à associer à la créature.
+     */
     public void setEnclosure(Enclosure enclosure) {
         this.enclosure = enclosure;
     }
 
+    /**
+     * Obtient l'enclos associé à la créature.
+     *
+     * @return L'enclos associé à la créature.
+     */
     public Enclosure getEnclosure() { return enclosure; }
 
+    /**
+     * Obtient une représentation sous forme de chaîne de caractères de la créature avec des indications de couleur pour la santé, la faim, etc.
+     *
+     * @return Une représentation sous forme de chaîne de caractères de la créature.
+     */
     @Override
     public String toString() {
         String color = "";
@@ -357,6 +453,12 @@ public abstract class Creature {
                 "\u001B[0m";
     }
 
+    /**
+     * Crée une nouvelle créature en fonction de la créature existante. Utilisé pour la reproduction.
+     *
+     * @param c La créature parente qui sera utilisée comme modèle pour la nouvelle créature.
+     * @return Une nouvelle créature créée à partir du modèle parent.
+     */
     public Creature createNewCreature(Creature c) {
         String species = c.getSpecies();
         if (Objects.equals(species, "Unicorn")) {
