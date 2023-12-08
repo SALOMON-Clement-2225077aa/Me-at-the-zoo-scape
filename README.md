@@ -2,6 +2,8 @@
 
 Bonjour / Bonsoir et bienvenue dans notre Zoo !
 
+Avant de jouez veuillez consulter le <a href="https://www.canva.com/design/DAF2aqvOp28/K8soOlnN6syjv_Cv1fasng/edit?utm_content=DAF2aqvOp28&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"> Manuel d'utilisation </a>
+
 o Vous trouverez dans ce dossier :
 
 	- La spécification (étude de conception et clôture de travil réunis)
