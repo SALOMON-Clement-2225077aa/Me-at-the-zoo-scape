@@ -16,7 +16,14 @@ o Vous trouverez dans ce dossier :
 
 o Ci-dessous le lien vers le repo de travail github :
 
-- https://github.com/SALOMON-Clement-2225077aa/Me-at-the-zoo-scape
+	- https://github.com/SALOMON-Clement-2225077aa/Me-at-the-zoo-scape
+
+o De quoi nous contacter en cas de problème :
+
+	- clement.salomon@etu.univ-amu.fr
+
+	- 06 51 13 69 00
+
 
 Merci de m'avoir lu :)
 Happy testing !
