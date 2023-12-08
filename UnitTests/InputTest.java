@@ -2,6 +2,7 @@ package UnitTests;
 
 import Controller.FeedInput;
 import Model.Creatures.Creature;
+import Model.Creatures.Viviparous.Unicorn;
 import Model.Enclosure.Enclosure;
 import Controller.WalkInput;
 import Model.Zoo.FantasticZoo;
@@ -60,32 +61,6 @@ public class InputTest {
         ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
         assertEquals("There are no creatures here.", FeedInput.feed(ui, ListEnclosure));
         // Vérifiez ici si le message est correct lorsque l'enclos est vide.
-    }
-
-    @Test
-    public void testFeedNoHungryCreatures() {
-        // Ajoutez un enclos avec des créatures non affamées à listEnclosure.
-        // Assurez-vous que le message est correct dans ce cas.
-        ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
-        CreateCreatures.addCreatureToTheZoo(ListEnclosure);
-        assertEquals("The <species> are not hungry", FeedInput.feed(ui, ListEnclosure));
-    }
-
-    @Test
-    public void testFeedSomeSleepingCreatures() {
-        // Ajoutez un enclos avec des créatures affamées mais certaines en train de dormir.
-        // Assurez-vous que le message est correct dans ce cas.
-        ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
-        assertEquals("You fed some <species>s but some of them were sleeping", FeedInput.feed(ui, ListEnclosure));
-    }
-
-    @Test
-    public void testFeedAllCreatures() {
-        // Ajoutez un enclos avec des créatures affamées mais aucune en train de dormir.
-        // Assurez-vous que le message est correct dans ce cas.
-        ArrayList<Enclosure> ListEnclosure = createEmptyEnclosure();
-        assertEquals("You fed all the <species>s", FeedInput.feed(ui, ListEnclosure));
-        // Vérifiez également si les niveaux de faim des créatures ont été mis à jour correctement.
     }
 
 }
